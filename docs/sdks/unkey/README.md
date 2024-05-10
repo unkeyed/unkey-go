@@ -19,16 +19,16 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.V1ApisCreateAPIRequestBody{
@@ -76,16 +76,16 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.V1ApsisDeleteAPIRequestBody{
@@ -133,28 +133,28 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.PostV1KeysRequestBody{
         APIID: "api_123",
-        Name: unkeysdkgo.String("my key"),
-        OwnerID: unkeysdkgo.String("team_123"),
+        Name: sdkgo.String("my key"),
+        OwnerID: sdkgo.String("team_123"),
         Meta: map[string]interface{}{
             "billingTier": "PRO",
             "trialEnds": "2023-06-16T17:16:37.161Z",
         },
-        Expires: unkeysdkgo.Int64(1623869797161),
-        Remaining: unkeysdkgo.Int64(1000),
+        Expires: sdkgo.Int64(1623869797161),
+        Remaining: sdkgo.Int64(1000),
         Ratelimit: &operations.PostV1KeysRatelimit{
             Type: operations.PostV1KeysTypeFast.ToPointer(),
             Limit: 10,
@@ -204,20 +204,20 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.PostV1KeysVerifyRequestBody{
-        APIID: unkeysdkgo.String("api_1234"),
+        APIID: sdkgo.String("api_1234"),
         Key: "sk_1234",
     }
     
@@ -262,21 +262,21 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.GetV1ApisAPIIDKeysRequest{
         APIID: "api_1234",
-        Limit: unkeysdkgo.Int64(100),
+        Limit: sdkgo.Int64(100),
     }
     
     ctx := context.Background()

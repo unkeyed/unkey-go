@@ -1,4 +1,4 @@
-module github.com/unkeyed/unkey-sdk-go
+module github.com/unkeyed/sdk-go
 
 go 1.20
 

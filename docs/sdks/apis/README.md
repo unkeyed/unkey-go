@@ -14,16 +14,16 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.V1ApisGetAPIRequest{
@@ -71,21 +71,21 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.V1ApisListKeysRequest{
         APIID: "api_1234",
-        Limit: unkeysdkgo.Int64(100),
+        Limit: sdkgo.Int64(100),
     }
     
     ctx := context.Background()

@@ -13,15 +13,15 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
 

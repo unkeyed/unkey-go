@@ -20,7 +20,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ## SDK Installation
 
 ```bash
-go get github.com/unkeyed/unkey-sdk-go
+go get github.com/unkeyed/sdk-go
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -34,15 +34,15 @@ package main
 
 import (
 	"context"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/components"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkeysdkgo.New(
-		unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkgo.New(
+		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.V1ApisCreateAPIRequestBody{
@@ -125,16 +125,16 @@ package main
 import (
 	"context"
 	"errors"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
-	"github.com/unkeyed/unkey-sdk-go/models/sdkerrors"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/components"
+	"github.com/unkeyed/sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/sdkerrors"
 	"log"
 )
 
 func main() {
-	s := unkeysdkgo.New(
-		unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkgo.New(
+		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.V1ApisCreateAPIRequestBody{
@@ -216,16 +216,16 @@ package main
 
 import (
 	"context"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/components"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkeysdkgo.New(
-		unkeysdkgo.WithServerIndex(0),
-		unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkgo.New(
+		sdkgo.WithServerIndex(0),
+		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.V1ApisCreateAPIRequestBody{
@@ -253,16 +253,16 @@ package main
 
 import (
 	"context"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/components"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkeysdkgo.New(
-		unkeysdkgo.WithServerURL("https://api.unkey.dev"),
-		unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkgo.New(
+		sdkgo.WithServerURL("https://api.unkey.dev"),
+		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.V1ApisCreateAPIRequestBody{
@@ -328,14 +328,14 @@ package main
 
 import (
 	"context"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkeysdkgo.New(
-		unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkgo.New(
+		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.V1ApisCreateAPIRequestBody{

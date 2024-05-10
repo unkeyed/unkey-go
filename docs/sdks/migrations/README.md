@@ -13,28 +13,28 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := []operations.RequestBody{
         operations.RequestBody{
             APIID: "api_123",
-            Name: unkeysdkgo.String("my key"),
+            Name: sdkgo.String("my key"),
             Hash: operations.Hash{
                 Value: "<value>",
                 Variant: operations.VariantSha256Base64,
             },
-            Start: unkeysdkgo.String("unkey_32kq"),
-            OwnerID: unkeysdkgo.String("team_123"),
+            Start: sdkgo.String("unkey_32kq"),
+            OwnerID: sdkgo.String("team_123"),
             Meta: map[string]interface{}{
                 "billingTier": "PRO",
                 "trialEnds": "2023-06-16T17:16:37.161Z",
@@ -43,8 +43,8 @@ func main() {
                 "admin",
                 "finance",
             },
-            Expires: unkeysdkgo.Int64(1623869797161),
-            Remaining: unkeysdkgo.Int64(1000),
+            Expires: sdkgo.Int64(1623869797161),
+            Remaining: sdkgo.Int64(1000),
             Refill: &operations.V1MigrationsCreateKeysRefill{
                 Interval: operations.V1MigrationsCreateKeysIntervalDaily,
                 Amount: 100,
@@ -55,7 +55,7 @@ func main() {
                 RefillRate: 1,
                 RefillInterval: 60,
             },
-            Enabled: unkeysdkgo.Bool(false),
+            Enabled: sdkgo.Bool(false),
         },
     }
     

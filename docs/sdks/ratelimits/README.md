@@ -13,29 +13,29 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-sdk-go/models/components"
-	unkeysdkgo "github.com/unkeyed/unkey-sdk-go"
-	"github.com/unkeyed/unkey-sdk-go/models/operations"
+	"github.com/unkeyed/sdk-go/models/components"
+	sdkgo "github.com/unkeyed/sdk-go"
+	"github.com/unkeyed/sdk-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeysdkgo.New(
-        unkeysdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkgo.New(
+        sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.V1RatelimitsLimitRequestBody{
-        Namespace: unkeysdkgo.String("email.outbound"),
+        Namespace: sdkgo.String("email.outbound"),
         Identifier: "user_123",
         Limit: 10,
         Duration: 60000,
-        Cost: unkeysdkgo.Int64(2),
+        Cost: sdkgo.Int64(2),
         Resources: []operations.Resources{
             operations.Resources{
                 Type: "project",
                 ID: "p_123",
-                Name: unkeysdkgo.String("dub"),
+                Name: sdkgo.String("dub"),
             },
         },
     }

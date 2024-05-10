@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey-sdk-go/internal/utils"
+	"github.com/unkeyed/sdk-go/internal/utils"
 )
 
 // Variant - The algorithm for hashing and encoding, currently only sha256 and base64 are supported

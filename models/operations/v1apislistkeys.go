@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/unkeyed/unkey-sdk-go/internal/utils"
-	"github.com/unkeyed/unkey-sdk-go/models/components"
+	"github.com/unkeyed/sdk-go/internal/utils"
+	"github.com/unkeyed/sdk-go/models/components"
 )
 
 type V1ApisListKeysRequest struct {

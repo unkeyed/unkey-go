@@ -1,0 +1,10 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    openapi.json:
+        inputs:
+            - location: https://api.unkey.dev/openapi.json
+targets:
+    go:
+        target: go
+        source: openapi.json

@@ -19,16 +19,16 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey"
+	"github.com/unkeyed/unkey/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkey.New(
+        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.CreateAPIRequestBody{
@@ -76,16 +76,16 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey"
+	"github.com/unkeyed/unkey/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkey.New(
+        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.DeleteAPIRequestBody{
@@ -133,28 +133,28 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey"
+	"github.com/unkeyed/unkey/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkey.New(
+        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.DeprecatedCreateKeyRequestBody{
         APIID: "api_123",
-        Name: unkeygo.String("my key"),
-        OwnerID: unkeygo.String("team_123"),
+        Name: unkey.String("my key"),
+        OwnerID: unkey.String("team_123"),
         Meta: map[string]interface{}{
             "billingTier": "PRO",
             "trialEnds": "2023-06-16T17:16:37.161Z",
         },
-        Expires: unkeygo.Int64(1623869797161),
-        Remaining: unkeygo.Int64(1000),
+        Expires: unkey.Int64(1623869797161),
+        Remaining: unkey.Int64(1000),
         Ratelimit: &operations.DeprecatedCreateKeyRatelimit{
             Type: operations.DeprecatedCreateKeyTypeFast.ToPointer(),
             Limit: 10,
@@ -206,20 +206,20 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey"
+	"github.com/unkeyed/unkey/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkey.New(
+        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.DeprecatedVerifyKeyRequestBody{
-        APIID: unkeygo.String("api_1234"),
+        APIID: unkey.String("api_1234"),
         Key: "sk_1234",
     }
     
@@ -264,21 +264,21 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey"
+	"github.com/unkeyed/unkey/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkey.New(
+        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.DeprecatedListKeysRequest{
         APIID: "api_1234",
-        Limit: unkeygo.Int64(100),
+        Limit: unkey.Int64(100),
     }
     
     ctx := context.Background()

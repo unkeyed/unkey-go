@@ -5,7 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey/internal/utils"
 )
 
 // Interval - Determines the rate at which verifications will be refilled.

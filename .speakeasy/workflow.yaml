@@ -8,5 +8,5 @@ targets:
     go:
         target: go
         source: openapi.json
-        codeSamples: 
+        codeSamples:
             output: codeSamples.yaml

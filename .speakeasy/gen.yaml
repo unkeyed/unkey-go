@@ -28,5 +28,5 @@ go:
   maxMethodParams: 0
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: github.com/unkeyed/unkey
+  packageName: github.com/unkeyed/unkey-go
   responseFormat: flat

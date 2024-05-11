@@ -4,6 +4,8 @@ sources:
     openapi.json:
         inputs:
             - location: https://api.unkey.dev/openapi.json
+        registry:
+            location: registry.speakeasyapi.dev/unkey/unkey/openapi-json
 targets:
     go:
         target: go

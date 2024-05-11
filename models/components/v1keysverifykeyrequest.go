@@ -3,7 +3,7 @@
 package components
 
 import (
-	"github.com/unkeyed/unkey/internal/utils"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 // Permissions - A query for which permissions you require

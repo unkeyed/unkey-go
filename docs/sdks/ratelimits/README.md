@@ -13,29 +13,29 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/operations"
+	"github.com/unkeyed/unkey-go/models/components"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkey.New(
-        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.LimitRequestBody{
-        Namespace: unkey.String("email.outbound"),
+        Namespace: unkeygo.String("email.outbound"),
         Identifier: "user_123",
         Limit: 10,
         Duration: 60000,
-        Cost: unkey.Int64(2),
+        Cost: unkeygo.Int64(2),
         Resources: []operations.Resources{
             operations.Resources{
                 Type: "project",
                 ID: "p_123",
-                Name: unkey.String("dub"),
+                Name: unkeygo.String("dub"),
             },
         },
     }

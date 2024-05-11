@@ -28,15 +28,15 @@ package main
 
 import (
 	"context"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{
@@ -119,16 +119,16 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey/models/operations"
-	"github.com/unkeyed/unkey/models/sdkerrors"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{
@@ -210,16 +210,16 @@ package main
 
 import (
 	"context"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithServerIndex(0),
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithServerIndex(0),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{
@@ -247,16 +247,16 @@ package main
 
 import (
 	"context"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithServerURL("https://api.unkey.dev"),
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithServerURL("https://api.unkey.dev"),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{
@@ -322,14 +322,14 @@ package main
 
 import (
 	"context"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{

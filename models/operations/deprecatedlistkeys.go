@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/unkeyed/unkey/internal/utils"
-	"github.com/unkeyed/unkey/models/components"
+	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 )
 
 type DeprecatedListKeysRequest struct {

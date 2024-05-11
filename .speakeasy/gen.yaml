@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
 go:
-  version: 0.1.4
+  version: 0.1.5
   additionalDependencies: {}
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
@@ -28,5 +28,5 @@ go:
   maxMethodParams: 0
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: github.com/unkeyed/unkey
+  packageName: github.com/unkeyed/unkey-go
   responseFormat: flat

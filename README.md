@@ -10,17 +10,11 @@
 
 ## 🏗 **Welcome to your new SDK!** 🏗
 
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
-
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ```bash
-go get github.com/unkeyed/sdk-go
+go get github.com/unkeyed/unkey-go
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -34,23 +28,23 @@ package main
 
 import (
 	"context"
-	sdkgo "github.com/unkeyed/sdk-go"
-	"github.com/unkeyed/sdk-go/models/components"
-	"github.com/unkeyed/sdk-go/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := sdkgo.New(
-		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
-	request := operations.V1ApisCreateAPIRequestBody{
+	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
 
 	ctx := context.Background()
-	res, err := s.V1ApisCreateAPI(ctx, request)
+	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -67,11 +61,11 @@ func main() {
 
 ### [Unkey SDK](docs/sdks/unkey/README.md)
 
-* [V1ApisCreateAPI](docs/sdks/unkey/README.md#v1apiscreateapi)
-* [V1ApsisDeleteAPI](docs/sdks/unkey/README.md#v1apsisdeleteapi)
-* [PostV1Keys](docs/sdks/unkey/README.md#postv1keys)
-* [PostV1KeysVerify](docs/sdks/unkey/README.md#postv1keysverify)
-* [GetV1ApisAPIIDKeys](docs/sdks/unkey/README.md#getv1apisapiidkeys)
+* [CreateAPI](docs/sdks/unkey/README.md#createapi)
+* [DeleteAPI](docs/sdks/unkey/README.md#deleteapi)
+* [DeprecatedCreateKey](docs/sdks/unkey/README.md#deprecatedcreatekey)
+* [~~DeprecatedVerifyKey~~](docs/sdks/unkey/README.md#deprecatedverifykey) - :warning: **Deprecated**
+* [DeprecatedListKeys](docs/sdks/unkey/README.md#deprecatedlistkeys)
 
 ### [Liveness](docs/sdks/liveness/README.md)
 
@@ -79,22 +73,22 @@ func main() {
 
 ### [Keys](docs/sdks/keys/README.md)
 
-* [V1KeysGetKey](docs/sdks/keys/README.md#v1keysgetkey)
-* [V1KeysDeleteKey](docs/sdks/keys/README.md#v1keysdeletekey)
-* [V1KeysCreateKey](docs/sdks/keys/README.md#v1keyscreatekey)
-* [V1KeysVerifyKey](docs/sdks/keys/README.md#v1keysverifykey)
-* [V1KeysUpdateKey](docs/sdks/keys/README.md#v1keysupdatekey)
-* [V1KeysUpdateRemaining](docs/sdks/keys/README.md#v1keysupdateremaining)
-* [V1KeysGetVerifications](docs/sdks/keys/README.md#v1keysgetverifications)
+* [GetKey](docs/sdks/keys/README.md#getkey)
+* [DeleteKey](docs/sdks/keys/README.md#deletekey)
+* [CreateKey](docs/sdks/keys/README.md#createkey)
+* [VerifyKey](docs/sdks/keys/README.md#verifykey)
+* [UpdateKey](docs/sdks/keys/README.md#updatekey)
+* [UpdateRemaining](docs/sdks/keys/README.md#updateremaining)
+* [GetVerifications](docs/sdks/keys/README.md#getverifications)
 
 ### [Apis](docs/sdks/apis/README.md)
 
-* [V1ApisGetAPI](docs/sdks/apis/README.md#v1apisgetapi)
-* [V1ApisListKeys](docs/sdks/apis/README.md#v1apislistkeys)
+* [GetAPI](docs/sdks/apis/README.md#getapi)
+* [ListKeys](docs/sdks/apis/README.md#listkeys)
 
 ### [Ratelimits](docs/sdks/ratelimits/README.md)
 
-* [V1RatelimitsLimit](docs/sdks/ratelimits/README.md#v1ratelimitslimit)
+* [Limit](docs/sdks/ratelimits/README.md#limit)
 
 ### [Migrations](docs/sdks/migrations/README.md)
 
@@ -125,24 +119,24 @@ package main
 import (
 	"context"
 	"errors"
-	sdkgo "github.com/unkeyed/sdk-go"
-	"github.com/unkeyed/sdk-go/models/components"
-	"github.com/unkeyed/sdk-go/models/operations"
-	"github.com/unkeyed/sdk-go/models/sdkerrors"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
 )
 
 func main() {
-	s := sdkgo.New(
-		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
-	request := operations.V1ApisCreateAPIRequestBody{
+	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
 
 	ctx := context.Background()
-	res, err := s.V1ApisCreateAPI(ctx, request)
+	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
 
 		var e *sdkerrors.ErrBadRequest
@@ -216,24 +210,24 @@ package main
 
 import (
 	"context"
-	sdkgo "github.com/unkeyed/sdk-go"
-	"github.com/unkeyed/sdk-go/models/components"
-	"github.com/unkeyed/sdk-go/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := sdkgo.New(
-		sdkgo.WithServerIndex(0),
-		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithServerIndex(0),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
-	request := operations.V1ApisCreateAPIRequestBody{
+	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
 
 	ctx := context.Background()
-	res, err := s.V1ApisCreateAPI(ctx, request)
+	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -253,24 +247,24 @@ package main
 
 import (
 	"context"
-	sdkgo "github.com/unkeyed/sdk-go"
-	"github.com/unkeyed/sdk-go/models/components"
-	"github.com/unkeyed/sdk-go/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := sdkgo.New(
-		sdkgo.WithServerURL("https://api.unkey.dev"),
-		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithServerURL("https://api.unkey.dev"),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
-	request := operations.V1ApisCreateAPIRequestBody{
+	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
 
 	ctx := context.Background()
-	res, err := s.V1ApisCreateAPI(ctx, request)
+	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -328,22 +322,22 @@ package main
 
 import (
 	"context"
-	sdkgo "github.com/unkeyed/sdk-go"
-	"github.com/unkeyed/sdk-go/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := sdkgo.New(
-		sdkgo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
-	request := operations.V1ApisCreateAPIRequestBody{
+	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
 
 	ctx := context.Background()
-	res, err := s.V1ApisCreateAPI(ctx, request)
+	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}

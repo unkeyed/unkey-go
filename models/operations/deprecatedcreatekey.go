@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey/internal/utils"
 )
 
 // DeprecatedCreateKeyType - Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.

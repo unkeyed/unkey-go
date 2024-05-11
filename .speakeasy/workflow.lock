@@ -1,6 +1,19 @@
 speakeasyVersion: 1.286.0
-sources: {}
-targets: {}
+sources:
+    openapi.json:
+        sourceNamespace: openapi-json
+        sourceRevisionDigest: sha256:1d2e7fcc77fec09e058c9d92c1bae2ec714a24bd26d287fb9e6f144edd7d6366
+        sourceBlobDigest: sha256:b14b191758a80b98c783547d814e979d08a8423d60b506c1453f3e2e14e9f59e
+        tags:
+            - latest
+            - main
+targets:
+    go:
+        source: openapi.json
+        sourceNamespace: openapi-json
+        sourceRevisionDigest: sha256:1d2e7fcc77fec09e058c9d92c1bae2ec714a24bd26d287fb9e6f144edd7d6366
+        sourceBlobDigest: sha256:b14b191758a80b98c783547d814e979d08a8423d60b506c1453f3e2e14e9f59e
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -8,6 +21,8 @@ workflow:
         openapi.json:
             inputs:
                 - location: https://api.unkey.dev/openapi.json
+            registry:
+                location: registry.speakeasyapi.dev/unkey/unkey/openapi-json
     targets:
         go:
             target: go

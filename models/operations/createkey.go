@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey/internal/utils"
 )
 
 // Interval - Unkey will automatically refill verifications at the set interval.

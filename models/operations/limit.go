@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey/internal/utils"
 )
 
 type Resources struct {

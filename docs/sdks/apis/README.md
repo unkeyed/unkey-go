@@ -14,16 +14,16 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/operations"
+	"github.com/unkeyed/unkey-go/models/components"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkey.New(
-        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.GetAPIRequest{
@@ -71,21 +71,21 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/operations"
+	"github.com/unkeyed/unkey-go/models/components"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkey.New(
-        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := operations.ListKeysRequest{
         APIID: "api_1234",
-        Limit: unkey.Int64(100),
+        Limit: unkeygo.Int64(100),
     }
     
     ctx := context.Background()

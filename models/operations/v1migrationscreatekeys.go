@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey/internal/utils"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 // Variant - The algorithm for hashing and encoding, currently only sha256 and base64 are supported
@@ -204,7 +204,7 @@ type RequestBody struct {
 	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.
 	OwnerID *string `json:"ownerId,omitempty"`
 	// This is a place for dynamic meta data, anything that feels useful for you should go here
-	Meta map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]any `json:"meta,omitempty"`
 	// A list of roles that this key should have. If the role does not exist, an error is thrown
 	Roles []string `json:"roles,omitempty"`
 	// You can auto expire keys by providing a unix timestamp in milliseconds. Once Keys expire they will automatically be disabled and are no longer valid unless you enable them again.
@@ -282,7 +282,7 @@ func (o *RequestBody) GetOwnerID() *string {
 	return o.OwnerID
 }
 
-func (o *RequestBody) GetMeta() map[string]interface{} {
+func (o *RequestBody) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}

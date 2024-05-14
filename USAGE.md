@@ -4,15 +4,15 @@ package main
 
 import (
 	"context"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey/models/operations"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
 func main() {
-	s := unkey.New(
-		unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	request := operations.CreateAPIRequestBody{

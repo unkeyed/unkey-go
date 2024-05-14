@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: a715ffbc95c5418289d86dc35921e0e8
+  docChecksum: 7621b6bd3bfaca0bcd2b0dc8150e0325
   docVersion: 1.0.0
-  speakeasyVersion: 1.286.0
-  generationVersion: 2.326.3
-  releaseVersion: 0.1.9
-  configChecksum: 804fe5269ba412bff73d4706ac012430
+  speakeasyVersion: 1.286.3
+  generationVersion: 2.329.0
+  releaseVersion: 0.2.0
+  configChecksum: f7dcb627a24c2bc24f40a5b483adfe68
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.7
-    deprecations: 2.81.1
+    core: 3.4.8
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
+    ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.0
     responseFormat: 0.1.1
@@ -49,9 +49,6 @@ generatedFiles:
   - internal/utils/utils.go
   - /models/operations/createapi.go
   - /models/operations/deleteapi.go
-  - /models/operations/deprecatedcreatekey.go
-  - /models/operations/deprecatedverifykey.go
-  - /models/operations/deprecatedlistkeys.go
   - /models/operations/v1liveness.go
   - /models/operations/getkey.go
   - /models/operations/deletekey.go
@@ -78,16 +75,6 @@ generatedFiles:
   - docs/models/operations/createapiresponsebody.md
   - docs/models/operations/deleteapirequestbody.md
   - docs/models/operations/deleteapiresponsebody.md
-  - docs/models/operations/deprecatedcreatekeytype.md
-  - docs/models/operations/deprecatedcreatekeyratelimit.md
-  - docs/models/operations/deprecatedcreatekeyrequestbody.md
-  - docs/models/operations/deprecatedcreatekeyresponsebody.md
-  - docs/models/operations/deprecatedverifykeyrequestbody.md
-  - docs/models/operations/deprecatedverifykeyratelimit.md
-  - docs/models/operations/code.md
-  - docs/models/operations/deprecatedverifykeyresponsebody.md
-  - docs/models/operations/deprecatedlistkeysrequest.md
-  - docs/models/operations/deprecatedlistkeysresponsebody.md
   - docs/models/operations/services.md
   - docs/models/operations/v1livenessresponsebody.md
   - docs/models/operations/getkeyrequest.md

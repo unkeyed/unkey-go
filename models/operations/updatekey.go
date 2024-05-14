@@ -135,7 +135,7 @@ type UpdateKeyRequestBody struct {
 	// The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this field back to you, so you know who is accessing your API.
 	OwnerID *string `json:"ownerId,omitempty"`
 	// Any additional metadata you want to store with the key
-	Meta map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
 	Expires *float64 `json:"expires,omitempty"`
 	// Unkey comes with per-key ratelimiting out of the box. Set `null` to disable.
@@ -169,7 +169,7 @@ func (o *UpdateKeyRequestBody) GetOwnerID() *string {
 	return o.OwnerID
 }
 
-func (o *UpdateKeyRequestBody) GetMeta() map[string]interface{} {
+func (o *UpdateKeyRequestBody) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}

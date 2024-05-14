@@ -13,29 +13,29 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey/models/components"
-	"github.com/unkeyed/unkey"
-	"github.com/unkeyed/unkey/models/operations"
+	"github.com/unkeyed/unkey-go/models/components"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
 	"log"
 )
 
 func main() {
-    s := unkey.New(
-        unkey.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
     request := []operations.RequestBody{
         operations.RequestBody{
             APIID: "api_123",
-            Name: unkey.String("my key"),
+            Name: unkeygo.String("my key"),
             Hash: operations.Hash{
                 Value: "<value>",
                 Variant: operations.VariantSha256Base64,
             },
-            Start: unkey.String("unkey_32kq"),
-            OwnerID: unkey.String("team_123"),
-            Meta: map[string]interface{}{
+            Start: unkeygo.String("unkey_32kq"),
+            OwnerID: unkeygo.String("team_123"),
+            Meta: map[string]any{
                 "billingTier": "PRO",
                 "trialEnds": "2023-06-16T17:16:37.161Z",
             },
@@ -43,8 +43,8 @@ func main() {
                 "admin",
                 "finance",
             },
-            Expires: unkey.Int64(1623869797161),
-            Remaining: unkey.Int64(1000),
+            Expires: unkeygo.Int64(1623869797161),
+            Remaining: unkeygo.Int64(1000),
             Refill: &operations.V1MigrationsCreateKeysRefill{
                 Interval: operations.V1MigrationsCreateKeysIntervalDaily,
                 Amount: 100,
@@ -55,7 +55,7 @@ func main() {
                 RefillRate: 1,
                 RefillInterval: 60,
             },
-            Enabled: unkey.Bool(false),
+            Enabled: unkeygo.Bool(false),
         },
     }
     

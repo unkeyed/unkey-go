@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/unkeyed/unkey/internal/utils"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 type Resources struct {
@@ -14,7 +14,7 @@ type Resources struct {
 	// A human readable name for this resource
 	Name *string `json:"name,omitempty"`
 	// Attach any metadata to this resources
-	Meta map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]any `json:"meta,omitempty"`
 }
 
 func (o *Resources) GetType() string {
@@ -38,7 +38,7 @@ func (o *Resources) GetName() *string {
 	return o.Name
 }
 
-func (o *Resources) GetMeta() map[string]interface{} {
+func (o *Resources) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}
@@ -59,7 +59,7 @@ type LimitRequestBody struct {
 	// Async will return a response immediately, lowering latency at the cost of accuracy.
 	Async *bool `default:"false" json:"async"`
 	// Attach any metadata to this request
-	Meta map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]any `json:"meta,omitempty"`
 	// Resources that are about to be accessed by the user
 	Resources []Resources `json:"resources,omitempty"`
 }
@@ -117,7 +117,7 @@ func (o *LimitRequestBody) GetAsync() *bool {
 	return o.Async
 }
 
-func (o *LimitRequestBody) GetMeta() map[string]interface{} {
+func (o *LimitRequestBody) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}

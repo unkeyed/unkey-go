@@ -1,4 +1,4 @@
-module github.com/unkeyed/unkey
+module github.com/unkeyed/unkey-go
 
 go 1.20
 

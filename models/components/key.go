@@ -5,7 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey/internal/utils"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 // Interval - Determines the rate at which verifications will be refilled.
@@ -162,7 +162,7 @@ type Key struct {
 	// The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this field back to you, so you know who is accessing your API.
 	OwnerID *string `json:"ownerId,omitempty"`
 	// Any additional metadata you want to store with the key
-	Meta map[string]interface{} `json:"meta,omitempty"`
+	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key was created
 	CreatedAt *float64 `json:"createdAt,omitempty"`
 	// The unix timestamp in milliseconds when the key was deleted. We don't delete the key outright, you can restore it later.
@@ -225,7 +225,7 @@ func (o *Key) GetOwnerID() *string {
 	return o.OwnerID
 }
 
-func (o *Key) GetMeta() map[string]interface{} {
+func (o *Key) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}

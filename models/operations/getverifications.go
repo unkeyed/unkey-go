@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey/internal/utils"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 // Granularity - The granularity of the usage data to fetch, currently only `day` is supported

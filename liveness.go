@@ -190,4 +190,7 @@ func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessRespon
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }

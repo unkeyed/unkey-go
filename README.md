@@ -19,7 +19,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
@@ -28,11 +27,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
-
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
@@ -72,6 +69,7 @@ func main() {
 
 * [GetAPI](docs/sdks/apis/README.md#getapi)
 * [ListKeys](docs/sdks/apis/README.md#listkeys)
+* [DeleteKeys](docs/sdks/apis/README.md#deletekeys)
 
 ### [Ratelimits](docs/sdks/ratelimits/README.md)
 
@@ -107,7 +105,6 @@ import (
 	"context"
 	"errors"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
@@ -117,11 +114,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
-
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
@@ -198,7 +193,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
@@ -208,11 +202,9 @@ func main() {
 		unkeygo.WithServerIndex(0),
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
-
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
@@ -235,7 +227,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
@@ -245,11 +236,9 @@ func main() {
 		unkeygo.WithServerURL("https://api.unkey.dev"),
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
-
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request)
 	if err != nil {
@@ -318,11 +307,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
 	}
-
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request)
 	if err != nil {

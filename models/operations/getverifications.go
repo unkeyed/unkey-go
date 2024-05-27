@@ -18,7 +18,6 @@ const (
 func (e Granularity) ToPointer() *Granularity {
 	return &e
 }
-
 func (e *Granularity) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

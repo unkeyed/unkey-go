@@ -19,7 +19,6 @@ const (
 func (e Interval) ToPointer() *Interval {
 	return &e
 }
-
 func (e *Interval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -58,9 +57,11 @@ func (o *Refill) GetAmount() int64 {
 	return o.Amount
 }
 
-// Type - Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+// Type - Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type Type string
 
 const (
@@ -71,7 +72,6 @@ const (
 func (e Type) ToPointer() *Type {
 	return &e
 }
-
 func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -88,16 +88,26 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Ratelimit - Unkey comes with per-key ratelimiting out of the box.
+// Ratelimit - Unkey comes with per-key fixed-window ratelimiting out of the box.
 type Ratelimit struct {
-	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	// Async will return a response immediately, lowering latency at the cost of accuracy.
+	Async *bool `default:"false" json:"async"`
+	// Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *Type `default:"fast" json:"type"`
-	// The total amount of burstable requests.
+	// The total amount of requests in a given interval.
 	Limit int64 `json:"limit"`
+	// The window duration in milliseconds
+	Duration int64 `json:"duration"`
 	// How many tokens to refill during each refillInterval.
-	RefillRate int64 `json:"refillRate"`
-	// Determines the speed at which tokens are refilled, in milliseconds.
-	RefillInterval int64 `json:"refillInterval"`
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	RefillRate *int64 `json:"refillRate,omitempty"`
+	// The refill timeframe, in milliseconds.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	RefillInterval *int64 `json:"refillInterval,omitempty"`
 }
 
 func (r Ratelimit) MarshalJSON() ([]byte, error) {
@@ -109,6 +119,13 @@ func (r *Ratelimit) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *Ratelimit) GetAsync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Async
 }
 
 func (o *Ratelimit) GetType() *Type {
@@ -125,16 +142,23 @@ func (o *Ratelimit) GetLimit() int64 {
 	return o.Limit
 }
 
-func (o *Ratelimit) GetRefillRate() int64 {
+func (o *Ratelimit) GetDuration() int64 {
 	if o == nil {
 		return 0
+	}
+	return o.Duration
+}
+
+func (o *Ratelimit) GetRefillRate() *int64 {
+	if o == nil {
+		return nil
 	}
 	return o.RefillRate
 }
 
-func (o *Ratelimit) GetRefillInterval() int64 {
+func (o *Ratelimit) GetRefillInterval() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.RefillInterval
 }
@@ -166,7 +190,7 @@ type CreateKeyRequestBody struct {
 	Remaining *int64 `json:"remaining,omitempty"`
 	// Unkey enables you to refill verifications for each key at regular intervals.
 	Refill *Refill `json:"refill,omitempty"`
-	// Unkey comes with per-key ratelimiting out of the box.
+	// Unkey comes with per-key fixed-window ratelimiting out of the box.
 	Ratelimit *Ratelimit `json:"ratelimit,omitempty"`
 	// Sets if key is enabled or disabled. Disabled keys are not valid.
 	Enabled *bool `default:"true" json:"enabled"`

@@ -116,17 +116,11 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
-func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
-	return func(context.Context) (interface{}, error) {
-		return security, nil
-	}
-}
-
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(bearerAuth string) SDKOption {
 	return func(sdk *Unkey) {
 		security := components.Security{BearerAuth: &bearerAuth}
-		sdk.sdkConfiguration.Security = withSecurity(&security)
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
 
@@ -151,9 +145,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.329.0",
-			UserAgent:         "speakeasy-sdk/go 0.2.0 2.329.0 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.3.0",
+			GenVersion:        "2.338.1",
+			UserAgent:         "speakeasy-sdk/go 0.3.0 2.338.1 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -357,6 +351,9 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIRequestBody) (*operations.DeleteAPIResponseBody, error) {
@@ -530,4 +527,7 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }

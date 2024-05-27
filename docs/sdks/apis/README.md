@@ -5,6 +5,7 @@
 
 * [GetAPI](#getapi)
 * [ListKeys](#listkeys)
+* [DeleteKeys](#deletekeys)
 
 ## GetAPI
 
@@ -14,7 +15,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -25,11 +25,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.GetAPIRequest{
         APIID: "api_1234",
     }
-    
     ctx := context.Background()
     res, err := s.Apis.GetAPI(ctx, request)
     if err != nil {
@@ -71,7 +69,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -82,12 +79,10 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.ListKeysRequest{
         APIID: "api_1234",
         Limit: unkeygo.Int64(100),
     }
-    
     ctx := context.Background()
     res, err := s.Apis.ListKeys(ctx, request)
     if err != nil {
@@ -110,6 +105,60 @@ func main() {
 ### Response
 
 **[*operations.ListKeysResponseBody](../../models/operations/listkeysresponsebody.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## DeleteKeys
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.DeleteKeysRequestBody{
+        APIID: "api_1234",
+    }
+    ctx := context.Background()
+    res, err := s.Apis.DeleteKeys(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.DeleteKeysRequestBody](../../models/operations/deletekeysrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[*operations.DeleteKeysResponseBody](../../models/operations/deletekeysresponsebody.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

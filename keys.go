@@ -195,6 +195,9 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*c
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyRequestBody) (*operations.DeleteKeyResponseBody, error) {
@@ -368,6 +371,9 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyRequestBody) (*operations.CreateKeyResponseBody, error) {
@@ -541,6 +547,9 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKeyRequest) (*components.V1KeysVerifyKeyResponse, error) {
@@ -714,6 +723,9 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyRequestBody) (*operations.UpdateKeyResponseBody, error) {
@@ -887,6 +899,9 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRemainingRequestBody) (*operations.UpdateRemainingResponseBody, error) {
@@ -1060,6 +1075,9 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }
 
 func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerificationsRequest) (*operations.GetVerificationsResponseBody, error) {
@@ -1231,4 +1249,7 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }

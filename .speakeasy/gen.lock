@@ -1,19 +1,20 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 7621b6bd3bfaca0bcd2b0dc8150e0325
+  docChecksum: 9ef18a373ab97ecd377d1039e3d02538
   docVersion: 1.0.0
-  speakeasyVersion: 1.286.3
-  generationVersion: 2.329.0
-  releaseVersion: 0.2.0
-  configChecksum: f7dcb627a24c2bc24f40a5b483adfe68
+  speakeasyVersion: 1.296.1
+  generationVersion: 2.338.1
+  releaseVersion: 0.3.0
+  configChecksum: a9c6b1e91544ae58c5c5eef6524c928b
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.8
+    core: 3.4.10
+    deprecations: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -21,7 +22,7 @@ features:
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.0
-    responseFormat: 0.1.1
+    responseFormat: 0.1.2
     sdkHooks: 0.1.0
 generatedFiles:
   - liveness.go
@@ -58,6 +59,7 @@ generatedFiles:
   - /models/operations/getverifications.go
   - /models/operations/getapi.go
   - /models/operations/listkeys.go
+  - /models/operations/deletekeys.go
   - /models/operations/limit.go
   - /models/operations/v1migrationscreatekeys.go
   - /models/sdkerrors/errbadrequest.go
@@ -103,6 +105,8 @@ generatedFiles:
   - docs/models/operations/getapiresponsebody.md
   - docs/models/operations/listkeysrequest.md
   - docs/models/operations/listkeysresponsebody.md
+  - docs/models/operations/deletekeysrequestbody.md
+  - docs/models/operations/deletekeysresponsebody.md
   - docs/models/operations/resources.md
   - docs/models/operations/limitrequestbody.md
   - docs/models/operations/limitresponsebody.md

@@ -19,7 +19,6 @@ const (
 func (e Op) ToPointer() *Op {
 	return &e
 }
-
 func (e *Op) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

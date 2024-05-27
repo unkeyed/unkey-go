@@ -16,7 +16,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -27,11 +26,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.CreateAPIRequestBody{
         Name: "my-api",
     }
-    
     ctx := context.Background()
     res, err := s.CreateAPI(ctx, request)
     if err != nil {
@@ -73,7 +70,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -84,11 +80,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.DeleteAPIRequestBody{
         APIID: "api_1234",
     }
-    
     ctx := context.Background()
     res, err := s.DeleteAPI(ctx, request)
     if err != nil {

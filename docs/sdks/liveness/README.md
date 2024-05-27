@@ -13,7 +13,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"context"
 	"log"
@@ -24,8 +23,6 @@ func main() {
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Liveness.V1Liveness(ctx)
     if err != nil {

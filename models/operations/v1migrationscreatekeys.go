@@ -18,7 +18,6 @@ const (
 func (e Variant) ToPointer() *Variant {
 	return &e
 }
-
 func (e *Variant) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -33,6 +32,7 @@ func (e *Variant) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Hash - Provide either `hash` or `plaintext`
 type Hash struct {
 	// The hashed and encoded key
 	Value string `json:"value"`
@@ -65,7 +65,6 @@ const (
 func (e V1MigrationsCreateKeysInterval) ToPointer() *V1MigrationsCreateKeysInterval {
 	return &e
 }
-
 func (e *V1MigrationsCreateKeysInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -107,6 +106,8 @@ func (o *V1MigrationsCreateKeysRefill) GetAmount() int64 {
 // V1MigrationsCreateKeysType - Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type V1MigrationsCreateKeysType string
 
 const (
@@ -117,7 +118,6 @@ const (
 func (e V1MigrationsCreateKeysType) ToPointer() *V1MigrationsCreateKeysType {
 	return &e
 }
-
 func (e *V1MigrationsCreateKeysType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -136,13 +136,21 @@ func (e *V1MigrationsCreateKeysType) UnmarshalJSON(data []byte) error {
 
 // V1MigrationsCreateKeysRatelimit - Unkey comes with per-key ratelimiting out of the box.
 type V1MigrationsCreateKeysRatelimit struct {
+	// Async will return a response immediately, lowering latency at the cost of accuracy.
+	Async *bool `default:"false" json:"async"`
 	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *V1MigrationsCreateKeysType `default:"fast" json:"type"`
 	// The total amount of burstable requests.
 	Limit int64 `json:"limit"`
 	// How many tokens to refill during each refillInterval.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate int64 `json:"refillRate"`
 	// Determines the speed at which tokens are refilled, in milliseconds.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillInterval int64 `json:"refillInterval"`
 }
 
@@ -155,6 +163,13 @@ func (v *V1MigrationsCreateKeysRatelimit) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *V1MigrationsCreateKeysRatelimit) GetAsync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Async
 }
 
 func (o *V1MigrationsCreateKeysRatelimit) GetType() *V1MigrationsCreateKeysType {
@@ -197,9 +212,12 @@ type RequestBody struct {
 	Prefix *string `json:"prefix,omitempty"`
 	// The name for your Key. This is not customer facing.
 	Name *string `json:"name,omitempty"`
-	Hash Hash    `json:"hash"`
+	// The raw key in plaintext. If provided, unkey encrypts this value and stores it securely. Provide either `hash` or `plaintext`
+	Plaintext *string `json:"plaintext,omitempty"`
+	// Provide either `hash` or `plaintext`
+	Hash *Hash `json:"hash,omitempty"`
 	// The first 4 characters of the key. If a prefix is used, it should be the prefix plus 4 characters.
-	Start *string `default:"" json:"start"`
+	Start *string `json:"start,omitempty"`
 	// Your user’s Id. This will provide a link between Unkey and your customer record.
 	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.
 	OwnerID *string `json:"ownerId,omitempty"`
@@ -261,9 +279,16 @@ func (o *RequestBody) GetName() *string {
 	return o.Name
 }
 
-func (o *RequestBody) GetHash() Hash {
+func (o *RequestBody) GetPlaintext() *string {
 	if o == nil {
-		return Hash{}
+		return nil
+	}
+	return o.Plaintext
+}
+
+func (o *RequestBody) GetHash() *Hash {
+	if o == nil {
+		return nil
 	}
 	return o.Hash
 }

@@ -13,7 +13,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -24,15 +23,10 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := []operations.RequestBody{
         operations.RequestBody{
             APIID: "api_123",
             Name: unkeygo.String("my key"),
-            Hash: operations.Hash{
-                Value: "<value>",
-                Variant: operations.VariantSha256Base64,
-            },
             Start: unkeygo.String("unkey_32kq"),
             OwnerID: unkeygo.String("team_123"),
             Meta: map[string]any{
@@ -50,7 +44,6 @@ func main() {
                 Amount: 100,
             },
             Ratelimit: &operations.V1MigrationsCreateKeysRatelimit{
-                Type: operations.V1MigrationsCreateKeysTypeFast.ToPointer(),
                 Limit: 10,
                 RefillRate: 1,
                 RefillInterval: 60,
@@ -58,7 +51,6 @@ func main() {
             Enabled: unkeygo.Bool(false),
         },
     }
-    
     ctx := context.Background()
     res, err := s.Migrations.V1MigrationsCreateKeys(ctx, request)
     if err != nil {

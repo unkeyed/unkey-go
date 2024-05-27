@@ -196,4 +196,7 @@ func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestB
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }

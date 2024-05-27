@@ -196,4 +196,7 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return nil, nil
+
 }

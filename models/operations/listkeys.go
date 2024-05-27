@@ -12,6 +12,7 @@ type ListKeysRequest struct {
 	Limit   *int64  `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	Cursor  *string `queryParam:"style=form,explode=true,name=cursor"`
 	OwnerID *string `queryParam:"style=form,explode=true,name=ownerId"`
+	Decrypt *bool   `queryParam:"style=form,explode=true,name=decrypt"`
 }
 
 func (l ListKeysRequest) MarshalJSON() ([]byte, error) {
@@ -53,6 +54,13 @@ func (o *ListKeysRequest) GetOwnerID() *string {
 	return o.OwnerID
 }
 
+func (o *ListKeysRequest) GetDecrypt() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Decrypt
+}
+
 // ListKeysResponseBody - The configuration for an api
 type ListKeysResponseBody struct {
 	Keys []components.Key `json:"keys"`
@@ -81,4 +89,24 @@ func (o *ListKeysResponseBody) GetTotal() int64 {
 		return 0
 	}
 	return o.Total
+}
+
+type ListKeysResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The configuration for an api
+	Object *ListKeysResponseBody
+}
+
+func (o *ListKeysResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *ListKeysResponse) GetObject() *ListKeysResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

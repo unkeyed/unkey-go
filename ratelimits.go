@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/hooks"
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"io"
@@ -25,7 +26,7 @@ func newRatelimits(sdkConfig sdkConfiguration) *Ratelimits {
 	}
 }
 
-func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestBody) (*operations.LimitResponseBody, error) {
+func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestBody) (*operations.LimitResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "limit",
@@ -85,6 +86,13 @@ func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestB
 		}
 	}
 
+	res := &operations.LimitResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -101,7 +109,7 @@ func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestB
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -196,4 +204,7 @@ func (s *Ratelimits) Limit(ctx context.Context, request operations.LimitRequestB
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }

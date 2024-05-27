@@ -5,7 +5,6 @@ package components
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
 // Interval - Determines the rate at which verifications will be refilled.
@@ -19,7 +18,6 @@ const (
 func (e Interval) ToPointer() *Interval {
 	return &e
 }
-
 func (e *Interval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -80,7 +78,6 @@ const (
 func (e Type) ToPointer() *Type {
 	return &e
 }
-
 func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -99,25 +96,24 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 
 // Ratelimit - Unkey comes with per-key ratelimiting out of the box.
 type Ratelimit struct {
+	Async bool `json:"async"`
 	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
-	Type *Type `default:"fast" json:"type"`
+	Type *Type `json:"type,omitempty"`
 	// The total amount of burstable requests.
 	Limit int64 `json:"limit"`
 	// How many tokens to refill during each refillInterval.
-	RefillRate int64 `json:"refillRate"`
+	RefillRate *int64 `json:"refillRate,omitempty"`
 	// Determines the speed at which tokens are refilled, in milliseconds.
-	RefillInterval int64 `json:"refillInterval"`
+	RefillInterval *int64 `json:"refillInterval,omitempty"`
+	// The duration of the ratelimit window, in milliseconds.
+	Duration int64 `json:"duration"`
 }
 
-func (r Ratelimit) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
-}
-
-func (r *Ratelimit) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
-		return err
+func (o *Ratelimit) GetAsync() bool {
+	if o == nil {
+		return false
 	}
-	return nil
+	return o.Async
 }
 
 func (o *Ratelimit) GetType() *Type {
@@ -134,18 +130,25 @@ func (o *Ratelimit) GetLimit() int64 {
 	return o.Limit
 }
 
-func (o *Ratelimit) GetRefillRate() int64 {
+func (o *Ratelimit) GetRefillRate() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.RefillRate
 }
 
-func (o *Ratelimit) GetRefillInterval() int64 {
+func (o *Ratelimit) GetRefillInterval() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.RefillInterval
+}
+
+func (o *Ratelimit) GetDuration() int64 {
 	if o == nil {
 		return 0
 	}
-	return o.RefillInterval
+	return o.Duration
 }
 
 type Key struct {
@@ -164,7 +167,9 @@ type Key struct {
 	// Any additional metadata you want to store with the key
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key was created
-	CreatedAt *float64 `json:"createdAt,omitempty"`
+	CreatedAt float64 `json:"createdAt"`
+	// The unix timestamp in milliseconds when the key was last updated
+	UpdatedAt *float64 `json:"updatedAt,omitempty"`
 	// The unix timestamp in milliseconds when the key was deleted. We don't delete the key outright, you can restore it later.
 	DeletedAt *float64 `json:"deletedAt,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
@@ -181,6 +186,8 @@ type Key struct {
 	Permissions []string `json:"permissions,omitempty"`
 	// Sets if key is enabled or disabled. Disabled keys are not valid.
 	Enabled *bool `json:"enabled,omitempty"`
+	// The key in plaintext
+	Plaintext *string `json:"plaintext,omitempty"`
 }
 
 func (o *Key) GetID() string {
@@ -232,11 +239,18 @@ func (o *Key) GetMeta() map[string]any {
 	return o.Meta
 }
 
-func (o *Key) GetCreatedAt() *float64 {
+func (o *Key) GetCreatedAt() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.CreatedAt
+}
+
+func (o *Key) GetUpdatedAt() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.CreatedAt
+	return o.UpdatedAt
 }
 
 func (o *Key) GetDeletedAt() *float64 {
@@ -293,4 +307,11 @@ func (o *Key) GetEnabled() *bool {
 		return nil
 	}
 	return o.Enabled
+}
+
+func (o *Key) GetPlaintext() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Plaintext
 }

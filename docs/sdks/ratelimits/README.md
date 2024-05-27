@@ -13,7 +13,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -24,7 +23,6 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.LimitRequestBody{
         Namespace: unkeygo.String("email.outbound"),
         Identifier: "user_123",
@@ -39,13 +37,12 @@ func main() {
             },
         },
     }
-    
     ctx := context.Background()
     res, err := s.Ratelimits.Limit(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -61,7 +58,7 @@ func main() {
 
 ### Response
 
-**[*operations.LimitResponseBody](../../models/operations/limitresponsebody.md), error**
+**[*operations.LimitResponse](../../models/operations/limitresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

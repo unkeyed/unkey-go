@@ -9,3 +9,4 @@
 | `Limit`            | **int64*           | :heavy_minus_sign: | N/A                | 100                |
 | `Cursor`           | **string*          | :heavy_minus_sign: | N/A                |                    |
 | `OwnerID`          | **string*          | :heavy_minus_sign: | N/A                |                    |
+| `Decrypt`          | **bool*            | :heavy_minus_sign: | N/A                |                    |

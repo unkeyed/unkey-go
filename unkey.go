@@ -116,17 +116,11 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
-func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
-	return func(context.Context) (interface{}, error) {
-		return security, nil
-	}
-}
-
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(bearerAuth string) SDKOption {
 	return func(sdk *Unkey) {
 		security := components.Security{BearerAuth: &bearerAuth}
-		sdk.sdkConfiguration.Security = withSecurity(&security)
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
 
@@ -151,9 +145,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.2.0",
-			GenVersion:        "2.329.0",
-			UserAgent:         "speakeasy-sdk/go 0.2.0 2.329.0 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.3.0",
+			GenVersion:        "2.338.1",
+			UserAgent:         "speakeasy-sdk/go 0.3.0 2.338.1 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -186,7 +180,7 @@ func New(opts ...SDKOption) *Unkey {
 	return sdk
 }
 
-func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIRequestBody) (*operations.CreateAPIResponseBody, error) {
+func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIRequestBody) (*operations.CreateAPIResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createApi",
@@ -246,6 +240,13 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 		}
 	}
 
+	res := &operations.CreateAPIResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -262,7 +263,7 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -357,9 +358,12 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIRequestBody) (*operations.DeleteAPIResponseBody, error) {
+func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIRequestBody) (*operations.DeleteAPIResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "deleteApi",
@@ -419,6 +423,13 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 		}
 	}
 
+	res := &operations.DeleteAPIResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -435,7 +446,7 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -530,4 +541,7 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }

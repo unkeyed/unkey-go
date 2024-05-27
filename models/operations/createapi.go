@@ -2,6 +2,10 @@
 
 package operations
 
+import (
+	"github.com/unkeyed/unkey-go/models/components"
+)
+
 type CreateAPIRequestBody struct {
 	// The name for your API. This is not customer facing.
 	Name string `json:"name"`
@@ -25,4 +29,24 @@ func (o *CreateAPIResponseBody) GetAPIID() string {
 		return ""
 	}
 	return o.APIID
+}
+
+type CreateAPIResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The configuration for an api
+	Object *CreateAPIResponseBody
+}
+
+func (o *CreateAPIResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *CreateAPIResponse) GetObject() *CreateAPIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

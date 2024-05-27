@@ -26,7 +26,7 @@ func newKeys(sdkConfig sdkConfiguration) *Keys {
 	}
 }
 
-func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*components.Key, error) {
+func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*operations.GetKeyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getKey",
@@ -84,6 +84,13 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*c
 		}
 	}
 
+	res := &operations.GetKeyResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -100,7 +107,7 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*c
 				return nil, err
 			}
 
-			return &out, nil
+			res.Key = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -195,9 +202,12 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest) (*c
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyRequestBody) (*operations.DeleteKeyResponseBody, error) {
+func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyRequestBody) (*operations.DeleteKeyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "deleteKey",
@@ -257,6 +267,13 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 		}
 	}
 
+	res := &operations.DeleteKeyResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -273,7 +290,7 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -368,9 +385,12 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyRequestBody) (*operations.CreateKeyResponseBody, error) {
+func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyRequestBody) (*operations.CreateKeyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createKey",
@@ -430,6 +450,13 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 		}
 	}
 
+	res := &operations.CreateKeyResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -446,7 +473,7 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -541,9 +568,12 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKeyRequest) (*components.V1KeysVerifyKeyResponse, error) {
+func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKeyRequest) (*operations.VerifyKeyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "verifyKey",
@@ -603,6 +633,13 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 		}
 	}
 
+	res := &operations.VerifyKeyResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -619,7 +656,7 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 				return nil, err
 			}
 
-			return &out, nil
+			res.V1KeysVerifyKeyResponse = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -714,9 +751,12 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyRequestBody) (*operations.UpdateKeyResponseBody, error) {
+func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyRequestBody) (*operations.UpdateKeyResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateKey",
@@ -776,6 +816,13 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 		}
 	}
 
+	res := &operations.UpdateKeyResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -792,7 +839,7 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -887,9 +934,12 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRemainingRequestBody) (*operations.UpdateRemainingResponseBody, error) {
+func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRemainingRequestBody) (*operations.UpdateRemainingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateRemaining",
@@ -949,6 +999,13 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 		}
 	}
 
+	res := &operations.UpdateRemainingResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -965,7 +1022,7 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1060,9 +1117,12 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }
 
-func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerificationsRequest) (*operations.GetVerificationsResponseBody, error) {
+func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerificationsRequest) (*operations.GetVerificationsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getVerifications",
@@ -1120,6 +1180,13 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 		}
 	}
 
+	res := &operations.GetVerificationsResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -1136,7 +1203,7 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1231,4 +1298,7 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }

@@ -1,5 +1,7 @@
 # Hash
 
+Provide either `hash` or `plaintext`
+
 
 ## Fields
 

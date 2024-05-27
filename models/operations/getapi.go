@@ -2,6 +2,10 @@
 
 package operations
 
+import (
+	"github.com/unkeyed/unkey-go/models/components"
+)
+
 type GetAPIRequest struct {
 	APIID string `queryParam:"style=form,explode=true,name=apiId"`
 }
@@ -42,4 +46,24 @@ func (o *GetAPIResponseBody) GetName() *string {
 		return nil
 	}
 	return o.Name
+}
+
+type GetAPIResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The configuration for an api
+	Object *GetAPIResponseBody
+}
+
+func (o *GetAPIResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *GetAPIResponse) GetObject() *GetAPIResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

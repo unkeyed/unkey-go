@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/hooks"
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"io"
@@ -25,7 +26,7 @@ func newLiveness(sdkConfig sdkConfiguration) *Liveness {
 	}
 }
 
-func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessResponseBody, error) {
+func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "v1.liveness",
@@ -79,6 +80,13 @@ func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessRespon
 		}
 	}
 
+	res := &operations.V1LivenessResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -95,7 +103,7 @@ func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessRespon
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -190,4 +198,7 @@ func (s *Liveness) V1Liveness(ctx context.Context) (*operations.V1LivenessRespon
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }

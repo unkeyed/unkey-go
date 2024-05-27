@@ -19,7 +19,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -30,17 +29,15 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.GetKeyRequest{
         KeyID: "key_1234",
     }
-    
     ctx := context.Background()
     res, err := s.Keys.GetKey(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Key != nil {
         // handle response
     }
 }
@@ -56,7 +53,7 @@ func main() {
 
 ### Response
 
-**[*components.Key](../../models/components/key.md), error**
+**[*operations.GetKeyResponse](../../models/operations/getkeyresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -76,7 +73,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -87,17 +83,15 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.DeleteKeyRequestBody{
         KeyID: "key_1234",
     }
-    
     ctx := context.Background()
     res, err := s.Keys.DeleteKey(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -113,7 +107,7 @@ func main() {
 
 ### Response
 
-**[*operations.DeleteKeyResponseBody](../../models/operations/deletekeyresponsebody.md), error**
+**[*operations.DeleteKeyResponse](../../models/operations/deletekeyresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -133,7 +127,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -144,7 +137,6 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.CreateKeyRequestBody{
         APIID: "api_123",
         Name: unkeygo.String("my key"),
@@ -164,20 +156,17 @@ func main() {
             Amount: 100,
         },
         Ratelimit: &operations.Ratelimit{
-            Type: operations.TypeFast.ToPointer(),
             Limit: 10,
-            RefillRate: 1,
-            RefillInterval: 60,
+            Duration: 60000,
         },
         Enabled: unkeygo.Bool(false),
     }
-    
     ctx := context.Background()
     res, err := s.Keys.CreateKey(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -193,7 +182,7 @@ func main() {
 
 ### Response
 
-**[*operations.CreateKeyResponseBody](../../models/operations/createkeyresponsebody.md), error**
+**[*operations.CreateKeyResponse](../../models/operations/createkeyresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -213,8 +202,8 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/components"
 	"context"
 	"log"
 )
@@ -223,7 +212,6 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := components.V1KeysVerifyKeyRequest{
         APIID: unkeygo.String("api_1234"),
         Key: "sk_1234",
@@ -231,13 +219,12 @@ func main() {
             Permissions: &components.Permissions{},
         },
     }
-    
     ctx := context.Background()
     res, err := s.Keys.VerifyKey(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.V1KeysVerifyKeyResponse != nil {
         // handle response
     }
 }
@@ -253,7 +240,7 @@ func main() {
 
 ### Response
 
-**[*components.V1KeysVerifyKeyResponse](../../models/components/v1keysverifykeyresponse.md), error**
+**[*operations.VerifyKeyResponse](../../models/operations/verifykeyresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -273,7 +260,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -284,7 +270,6 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.UpdateKeyRequestBody{
         KeyID: "key_123",
         Name: unkeygo.String("Customer X"),
@@ -298,9 +283,8 @@ func main() {
         },
         Expires: unkeygo.Float64(0),
         Ratelimit: &operations.UpdateKeyRatelimit{
-            Type: operations.UpdateKeyTypeFast,
             Limit: 10,
-            RefillRate: 1,
+            RefillRate: unkeygo.Int64(1),
             RefillInterval: 60,
         },
         Remaining: unkeygo.Float64(1000),
@@ -310,13 +294,12 @@ func main() {
         },
         Enabled: unkeygo.Bool(true),
     }
-    
     ctx := context.Background()
     res, err := s.Keys.UpdateKey(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -332,7 +315,7 @@ func main() {
 
 ### Response
 
-**[*operations.UpdateKeyResponseBody](../../models/operations/updatekeyresponsebody.md), error**
+**[*operations.UpdateKeyResponse](../../models/operations/updatekeyresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -352,7 +335,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -363,19 +345,17 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.UpdateRemainingRequestBody{
         KeyID: "key_123",
         Op: operations.OpSet,
         Value: unkeygo.Int64(1),
     }
-    
     ctx := context.Background()
     res, err := s.Keys.UpdateRemaining(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -391,7 +371,7 @@ func main() {
 
 ### Response
 
-**[*operations.UpdateRemainingResponseBody](../../models/operations/updateremainingresponsebody.md), error**
+**[*operations.UpdateRemainingResponse](../../models/operations/updateremainingresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -411,7 +391,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -422,7 +401,6 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.GetVerificationsRequest{
         KeyID: unkeygo.String("key_1234"),
         OwnerID: unkeygo.String("chronark"),
@@ -430,13 +408,12 @@ func main() {
         End: unkeygo.Int64(1620000000000),
         Granularity: operations.GranularityDay.ToPointer(),
     }
-    
     ctx := context.Background()
     res, err := s.Keys.GetVerifications(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -452,7 +429,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetVerificationsResponseBody](../../models/operations/getverificationsresponsebody.md), error**
+**[*operations.GetVerificationsResponse](../../models/operations/getverificationsresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

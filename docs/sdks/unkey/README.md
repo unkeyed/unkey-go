@@ -16,7 +16,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -27,17 +26,15 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.CreateAPIRequestBody{
         Name: "my-api",
     }
-    
     ctx := context.Background()
     res, err := s.CreateAPI(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -53,7 +50,7 @@ func main() {
 
 ### Response
 
-**[*operations.CreateAPIResponseBody](../../models/operations/createapiresponsebody.md), error**
+**[*operations.CreateAPIResponse](../../models/operations/createapiresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -73,7 +70,6 @@ func main() {
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -84,17 +80,15 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-
     request := operations.DeleteAPIRequestBody{
         APIID: "api_1234",
     }
-    
     ctx := context.Background()
     res, err := s.DeleteAPI(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -110,7 +104,7 @@ func main() {
 
 ### Response
 
-**[*operations.DeleteAPIResponseBody](../../models/operations/deleteapiresponsebody.md), error**
+**[*operations.DeleteAPIResponse](../../models/operations/deleteapiresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

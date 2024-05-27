@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/hooks"
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"io"
@@ -25,7 +26,7 @@ func newMigrations(sdkConfig sdkConfiguration) *Migrations {
 	}
 }
 
-func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []operations.RequestBody) (*operations.V1MigrationsCreateKeysResponseBody, error) {
+func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []operations.RequestBody) (*operations.V1MigrationsCreateKeysResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "v1.migrations.createKeys",
@@ -85,6 +86,13 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 		}
 	}
 
+	res := &operations.V1MigrationsCreateKeysResponse{
+		HTTPMeta: components.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -101,7 +109,7 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 				return nil, err
 			}
 
-			return &out, nil
+			res.Object = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -196,4 +204,7 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 	default:
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
+
+	return res, nil
+
 }

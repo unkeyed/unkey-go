@@ -4,6 +4,7 @@ package operations
 
 import (
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 )
 
 type Resources struct {
@@ -168,4 +169,23 @@ func (o *LimitResponseBody) GetReset() float64 {
 		return 0.0
 	}
 	return o.Reset
+}
+
+type LimitResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	Object   *LimitResponseBody
+}
+
+func (o *LimitResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *LimitResponse) GetObject() *LimitResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

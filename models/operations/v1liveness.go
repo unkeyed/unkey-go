@@ -2,6 +2,10 @@
 
 package operations
 
+import (
+	"github.com/unkeyed/unkey-go/models/components"
+)
+
 type Services struct {
 	// The name of the connected metrics service
 	Metrics string `json:"metrics"`
@@ -69,4 +73,24 @@ func (o *V1LivenessResponseBody) GetServices() Services {
 		return Services{}
 	}
 	return o.Services
+}
+
+type V1LivenessResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The configured services and their status
+	Object *V1LivenessResponseBody
+}
+
+func (o *V1LivenessResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *V1LivenessResponse) GetObject() *V1LivenessResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

@@ -13,7 +13,6 @@
 package main
 
 import(
-	"github.com/unkeyed/unkey-go/models/components"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"context"
 	"log"
@@ -24,14 +23,12 @@ func main() {
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Liveness.V1Liveness(ctx)
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Object != nil {
         // handle response
     }
 }
@@ -46,7 +43,7 @@ func main() {
 
 ### Response
 
-**[*operations.V1LivenessResponseBody](../../models/operations/v1livenessresponsebody.md), error**
+**[*operations.V1LivenessResponse](../../models/operations/v1livenessresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

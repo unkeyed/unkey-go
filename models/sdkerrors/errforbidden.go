@@ -17,7 +17,6 @@ const (
 func (e ErrForbiddenCode) ToPointer() *ErrForbiddenCode {
 	return &e
 }
-
 func (e *ErrForbiddenCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

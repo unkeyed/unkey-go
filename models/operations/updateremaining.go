@@ -5,6 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/unkeyed/unkey-go/models/components"
 )
 
 // Op - The operation you want to perform on the remaining count
@@ -19,7 +20,6 @@ const (
 func (e Op) ToPointer() *Op {
 	return &e
 }
-
 func (e *Op) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -79,4 +79,24 @@ func (o *UpdateRemainingResponseBody) GetRemaining() *int64 {
 		return nil
 	}
 	return o.Remaining
+}
+
+type UpdateRemainingResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The configuration for an api
+	Object *UpdateRemainingResponseBody
+}
+
+func (o *UpdateRemainingResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *UpdateRemainingResponse) GetObject() *UpdateRemainingResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

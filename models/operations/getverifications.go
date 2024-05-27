@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/components"
 )
 
 // Granularity - The granularity of the usage data to fetch, currently only `day` is supported
@@ -18,7 +19,6 @@ const (
 func (e Granularity) ToPointer() *Granularity {
 	return &e
 }
-
 func (e *Granularity) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -137,4 +137,24 @@ func (o *GetVerificationsResponseBody) GetVerifications() []Verifications {
 		return []Verifications{}
 	}
 	return o.Verifications
+}
+
+type GetVerificationsResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Usage numbers over time
+	Object *GetVerificationsResponseBody
+}
+
+func (o *GetVerificationsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *GetVerificationsResponse) GetObject() *GetVerificationsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

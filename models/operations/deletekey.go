@@ -2,6 +2,10 @@
 
 package operations
 
+import (
+	"github.com/unkeyed/unkey-go/models/components"
+)
+
 type DeleteKeyRequestBody struct {
 	// The id of the key to revoke
 	KeyID string `json:"keyId"`
@@ -16,4 +20,24 @@ func (o *DeleteKeyRequestBody) GetKeyID() string {
 
 // DeleteKeyResponseBody - The key was successfully revoked, it may take up to 30s for this to take effect in all regions
 type DeleteKeyResponseBody struct {
+}
+
+type DeleteKeyResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// The key was successfully revoked, it may take up to 30s for this to take effect in all regions
+	Object *DeleteKeyResponseBody
+}
+
+func (o *DeleteKeyResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *DeleteKeyResponse) GetObject() *DeleteKeyResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.Object
 }

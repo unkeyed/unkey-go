@@ -78,6 +78,7 @@ func main() {
 ### [Migrations](docs/sdks/migrations/README.md)
 
 * [V1MigrationsCreateKeys](docs/sdks/migrations/README.md#v1migrationscreatekeys)
+* [V1MigrationsEnqueueKeys](docs/sdks/migrations/README.md#v1migrationsenqueuekeys)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->

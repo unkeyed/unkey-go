@@ -55,7 +55,10 @@ type LimitRequestBody struct {
 	Limit int64 `json:"limit"`
 	// The window duration in milliseconds
 	Duration int64 `json:"duration"`
-	// Expensive requests may use up more tokens. You can specify a cost to the request here and we'll deduct this many tokens in the current window. If there are not enough tokens left, the request is denied.
+	// Expensive requests may use up more tokens. You can specify a cost to the request here and we'll deduct this many tokens in the current window.
+	// If there are not enough tokens left, the request is denied.
+	//
+	// Set it to 0 to receive the current limit without changing anything.
 	Cost *int64 `default:"1" json:"cost"`
 	// Async will return a response immediately, lowering latency at the cost of accuracy.
 	Async *bool `default:"false" json:"async"`

@@ -219,9 +219,6 @@ func main() {
     request := components.V1KeysVerifyKeyRequest{
         APIID: unkeygo.String("api_1234"),
         Key: "sk_1234",
-        Authorization: &components.Authorization{
-            Permissions: &components.Permissions{},
-        },
     }
     ctx := context.Background()
     res, err := s.Keys.VerifyKey(ctx, request)

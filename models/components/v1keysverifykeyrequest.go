@@ -6,17 +6,13 @@ import (
 	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
-// Permissions - A query for which permissions you require
-type Permissions struct {
-}
-
 // Authorization - Perform RBAC checks
 type Authorization struct {
 	// A query for which permissions you require
-	Permissions *Permissions `json:"permissions,omitempty"`
+	Permissions *PermissionQuery `json:"permissions,omitempty"`
 }
 
-func (o *Authorization) GetPermissions() *Permissions {
+func (o *Authorization) GetPermissions() *PermissionQuery {
 	if o == nil {
 		return nil
 	}

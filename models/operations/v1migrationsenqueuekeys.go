@@ -9,64 +9,64 @@ import (
 	"github.com/unkeyed/unkey-go/models/components"
 )
 
-// Variant - The algorithm for hashing and encoding, currently only sha256 and base64 are supported
-type Variant string
+// V1MigrationsEnqueueKeysVariant - The algorithm for hashing and encoding, currently only sha256 and base64 are supported
+type V1MigrationsEnqueueKeysVariant string
 
 const (
-	VariantSha256Base64 Variant = "sha256_base64"
+	V1MigrationsEnqueueKeysVariantSha256Base64 V1MigrationsEnqueueKeysVariant = "sha256_base64"
 )
 
-func (e Variant) ToPointer() *Variant {
+func (e V1MigrationsEnqueueKeysVariant) ToPointer() *V1MigrationsEnqueueKeysVariant {
 	return &e
 }
-func (e *Variant) UnmarshalJSON(data []byte) error {
+func (e *V1MigrationsEnqueueKeysVariant) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "sha256_base64":
-		*e = Variant(v)
+		*e = V1MigrationsEnqueueKeysVariant(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Variant: %v", v)
+		return fmt.Errorf("invalid value for V1MigrationsEnqueueKeysVariant: %v", v)
 	}
 }
 
-// Hash - Provide either `hash` or `plaintext`
-type Hash struct {
+// V1MigrationsEnqueueKeysHash - Provide either `hash` or `plaintext`
+type V1MigrationsEnqueueKeysHash struct {
 	// The hashed and encoded key
 	Value string `json:"value"`
 	// The algorithm for hashing and encoding, currently only sha256 and base64 are supported
-	Variant Variant `json:"variant"`
+	Variant V1MigrationsEnqueueKeysVariant `json:"variant"`
 }
 
-func (o *Hash) GetValue() string {
+func (o *V1MigrationsEnqueueKeysHash) GetValue() string {
 	if o == nil {
 		return ""
 	}
 	return o.Value
 }
 
-func (o *Hash) GetVariant() Variant {
+func (o *V1MigrationsEnqueueKeysHash) GetVariant() V1MigrationsEnqueueKeysVariant {
 	if o == nil {
-		return Variant("")
+		return V1MigrationsEnqueueKeysVariant("")
 	}
 	return o.Variant
 }
 
-// V1MigrationsCreateKeysInterval - Unkey will automatically refill verifications at the set interval.
-type V1MigrationsCreateKeysInterval string
+// V1MigrationsEnqueueKeysInterval - Unkey will automatically refill verifications at the set interval.
+type V1MigrationsEnqueueKeysInterval string
 
 const (
-	V1MigrationsCreateKeysIntervalDaily   V1MigrationsCreateKeysInterval = "daily"
-	V1MigrationsCreateKeysIntervalMonthly V1MigrationsCreateKeysInterval = "monthly"
+	V1MigrationsEnqueueKeysIntervalDaily   V1MigrationsEnqueueKeysInterval = "daily"
+	V1MigrationsEnqueueKeysIntervalMonthly V1MigrationsEnqueueKeysInterval = "monthly"
 )
 
-func (e V1MigrationsCreateKeysInterval) ToPointer() *V1MigrationsCreateKeysInterval {
+func (e V1MigrationsEnqueueKeysInterval) ToPointer() *V1MigrationsEnqueueKeysInterval {
 	return &e
 }
-func (e *V1MigrationsCreateKeysInterval) UnmarshalJSON(data []byte) error {
+func (e *V1MigrationsEnqueueKeysInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -75,51 +75,51 @@ func (e *V1MigrationsCreateKeysInterval) UnmarshalJSON(data []byte) error {
 	case "daily":
 		fallthrough
 	case "monthly":
-		*e = V1MigrationsCreateKeysInterval(v)
+		*e = V1MigrationsEnqueueKeysInterval(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for V1MigrationsCreateKeysInterval: %v", v)
+		return fmt.Errorf("invalid value for V1MigrationsEnqueueKeysInterval: %v", v)
 	}
 }
 
-// V1MigrationsCreateKeysRefill - Unkey enables you to refill verifications for each key at regular intervals.
-type V1MigrationsCreateKeysRefill struct {
+// V1MigrationsEnqueueKeysRefill - Unkey enables you to refill verifications for each key at regular intervals.
+type V1MigrationsEnqueueKeysRefill struct {
 	// Unkey will automatically refill verifications at the set interval.
-	Interval V1MigrationsCreateKeysInterval `json:"interval"`
+	Interval V1MigrationsEnqueueKeysInterval `json:"interval"`
 	// The number of verifications to refill for each occurrence is determined individually for each key.
 	Amount int64 `json:"amount"`
 }
 
-func (o *V1MigrationsCreateKeysRefill) GetInterval() V1MigrationsCreateKeysInterval {
+func (o *V1MigrationsEnqueueKeysRefill) GetInterval() V1MigrationsEnqueueKeysInterval {
 	if o == nil {
-		return V1MigrationsCreateKeysInterval("")
+		return V1MigrationsEnqueueKeysInterval("")
 	}
 	return o.Interval
 }
 
-func (o *V1MigrationsCreateKeysRefill) GetAmount() int64 {
+func (o *V1MigrationsEnqueueKeysRefill) GetAmount() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Amount
 }
 
-// V1MigrationsCreateKeysType - Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+// V1MigrationsEnqueueKeysType - Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
 // Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
-type V1MigrationsCreateKeysType string
+type V1MigrationsEnqueueKeysType string
 
 const (
-	V1MigrationsCreateKeysTypeFast       V1MigrationsCreateKeysType = "fast"
-	V1MigrationsCreateKeysTypeConsistent V1MigrationsCreateKeysType = "consistent"
+	V1MigrationsEnqueueKeysTypeFast       V1MigrationsEnqueueKeysType = "fast"
+	V1MigrationsEnqueueKeysTypeConsistent V1MigrationsEnqueueKeysType = "consistent"
 )
 
-func (e V1MigrationsCreateKeysType) ToPointer() *V1MigrationsCreateKeysType {
+func (e V1MigrationsEnqueueKeysType) ToPointer() *V1MigrationsEnqueueKeysType {
 	return &e
 }
-func (e *V1MigrationsCreateKeysType) UnmarshalJSON(data []byte) error {
+func (e *V1MigrationsEnqueueKeysType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -128,82 +128,89 @@ func (e *V1MigrationsCreateKeysType) UnmarshalJSON(data []byte) error {
 	case "fast":
 		fallthrough
 	case "consistent":
-		*e = V1MigrationsCreateKeysType(v)
+		*e = V1MigrationsEnqueueKeysType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for V1MigrationsCreateKeysType: %v", v)
+		return fmt.Errorf("invalid value for V1MigrationsEnqueueKeysType: %v", v)
 	}
 }
 
-// V1MigrationsCreateKeysRatelimit - Unkey comes with per-key ratelimiting out of the box.
-type V1MigrationsCreateKeysRatelimit struct {
+// V1MigrationsEnqueueKeysRatelimit - Unkey comes with per-key fixed-window ratelimiting out of the box.
+type V1MigrationsEnqueueKeysRatelimit struct {
 	// Async will return a response immediately, lowering latency at the cost of accuracy.
-	Async *bool `default:"false" json:"async"`
-	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	Async *bool `default:"true" json:"async"`
+	// Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	Type *V1MigrationsCreateKeysType `default:"fast" json:"type"`
-	// The total amount of burstable requests.
+	Type *V1MigrationsEnqueueKeysType `default:"fast" json:"type"`
+	// The total amount of requests in a given interval.
 	Limit int64 `json:"limit"`
+	// The window duration in milliseconds
+	Duration int64 `json:"duration"`
 	// How many tokens to refill during each refillInterval.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	RefillRate int64 `json:"refillRate"`
-	// Determines the speed at which tokens are refilled, in milliseconds.
+	RefillRate *int64 `json:"refillRate,omitempty"`
+	// The refill timeframe, in milliseconds.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	RefillInterval int64 `json:"refillInterval"`
+	RefillInterval *int64 `json:"refillInterval,omitempty"`
 }
 
-func (v V1MigrationsCreateKeysRatelimit) MarshalJSON() ([]byte, error) {
+func (v V1MigrationsEnqueueKeysRatelimit) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(v, "", false)
 }
 
-func (v *V1MigrationsCreateKeysRatelimit) UnmarshalJSON(data []byte) error {
+func (v *V1MigrationsEnqueueKeysRatelimit) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *V1MigrationsCreateKeysRatelimit) GetAsync() *bool {
+func (o *V1MigrationsEnqueueKeysRatelimit) GetAsync() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Async
 }
 
-func (o *V1MigrationsCreateKeysRatelimit) GetType() *V1MigrationsCreateKeysType {
+func (o *V1MigrationsEnqueueKeysRatelimit) GetType() *V1MigrationsEnqueueKeysType {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *V1MigrationsCreateKeysRatelimit) GetLimit() int64 {
+func (o *V1MigrationsEnqueueKeysRatelimit) GetLimit() int64 {
 	if o == nil {
 		return 0
 	}
 	return o.Limit
 }
 
-func (o *V1MigrationsCreateKeysRatelimit) GetRefillRate() int64 {
+func (o *V1MigrationsEnqueueKeysRatelimit) GetDuration() int64 {
 	if o == nil {
 		return 0
+	}
+	return o.Duration
+}
+
+func (o *V1MigrationsEnqueueKeysRatelimit) GetRefillRate() *int64 {
+	if o == nil {
+		return nil
 	}
 	return o.RefillRate
 }
 
-func (o *V1MigrationsCreateKeysRatelimit) GetRefillInterval() int64 {
+func (o *V1MigrationsEnqueueKeysRatelimit) GetRefillInterval() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.RefillInterval
 }
 
-type RequestBody struct {
-	// Choose an `API` where this key should be created.
-	APIID string `json:"apiId"`
+type Keys struct {
 	// To make it easier for your users to understand which product an api key belongs to, you can add prefix them.
 	//
 	// For example Stripe famously prefixes their customer ids with cus_ or their api keys with sk_live_.
@@ -216,7 +223,7 @@ type RequestBody struct {
 	// The raw key in plaintext. If provided, unkey encrypts this value and stores it securely. Provide either `hash` or `plaintext`
 	Plaintext *string `json:"plaintext,omitempty"`
 	// Provide either `hash` or `plaintext`
-	Hash *Hash `json:"hash,omitempty"`
+	Hash *V1MigrationsEnqueueKeysHash `json:"hash,omitempty"`
 	// The first 4 characters of the key. If a prefix is used, it should be the prefix plus 4 characters.
 	Start *string `json:"start,omitempty"`
 	// Your user’s Id. This will provide a link between Unkey and your customer record.
@@ -233,9 +240,9 @@ type RequestBody struct {
 	// You can limit the number of requests a key can make. Once a key reaches 0 remaining requests, it will automatically be disabled and is no longer valid unless you update it.
 	Remaining *int64 `json:"remaining,omitempty"`
 	// Unkey enables you to refill verifications for each key at regular intervals.
-	Refill *V1MigrationsCreateKeysRefill `json:"refill,omitempty"`
-	// Unkey comes with per-key ratelimiting out of the box.
-	Ratelimit *V1MigrationsCreateKeysRatelimit `json:"ratelimit,omitempty"`
+	Refill *V1MigrationsEnqueueKeysRefill `json:"refill,omitempty"`
+	// Unkey comes with per-key fixed-window ratelimiting out of the box.
+	Ratelimit *V1MigrationsEnqueueKeysRatelimit `json:"ratelimit,omitempty"`
 	// Sets if key is enabled or disabled. Disabled keys are not valid.
 	Enabled *bool `default:"true" json:"enabled"`
 	// Environments allow you to divide your keyspace.
@@ -250,156 +257,169 @@ type RequestBody struct {
 	Environment *string `json:"environment,omitempty"`
 }
 
-func (r RequestBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (k Keys) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(k, "", false)
 }
 
-func (r *RequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+func (k *Keys) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &k, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RequestBody) GetAPIID() string {
-	if o == nil {
-		return ""
-	}
-	return o.APIID
-}
-
-func (o *RequestBody) GetPrefix() *string {
+func (o *Keys) GetPrefix() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Prefix
 }
 
-func (o *RequestBody) GetName() *string {
+func (o *Keys) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
 }
 
-func (o *RequestBody) GetPlaintext() *string {
+func (o *Keys) GetPlaintext() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Plaintext
 }
 
-func (o *RequestBody) GetHash() *Hash {
+func (o *Keys) GetHash() *V1MigrationsEnqueueKeysHash {
 	if o == nil {
 		return nil
 	}
 	return o.Hash
 }
 
-func (o *RequestBody) GetStart() *string {
+func (o *Keys) GetStart() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Start
 }
 
-func (o *RequestBody) GetOwnerID() *string {
+func (o *Keys) GetOwnerID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.OwnerID
 }
 
-func (o *RequestBody) GetMeta() map[string]any {
+func (o *Keys) GetMeta() map[string]any {
 	if o == nil {
 		return nil
 	}
 	return o.Meta
 }
 
-func (o *RequestBody) GetRoles() []string {
+func (o *Keys) GetRoles() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Roles
 }
 
-func (o *RequestBody) GetPermissions() []string {
+func (o *Keys) GetPermissions() []string {
 	if o == nil {
 		return nil
 	}
 	return o.Permissions
 }
 
-func (o *RequestBody) GetExpires() *int64 {
+func (o *Keys) GetExpires() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Expires
 }
 
-func (o *RequestBody) GetRemaining() *int64 {
+func (o *Keys) GetRemaining() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Remaining
 }
 
-func (o *RequestBody) GetRefill() *V1MigrationsCreateKeysRefill {
+func (o *Keys) GetRefill() *V1MigrationsEnqueueKeysRefill {
 	if o == nil {
 		return nil
 	}
 	return o.Refill
 }
 
-func (o *RequestBody) GetRatelimit() *V1MigrationsCreateKeysRatelimit {
+func (o *Keys) GetRatelimit() *V1MigrationsEnqueueKeysRatelimit {
 	if o == nil {
 		return nil
 	}
 	return o.Ratelimit
 }
 
-func (o *RequestBody) GetEnabled() *bool {
+func (o *Keys) GetEnabled() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Enabled
 }
 
-func (o *RequestBody) GetEnvironment() *string {
+func (o *Keys) GetEnvironment() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Environment
 }
 
-// V1MigrationsCreateKeysResponseBody - The key ids of all created keys
-type V1MigrationsCreateKeysResponseBody struct {
-	// The ids of the keys. This is not a secret and can be stored as a reference if you wish. You need the keyId to update or delete a key later.
-	KeyIds []string `json:"keyIds"`
+type V1MigrationsEnqueueKeysRequestBody struct {
+	// Contact support@unkey.dev to receive your migration id.
+	MigrationID string `json:"migrationId"`
+	// The id of the api, you want to migrate keys to
+	APIID string `json:"apiId"`
+	Keys  []Keys `json:"keys"`
 }
 
-func (o *V1MigrationsCreateKeysResponseBody) GetKeyIds() []string {
+func (o *V1MigrationsEnqueueKeysRequestBody) GetMigrationID() string {
 	if o == nil {
-		return []string{}
+		return ""
 	}
-	return o.KeyIds
+	return o.MigrationID
 }
 
-type V1MigrationsCreateKeysResponse struct {
+func (o *V1MigrationsEnqueueKeysRequestBody) GetAPIID() string {
+	if o == nil {
+		return ""
+	}
+	return o.APIID
+}
+
+func (o *V1MigrationsEnqueueKeysRequestBody) GetKeys() []Keys {
+	if o == nil {
+		return []Keys{}
+	}
+	return o.Keys
+}
+
+// V1MigrationsEnqueueKeysResponseBody - The key ids of all created keys
+type V1MigrationsEnqueueKeysResponseBody struct {
+}
+
+type V1MigrationsEnqueueKeysResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The key ids of all created keys
-	Object *V1MigrationsCreateKeysResponseBody
+	Object *V1MigrationsEnqueueKeysResponseBody
 }
 
-func (o *V1MigrationsCreateKeysResponse) GetHTTPMeta() components.HTTPMetadata {
+func (o *V1MigrationsEnqueueKeysResponse) GetHTTPMeta() components.HTTPMetadata {
 	if o == nil {
 		return components.HTTPMetadata{}
 	}
 	return o.HTTPMeta
 }
 
-func (o *V1MigrationsCreateKeysResponse) GetObject() *V1MigrationsCreateKeysResponseBody {
+func (o *V1MigrationsEnqueueKeysResponse) GetObject() *V1MigrationsEnqueueKeysResponseBody {
 	if o == nil {
 		return nil
 	}

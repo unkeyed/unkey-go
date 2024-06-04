@@ -91,16 +91,16 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 
 // Ratelimit - Unkey comes with per-key fixed-window ratelimiting out of the box.
 type Ratelimit struct {
-	// Async will return a response immediately, lowering latency at the cost of accuracy.
-	Async *bool `default:"false" json:"async"`
+	// Async will return a response immediately, lowering latency at the cost of accuracy. Will be required soon.
+	Async *bool `default:"true" json:"async"`
 	// Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *Type `default:"fast" json:"type"`
 	// The total amount of requests in a given interval.
 	Limit int64 `json:"limit"`
-	// The window duration in milliseconds
-	Duration int64 `json:"duration"`
+	// The window duration in milliseconds. Will be required soon.
+	Duration *int64 `json:"duration,omitempty"`
 	// How many tokens to refill during each refillInterval.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -143,9 +143,9 @@ func (o *Ratelimit) GetLimit() int64 {
 	return o.Limit
 }
 
-func (o *Ratelimit) GetDuration() int64 {
+func (o *Ratelimit) GetDuration() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.Duration
 }
@@ -185,6 +185,8 @@ type CreateKeyRequestBody struct {
 	Meta map[string]any `json:"meta,omitempty"`
 	// A list of roles that this key should have. If the role does not exist, an error is thrown
 	Roles []string `json:"roles,omitempty"`
+	// A list of permissions that this key should have. If the permission does not exist, an error is thrown
+	Permissions []string `json:"permissions,omitempty"`
 	// You can auto expire keys by providing a unix timestamp in milliseconds. Once Keys expire they will automatically be disabled and are no longer valid unless you enable them again.
 	Expires *int64 `json:"expires,omitempty"`
 	// You can limit the number of requests a key can make. Once a key reaches 0 remaining requests, it will automatically be disabled and is no longer valid unless you update it.
@@ -265,6 +267,13 @@ func (o *CreateKeyRequestBody) GetRoles() []string {
 		return nil
 	}
 	return o.Roles
+}
+
+func (o *CreateKeyRequestBody) GetPermissions() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
 }
 
 func (o *CreateKeyRequestBody) GetExpires() *int64 {

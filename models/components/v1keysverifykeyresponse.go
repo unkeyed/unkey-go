@@ -10,30 +10,30 @@ import (
 // V1KeysVerifyKeyResponseRatelimit - The ratelimit configuration for this key. If this field is null or undefined, the key has no ratelimit.
 type V1KeysVerifyKeyResponseRatelimit struct {
 	// Maximum number of requests that can be made inside a window
-	Limit float64 `json:"limit"`
+	Limit int64 `json:"limit"`
 	// Remaining requests after this verification
-	Remaining float64 `json:"remaining"`
+	Remaining int64 `json:"remaining"`
 	// Unix timestamp in milliseconds when the ratelimit will reset
-	Reset float64 `json:"reset"`
+	Reset int64 `json:"reset"`
 }
 
-func (o *V1KeysVerifyKeyResponseRatelimit) GetLimit() float64 {
+func (o *V1KeysVerifyKeyResponseRatelimit) GetLimit() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Limit
 }
 
-func (o *V1KeysVerifyKeyResponseRatelimit) GetRemaining() float64 {
+func (o *V1KeysVerifyKeyResponseRatelimit) GetRemaining() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Remaining
 }
 
-func (o *V1KeysVerifyKeyResponseRatelimit) GetReset() float64 {
+func (o *V1KeysVerifyKeyResponseRatelimit) GetReset() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Reset
 }
@@ -105,11 +105,11 @@ type V1KeysVerifyKeyResponse struct {
 	// Any additional metadata you want to store with the key
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
-	Expires *float64 `json:"expires,omitempty"`
+	Expires *int64 `json:"expires,omitempty"`
 	// The ratelimit configuration for this key. If this field is null or undefined, the key has no ratelimit.
 	Ratelimit *V1KeysVerifyKeyResponseRatelimit `json:"ratelimit,omitempty"`
 	// The number of requests that can be made with this key before it becomes invalid. If this field is null or undefined, the key has no request limit.
-	Remaining *float64 `json:"remaining,omitempty"`
+	Remaining *int64 `json:"remaining,omitempty"`
 	// A machine readable code why the key is not valid.
 	// Possible values are:
 	// - VALID: the key is valid and you should proceed
@@ -165,7 +165,7 @@ func (o *V1KeysVerifyKeyResponse) GetMeta() map[string]any {
 	return o.Meta
 }
 
-func (o *V1KeysVerifyKeyResponse) GetExpires() *float64 {
+func (o *V1KeysVerifyKeyResponse) GetExpires() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -179,7 +179,7 @@ func (o *V1KeysVerifyKeyResponse) GetRatelimit() *V1KeysVerifyKeyResponseRatelim
 	return o.Ratelimit
 }
 
-func (o *V1KeysVerifyKeyResponse) GetRemaining() *float64 {
+func (o *V1KeysVerifyKeyResponse) GetRemaining() *int64 {
 	if o == nil {
 		return nil
 	}

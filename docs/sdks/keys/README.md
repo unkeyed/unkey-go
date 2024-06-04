@@ -149,6 +149,10 @@ func main() {
             "admin",
             "finance",
         },
+        Permissions: []string{
+            "domains.create_record",
+            "say_hello",
+        },
         Expires: unkeygo.Int64(1623869797161),
         Remaining: unkeygo.Int64(1000),
         Refill: &operations.Refill{
@@ -157,7 +161,7 @@ func main() {
         },
         Ratelimit: &operations.Ratelimit{
             Limit: 10,
-            Duration: 60000,
+            Duration: unkeygo.Int64(60000),
         },
         Enabled: unkeygo.Bool(false),
     }

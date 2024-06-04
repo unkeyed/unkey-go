@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 9ef18a373ab97ecd377d1039e3d02538
+  docChecksum: 3188b1c3a0851732a5d0f06231f3b62d
   docVersion: 1.0.0
-  speakeasyVersion: 1.296.1
-  generationVersion: 2.338.1
-  releaseVersion: 0.3.0
-  configChecksum: 2498dd6a83123f53e18f3a1cf63243d3
+  speakeasyVersion: 1.299.6
+  generationVersion: 2.338.12
+  releaseVersion: 0.3.1
+  configChecksum: a9aa36dc0f0b5fa4a5fd7a8b4424246b
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.10
+    core: 3.4.11
     deprecations: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -63,6 +63,7 @@ generatedFiles:
   - /models/operations/deletekeys.go
   - /models/operations/limit.go
   - /models/operations/v1migrationscreatekeys.go
+  - /models/operations/v1migrationsenqueuekeys.go
   - /models/components/httpmetadata.go
   - /models/components/key.go
   - /models/components/v1keysverifykeyresponse.go
@@ -135,6 +136,16 @@ generatedFiles:
   - docs/models/operations/requestbody.md
   - docs/models/operations/v1migrationscreatekeysresponsebody.md
   - docs/models/operations/v1migrationscreatekeysresponse.md
+  - docs/models/operations/v1migrationsenqueuekeysvariant.md
+  - docs/models/operations/v1migrationsenqueuekeyshash.md
+  - docs/models/operations/v1migrationsenqueuekeysinterval.md
+  - docs/models/operations/v1migrationsenqueuekeysrefill.md
+  - docs/models/operations/v1migrationsenqueuekeystype.md
+  - docs/models/operations/v1migrationsenqueuekeysratelimit.md
+  - docs/models/operations/keys.md
+  - docs/models/operations/v1migrationsenqueuekeysrequestbody.md
+  - docs/models/operations/v1migrationsenqueuekeysresponsebody.md
+  - docs/models/operations/v1migrationsenqueuekeysresponse.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/interval.md
   - docs/models/components/refill.md

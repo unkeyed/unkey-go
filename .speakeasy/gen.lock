@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.322.1
   generationVersion: 2.354.2
-  releaseVersion: 0.4.1
-  configChecksum: f8a208a1b2b28a8e5ffc689d2ffeda1c
+  releaseVersion: 0.4.2
+  configChecksum: 63387c72449e54938b6817c5e1c104c1
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:

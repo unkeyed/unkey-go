@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: fe738a5ae7ac1f5b839fd5d2041aa653
+  docChecksum: 547602f40f6ad29534bfdf081cab8873
   docVersion: 1.0.0
-  speakeasyVersion: 1.322.1
-  generationVersion: 2.354.2
-  releaseVersion: 0.4.2
-  configChecksum: 63387c72449e54938b6817c5e1c104c1
+  speakeasyVersion: 1.323.0
+  generationVersion: 2.356.0
+  releaseVersion: 0.5.0
+  configChecksum: c40e320661f7800a66c6e3a1a4f1848e
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
@@ -23,6 +23,7 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.0
     responseFormat: 0.1.2
+    retries: 2.82.3
     sdkHooks: 0.1.0
     unions: 2.85.8
 generatedFiles:
@@ -159,6 +160,7 @@ generatedFiles:
   - docs/models/components/v1keysverifykeyresponse.md
   - docs/models/components/authorization.md
   - docs/models/components/v1keysverifykeyrequestratelimit.md
+  - docs/models/components/ratelimits.md
   - docs/models/components/v1keysverifykeyrequest.md
   - docs/models/components/or.md
   - docs/models/components/and.md
@@ -185,6 +187,7 @@ generatedFiles:
   - docs/models/sdkerrors/errinternalservererrorcode.md
   - docs/models/sdkerrors/errinternalservererrorerror.md
   - docs/models/sdkerrors/errinternalservererror.md
+  - docs/models/operations/option.md
   - docs/sdks/unkey/README.md
   - docs/sdks/liveness/README.md
   - docs/sdks/keys/README.md
@@ -192,5 +195,6 @@ generatedFiles:
   - docs/sdks/ratelimits/README.md
   - docs/sdks/migrations/README.md
   - USAGE.md
+  - models/operations/options.go
   - .gitattributes
   - internal/hooks/hooks.go

@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/cenkalti/backoff/v4"
 	"github.com/unkeyed/unkey-go/internal/hooks"
 	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
@@ -145,9 +146,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.4.2",
-			GenVersion:        "2.354.2",
-			UserAgent:         "speakeasy-sdk/go 0.4.2 2.354.2 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.5.0",
+			GenVersion:        "2.356.0",
+			UserAgent:         "speakeasy-sdk/go 0.5.0 2.356.0 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -180,7 +181,7 @@ func New(opts ...SDKOption) *Unkey {
 	return sdk
 }
 
-func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIRequestBody) (*operations.CreateAPIResponse, error) {
+func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIRequestBody, opts ...operations.Option) (*operations.CreateAPIResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createApi",
@@ -188,6 +189,16 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.createApi")
 	if err != nil {
@@ -211,28 +222,58 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 		return nil, err
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-	if err != nil {
-		return nil, err
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 50,
+					MaxInterval:     1000,
+					Exponent:        1.5,
+					MaxElapsedTime:  30000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
+		}
 	}
 
-	httpRes, err := s.sdkConfiguration.Client.Do(req)
-	if err != nil || httpRes == nil {
-		if err != nil {
-			err = fmt.Errorf("error sending request: %w", err)
-		} else {
-			err = fmt.Errorf("error sending request: no response")
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-		return nil, err
-	} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
-		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
-			return nil, err
-		} else if _httpRes != nil {
-			httpRes = _httpRes
+			return nil, backoff.Permanent(err)
 		}
+
+		httpRes, err := s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+		}
+		return httpRes, err
+	})
+	if err != nil {
+		return nil, err
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {
@@ -363,7 +404,7 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 
 }
 
-func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIRequestBody) (*operations.DeleteAPIResponse, error) {
+func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIRequestBody, opts ...operations.Option) (*operations.DeleteAPIResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "deleteApi",
@@ -371,6 +412,16 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.deleteApi")
 	if err != nil {
@@ -394,28 +445,58 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 		return nil, err
 	}
 
-	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-	if err != nil {
-		return nil, err
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig == nil {
+			retryConfig = &utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 50,
+					MaxInterval:     1000,
+					Exponent:        1.5,
+					MaxElapsedTime:  30000,
+				},
+				RetryConnectionErrors: true,
+			}
+		} else {
+			retryConfig = globalRetryConfig
+		}
 	}
 
-	httpRes, err := s.sdkConfiguration.Client.Do(req)
-	if err != nil || httpRes == nil {
-		if err != nil {
-			err = fmt.Errorf("error sending request: %w", err)
-		} else {
-			err = fmt.Errorf("error sending request: no response")
+	httpRes, err := utils.Retry(ctx, utils.Retries{
+		Config: retryConfig,
+		StatusCodes: []string{
+			"5XX",
+		},
+	}, func() (*http.Response, error) {
+		if req.Body != nil {
+			copyBody, err := req.GetBody()
+			if err != nil {
+				return nil, err
+			}
+			req.Body = copyBody
 		}
 
-		_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-		return nil, err
-	} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
-		_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 		if err != nil {
-			return nil, err
-		} else if _httpRes != nil {
-			httpRes = _httpRes
+			return nil, backoff.Permanent(err)
 		}
+
+		httpRes, err := s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+		}
+		return httpRes, err
+	})
+	if err != nil {
+		return nil, err
 	} else {
 		httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
 		if err != nil {

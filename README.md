@@ -330,6 +330,96 @@ func main() {
 
 <!-- End Special Types [types] -->
 
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+```go
+package main
+
+import (
+	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"log"
+	"models/operations"
+)
+
+func main() {
+	s := unkeygo.New(
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
+	request := operations.CreateAPIRequestBody{
+		Name: "my-api",
+	}
+	ctx := context.Background()
+	res, err := s.CreateAPI(ctx, request, operations.WithRetries(
+		utils.RetryConfig{
+			Strategy: "backoff",
+			Backoff: &utils.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"log"
+)
+
+func main() {
+	s := unkeygo.New(
+		unkeygo.WithRetryConfig(
+			utils.RetryConfig{
+				Strategy: "backoff",
+				Backoff: &utils.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+	)
+	request := operations.CreateAPIRequestBody{
+		Name: "my-api",
+	}
+	ctx := context.Background()
+	res, err := s.CreateAPI(ctx, request)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Retries [retries] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development

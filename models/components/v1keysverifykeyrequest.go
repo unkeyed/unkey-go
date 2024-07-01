@@ -42,6 +42,65 @@ func (o *V1KeysVerifyKeyRequestRatelimit) GetCost() *int64 {
 	return o.Cost
 }
 
+type Ratelimits struct {
+	// The name of the ratelimit
+	Name string `json:"name"`
+	// Optionally override how expensive this operation is and how many tokens are deducted from the current limit.
+	Cost *int64 `default:"1" json:"cost"`
+	// The identifier used for ratelimiting. If omitted, we use the key's id.
+	Identifier *string `default:"key id" json:"identifier"`
+	// Optionally override the limit.
+	Limit *float64 `json:"limit,omitempty"`
+	// Optionally override the ratelimit window duration.
+	Duration *float64 `json:"duration,omitempty"`
+}
+
+func (r Ratelimits) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Ratelimits) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Ratelimits) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Ratelimits) GetCost() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Cost
+}
+
+func (o *Ratelimits) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
+}
+
+func (o *Ratelimits) GetLimit() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *Ratelimits) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
 type V1KeysVerifyKeyRequest struct {
 	// The id of the api where the key belongs to. This is optional for now but will be required soon.
 	// The key will be verified against the api's configuration. If the key does not belong to the api, the verification will fail.
@@ -51,6 +110,7 @@ type V1KeysVerifyKeyRequest struct {
 	// Perform RBAC checks
 	Authorization *Authorization                   `json:"authorization,omitempty"`
 	Ratelimit     *V1KeysVerifyKeyRequestRatelimit `json:"ratelimit,omitempty"`
+	Ratelimits    []Ratelimits                     `json:"ratelimits,omitempty"`
 }
 
 func (o *V1KeysVerifyKeyRequest) GetAPIID() *string {
@@ -79,4 +139,11 @@ func (o *V1KeysVerifyKeyRequest) GetRatelimit() *V1KeysVerifyKeyRequestRatelimit
 		return nil
 	}
 	return o.Ratelimit
+}
+
+func (o *V1KeysVerifyKeyRequest) GetRatelimits() []Ratelimits {
+	if o == nil {
+		return nil
+	}
+	return o.Ratelimits
 }

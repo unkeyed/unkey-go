@@ -1,6 +1,6 @@
 # V1KeysVerifyKeyResponseRatelimit
 
-The ratelimit configuration for this key. If this field is null or undefined, the key has no ratelimit.
+Multi ratelimits TODO:
 
 
 ## Fields

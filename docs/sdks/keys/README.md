@@ -219,6 +219,11 @@ func main() {
     request := components.V1KeysVerifyKeyRequest{
         APIID: unkeygo.String("api_1234"),
         Key: "sk_1234",
+        Ratelimits: []components.Ratelimits{
+            components.Ratelimits{
+                Name: "tokens",
+            },
+        },
     }
     ctx := context.Background()
     res, err := s.Keys.VerifyKey(ctx, request)

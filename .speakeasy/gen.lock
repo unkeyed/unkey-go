@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: fe738a5ae7ac1f5b839fd5d2041aa653
+  docChecksum: 824535d1ce70531e528d67f499559483
   docVersion: 1.0.0
-  speakeasyVersion: 1.322.1
+  speakeasyVersion: 1.322.3
   generationVersion: 2.354.2
-  releaseVersion: 0.4.2
-  configChecksum: 63387c72449e54938b6817c5e1c104c1
+  releaseVersion: 0.4.3
+  configChecksum: 37eb69bdc05ecec568e8638af29c20e4
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
@@ -159,6 +159,7 @@ generatedFiles:
   - docs/models/components/v1keysverifykeyresponse.md
   - docs/models/components/authorization.md
   - docs/models/components/v1keysverifykeyrequestratelimit.md
+  - docs/models/components/ratelimits.md
   - docs/models/components/v1keysverifykeyrequest.md
   - docs/models/components/or.md
   - docs/models/components/and.md

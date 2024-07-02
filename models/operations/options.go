@@ -5,6 +5,7 @@ package operations
 import (
 	"errors"
 	"github.com/unkeyed/unkey-go/internal/utils"
+	"github.com/unkeyed/unkey-go/retry"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
@@ -17,7 +18,7 @@ const (
 
 type Options struct {
 	ServerURL *string
-	Retries   *utils.RetryConfig
+	Retries   *retry.Config
 }
 
 type Option func(*Options, ...string) error
@@ -51,7 +52,7 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) Option {
 }
 
 // WithRetries allows customizing the default retry configuration.
-func WithRetries(config utils.RetryConfig) Option {
+func WithRetries(config retry.Config) Option {
 	return func(opts *Options, supportedOptions ...string) error {
 		if !utils.Contains(supportedOptions, SupportedOptionRetries) {
 			return ErrUnsupportedOption

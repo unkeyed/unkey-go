@@ -12,6 +12,7 @@ import (
 	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
+	"github.com/unkeyed/unkey-go/retry"
 	"io"
 	"net/http"
 	"net/url"
@@ -57,7 +58,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	RetryConfig       *utils.RetryConfig
+	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 }
 
@@ -134,7 +135,7 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
-func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *Unkey) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
@@ -146,9 +147,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.5.0",
-			GenVersion:        "2.356.0",
-			UserAgent:         "speakeasy-sdk/go 0.5.0 2.356.0 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.6.0",
+			GenVersion:        "2.359.0",
+			UserAgent:         "speakeasy-sdk/go 0.6.0 2.359.0 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -226,9 +227,9 @@ func (s *Unkey) CreateAPI(ctx context.Context, request operations.CreateAPIReque
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -449,9 +450,9 @@ func (s *Unkey) DeleteAPI(ctx context.Context, request operations.DeleteAPIReque
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,

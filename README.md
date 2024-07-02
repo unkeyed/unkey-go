@@ -6,7 +6,6 @@
 </div>!
 
 <!-- Start SDK Installation [installation] -->
-
 ## SDK Installation
 
 ```bash
@@ -341,15 +340,15 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey-go/retry"
 	"log"
 	"models/operations"
 )
@@ -363,9 +362,9 @@ func main() {
 	}
 	ctx := context.Background()
 	res, err := s.CreateAPI(ctx, request, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -390,17 +389,17 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"github.com/unkeyed/unkey-go/retry"
 	"log"
 )
 
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,

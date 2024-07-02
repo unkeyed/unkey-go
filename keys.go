@@ -12,6 +12,7 @@ import (
 	"github.com/unkeyed/unkey-go/models/components"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
+	"github.com/unkeyed/unkey-go/retry"
 	"io"
 	"net/http"
 	"net/url"
@@ -70,9 +71,9 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest, opt
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -293,9 +294,9 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -516,9 +517,9 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -739,9 +740,9 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -962,9 +963,9 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -1185,9 +1186,9 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,
@@ -1406,9 +1407,9 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 	retryConfig := o.Retries
 	if retryConfig == nil {
 		if globalRetryConfig == nil {
-			retryConfig = &utils.RetryConfig{
+			retryConfig = &retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 50,
 					MaxInterval:     1000,
 					Exponent:        1.5,

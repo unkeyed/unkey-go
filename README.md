@@ -1,6 +1,12 @@
-# github.com/unkeyed/sdk-go
+<div align="center">
+        <img src="https://github.com/unkeyed/unkey-go/assets/68016351/9df64b35-78cd-4404-8b4f-1796b8c685b1" width="200">
+   <p>Redefined API management for developers</p>
+   <a href="https://www.unkey.com/docs/api-reference/overview"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000000&style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+</div>!
 
 <!-- Start SDK Installation [installation] -->
+
 ## SDK Installation
 
 ```bash

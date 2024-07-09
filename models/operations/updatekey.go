@@ -10,6 +10,7 @@ import (
 )
 
 // UpdateKeyType - Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+// Deprecated, use 'async' instead
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
@@ -43,20 +44,26 @@ func (e *UpdateKeyType) UnmarshalJSON(data []byte) error {
 // UpdateKeyRatelimit - Unkey comes with per-key ratelimiting out of the box. Set `null` to disable.
 type UpdateKeyRatelimit struct {
 	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	// Deprecated, use 'async' instead
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *UpdateKeyType `json:"type,omitempty"`
-	// Asnyc ratelimiting doesn't add latency, while sync ratelimiting is more accurate.
+	// Asnyc ratelimiting doesn't add latency, while sync ratelimiting is slightly more accurate.
 	Async *bool `default:"false" json:"async"`
-	// The total amount of burstable requests.
+	// The total amount of requests allowed in a single window.
 	Limit int64 `json:"limit"`
 	// How many tokens to refill during each refillInterval.
+	// Deprecated, use 'limit' instead.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate *int64 `json:"refillRate,omitempty"`
 	// Determines the speed at which tokens are refilled, in milliseconds.
-	RefillInterval int64 `json:"refillInterval"`
+	// Deprecated, use 'duration'
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	RefillInterval *int64 `json:"refillInterval,omitempty"`
 	// The duration of each ratelimit window, in milliseconds.
+	// This field will become required in a future version.
 	Duration *int64 `json:"duration,omitempty"`
 }
 
@@ -99,9 +106,9 @@ func (o *UpdateKeyRatelimit) GetRefillRate() *int64 {
 	return o.RefillRate
 }
 
-func (o *UpdateKeyRatelimit) GetRefillInterval() int64 {
+func (o *UpdateKeyRatelimit) GetRefillInterval() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
 	return o.RefillInterval
 }

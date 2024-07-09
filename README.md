@@ -84,6 +84,17 @@ func main() {
 
 * [V1MigrationsCreateKeys](docs/sdks/migrations/README.md#v1migrationscreatekeys)
 * [V1MigrationsEnqueueKeys](docs/sdks/migrations/README.md#v1migrationsenqueuekeys)
+
+### [Permissions](docs/sdks/permissions/README.md)
+
+* [CreatePermission](docs/sdks/permissions/README.md#createpermission)
+* [DeletePermission](docs/sdks/permissions/README.md#deletepermission)
+* [GetPermission](docs/sdks/permissions/README.md#getpermission)
+* [ListPermissions](docs/sdks/permissions/README.md#listpermissions)
+* [CreateRole](docs/sdks/permissions/README.md#createrole)
+* [DeleteRole](docs/sdks/permissions/README.md#deleterole)
+* [GetRole](docs/sdks/permissions/README.md#getrole)
+* [ListRoles](docs/sdks/permissions/README.md#listroles)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->

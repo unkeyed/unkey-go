@@ -71,11 +71,12 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 }
 
 type Unkey struct {
-	Liveness   *Liveness
-	Keys       *Keys
-	Apis       *Apis
-	Ratelimits *Ratelimits
-	Migrations *Migrations
+	Liveness    *Liveness
+	Keys        *Keys
+	Apis        *Apis
+	Ratelimits  *Ratelimits
+	Migrations  *Migrations
+	Permissions *Permissions
 
 	sdkConfiguration sdkConfiguration
 }
@@ -147,9 +148,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.6.0",
-			GenVersion:        "2.359.0",
-			UserAgent:         "speakeasy-sdk/go 0.6.0 2.359.0 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.6.1",
+			GenVersion:        "2.361.10",
+			UserAgent:         "speakeasy-sdk/go 0.6.1 2.361.10 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -178,6 +179,8 @@ func New(opts ...SDKOption) *Unkey {
 	sdk.Ratelimits = newRatelimits(sdk.sdkConfiguration)
 
 	sdk.Migrations = newMigrations(sdk.sdkConfiguration)
+
+	sdk.Permissions = newPermissions(sdk.sdkConfiguration)
 
 	return sdk
 }

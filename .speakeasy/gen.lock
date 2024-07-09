@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 547602f40f6ad29534bfdf081cab8873
+  docChecksum: 0785f5659b7521373ececdc3425c7efc
   docVersion: 1.0.0
-  speakeasyVersion: 1.326.0
-  generationVersion: 2.359.0
-  releaseVersion: 0.6.0
-  configChecksum: 2a6062478c58c77a364cffd8940a8f10
+  speakeasyVersion: 1.330.0
+  generationVersion: 2.361.10
+  releaseVersion: 0.6.1
+  configChecksum: b411f7847c3a11ea34842f8b693e6fd0
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
@@ -32,6 +32,7 @@ generatedFiles:
   - apis.go
   - ratelimits.go
   - migrations.go
+  - permissions.go
   - unkey.go
   - go.mod
   - models/sdkerrors/sdkerror.go
@@ -67,6 +68,14 @@ generatedFiles:
   - /models/operations/limit.go
   - /models/operations/v1migrationscreatekeys.go
   - /models/operations/v1migrationsenqueuekeys.go
+  - /models/operations/createpermission.go
+  - /models/operations/deletepermission.go
+  - /models/operations/getpermission.go
+  - /models/operations/listpermissions.go
+  - /models/operations/createrole.go
+  - /models/operations/deleterole.go
+  - /models/operations/getrole.go
+  - /models/operations/listroles.go
   - /models/components/httpmetadata.go
   - /models/components/key.go
   - /models/components/v1keysverifykeyresponse.go
@@ -150,6 +159,28 @@ generatedFiles:
   - docs/models/operations/v1migrationsenqueuekeysrequestbody.md
   - docs/models/operations/v1migrationsenqueuekeysresponsebody.md
   - docs/models/operations/v1migrationsenqueuekeysresponse.md
+  - docs/models/operations/createpermissionrequestbody.md
+  - docs/models/operations/createpermissionresponsebody.md
+  - docs/models/operations/createpermissionresponse.md
+  - docs/models/operations/deletepermissionrequestbody.md
+  - docs/models/operations/deletepermissionresponsebody.md
+  - docs/models/operations/deletepermissionresponse.md
+  - docs/models/operations/getpermissionrequest.md
+  - docs/models/operations/getpermissionresponsebody.md
+  - docs/models/operations/getpermissionresponse.md
+  - docs/models/operations/responsebody.md
+  - docs/models/operations/listpermissionsresponse.md
+  - docs/models/operations/createrolerequestbody.md
+  - docs/models/operations/createroleresponsebody.md
+  - docs/models/operations/createroleresponse.md
+  - docs/models/operations/deleterolerequestbody.md
+  - docs/models/operations/deleteroleresponsebody.md
+  - docs/models/operations/deleteroleresponse.md
+  - docs/models/operations/getrolerequest.md
+  - docs/models/operations/getroleresponsebody.md
+  - docs/models/operations/getroleresponse.md
+  - docs/models/operations/listrolesresponsebody.md
+  - docs/models/operations/listrolesresponse.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/interval.md
   - docs/models/components/refill.md
@@ -195,6 +226,7 @@ generatedFiles:
   - docs/sdks/apis/README.md
   - docs/sdks/ratelimits/README.md
   - docs/sdks/migrations/README.md
+  - docs/sdks/permissions/README.md
   - USAGE.md
   - models/operations/options.go
   - .gitattributes

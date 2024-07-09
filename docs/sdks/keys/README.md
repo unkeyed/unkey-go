@@ -295,7 +295,7 @@ func main() {
         Ratelimit: &operations.UpdateKeyRatelimit{
             Limit: 10,
             RefillRate: unkeygo.Int64(1),
-            RefillInterval: 60,
+            RefillInterval: unkeygo.Int64(60),
         },
         Remaining: unkeygo.Float64(1000),
         Refill: &operations.UpdateKeyRefill{

@@ -48,6 +48,7 @@ func (o *V1KeysVerifyKeyResponseRatelimit) GetReset() int64 {
 // - UNAUTHORIZED: the key is not authorized
 // - DISABLED: the key is disabled
 // - INSUFFICIENT_PERMISSIONS: you do not have the required permissions to perform this action
+// - EXPIRED: The key was only valid for a certain time and has expired.
 type Code string
 
 const (
@@ -59,6 +60,7 @@ const (
 	CodeUnauthorized            Code = "UNAUTHORIZED"
 	CodeDisabled                Code = "DISABLED"
 	CodeInsufficientPermissions Code = "INSUFFICIENT_PERMISSIONS"
+	CodeExpired                 Code = "EXPIRED"
 )
 
 func (e Code) ToPointer() *Code {
@@ -85,6 +87,8 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	case "DISABLED":
 		fallthrough
 	case "INSUFFICIENT_PERMISSIONS":
+		fallthrough
+	case "EXPIRED":
 		*e = Code(v)
 		return nil
 	default:
@@ -120,6 +124,7 @@ type V1KeysVerifyKeyResponse struct {
 	// - UNAUTHORIZED: the key is not authorized
 	// - DISABLED: the key is disabled
 	// - INSUFFICIENT_PERMISSIONS: you do not have the required permissions to perform this action
+	// - EXPIRED: The key was only valid for a certain time and has expired.
 	//
 	Code Code `json:"code"`
 	// Sets the key to be enabled or disabled. Disabled keys will not verify.

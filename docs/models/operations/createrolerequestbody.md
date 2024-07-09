@@ -1,0 +1,9 @@
+# CreateRoleRequestBody
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `Name`                                                                                 | *string*                                                                               | :heavy_check_mark:                                                                     | The unique name of your role.                                                          | dns.records.manager                                                                    |
+| `Description`                                                                          | **string*                                                                              | :heavy_minus_sign:                                                                     | Explain what this role does. This is just for your team, your users will not see this. | dns.records.manager can read and write dns records for our domains.                    |

@@ -10,6 +10,7 @@ Possible values are:
 - UNAUTHORIZED: the key is not authorized
 - DISABLED: the key is disabled
 - INSUFFICIENT_PERMISSIONS: you do not have the required permissions to perform this action
+- EXPIRED: The key was only valid for a certain time and has expired.
 
 
 
@@ -25,3 +26,4 @@ Possible values are:
 | `CodeUnauthorized`            | UNAUTHORIZED                  |
 | `CodeDisabled`                | DISABLED                      |
 | `CodeInsufficientPermissions` | INSUFFICIENT_PERMISSIONS      |
+| `CodeExpired`                 | EXPIRED                       |

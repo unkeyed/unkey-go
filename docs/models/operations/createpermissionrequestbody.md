@@ -1,0 +1,9 @@
+# CreatePermissionRequestBody
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `Name`                                                                                       | *string*                                                                                     | :heavy_check_mark:                                                                           | The unique name of your permission.                                                          | record.write                                                                                 |
+| `Description`                                                                                | **string*                                                                                    | :heavy_minus_sign:                                                                           | Explain what this permission does. This is just for your team, your users will not see this. | record.write can create new dns records for our domains.                                     |

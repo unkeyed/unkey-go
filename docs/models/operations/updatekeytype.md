@@ -1,6 +1,7 @@
 # ~~UpdateKeyType~~
 
 Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+Deprecated, use 'async' instead
 
 Learn more
 <https://unkey.dev/docs/features/ratelimiting>

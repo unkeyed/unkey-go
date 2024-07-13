@@ -1,0 +1,9 @@
+# SetPermissionsResponse
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `HTTPMeta`                                                                                       | [components.HTTPMetadata](../../models/components/httpmetadata.md)                               | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `ResponseBodies`                                                                                 | [][operations.SetPermissionsResponseBody](../../models/operations/setpermissionsresponsebody.md) | :heavy_minus_sign:                                                                               | All currently connected permissions                                                              |

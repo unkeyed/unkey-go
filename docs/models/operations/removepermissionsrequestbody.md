@@ -1,0 +1,9 @@
+# RemovePermissionsRequestBody
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `KeyID`                                                                                              | *string*                                                                                             | :heavy_check_mark:                                                                                   | The id of the key.                                                                                   |
+| `Permissions`                                                                                        | [][operations.RemovePermissionsPermissions](../../models/operations/removepermissionspermissions.md) | :heavy_check_mark:                                                                                   | The permissions you want to remove from this key                                                     |

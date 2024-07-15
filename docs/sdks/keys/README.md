@@ -10,6 +10,12 @@
 * [UpdateKey](#updatekey)
 * [UpdateRemaining](#updateremaining)
 * [GetVerifications](#getverifications)
+* [AddPermissions](#addpermissions)
+* [RemovePermissions](#removepermissions)
+* [SetPermissions](#setpermissions)
+* [AddRoles](#addroles)
+* [RemoveRoles](#removeroles)
+* [SetRoles](#setroles)
 
 ## GetKey
 
@@ -443,6 +449,378 @@ func main() {
 ### Response
 
 **[*operations.GetVerificationsResponse](../../models/operations/getverificationsresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## AddPermissions
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.AddPermissionsRequestBody{
+        KeyID: "<value>",
+        Permissions: []operations.Permissions{
+            operations.CreatePermissionsTwo(
+                operations.Two{
+                    Name: "<value>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.AddPermissions(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseBodies != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.AddPermissionsRequestBody](../../models/operations/addpermissionsrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+
+### Response
+
+**[*operations.AddPermissionsResponse](../../models/operations/addpermissionsresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## RemovePermissions
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.RemovePermissionsRequestBody{
+        KeyID: "<value>",
+        Permissions: []operations.RemovePermissionsPermissions{
+            operations.CreateRemovePermissionsPermissionsPermissions2(
+                operations.Permissions2{
+                    Name: "<value>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.RemovePermissions(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.RemovePermissionsRequestBody](../../models/operations/removepermissionsrequestbody.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+
+### Response
+
+**[*operations.RemovePermissionsResponse](../../models/operations/removepermissionsresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## SetPermissions
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.SetPermissionsRequestBody{
+        KeyID: "<value>",
+        Permissions: []operations.SetPermissionsPermissions{
+            operations.CreateSetPermissionsPermissionsSetPermissionsPermissions1(
+                operations.SetPermissionsPermissions1{
+                    ID: "<id>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.SetPermissions(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseBodies != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.SetPermissionsRequestBody](../../models/operations/setpermissionsrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+
+### Response
+
+**[*operations.SetPermissionsResponse](../../models/operations/setpermissionsresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## AddRoles
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.AddRolesRequestBody{
+        KeyID: "<value>",
+        Roles: []operations.Roles{
+            operations.CreateRolesRoles2(
+                operations.Roles2{
+                    Name: "<value>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.AddRoles(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseBodies != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.AddRolesRequestBody](../../models/operations/addrolesrequestbody.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+
+### Response
+
+**[*operations.AddRolesResponse](../../models/operations/addrolesresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## RemoveRoles
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.RemoveRolesRequestBody{
+        KeyID: "<value>",
+        Roles: []operations.RemoveRolesRoles{
+            operations.CreateRemoveRolesRolesRemoveRolesRoles2(
+                operations.RemoveRolesRoles2{
+                    Name: "<value>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.RemoveRoles(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.RemoveRolesRequestBody](../../models/operations/removerolesrequestbody.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+
+### Response
+
+**[*operations.RemoveRolesResponse](../../models/operations/removerolesresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
+## SetRoles
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+    request := operations.SetRolesRequestBody{
+        KeyID: "<value>",
+        Roles: []operations.SetRolesRoles{
+            operations.CreateSetRolesRolesSetRolesRoles2(
+                operations.SetRolesRoles2{
+                    Name: "<value>",
+                },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Keys.SetRoles(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResponseBodies != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.SetRolesRequestBody](../../models/operations/setrolesrequestbody.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+
+### Response
+
+**[*operations.SetRolesResponse](../../models/operations/setrolesresponse.md), error**
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

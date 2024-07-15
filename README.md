@@ -69,6 +69,12 @@ func main() {
 * [UpdateKey](docs/sdks/keys/README.md#updatekey)
 * [UpdateRemaining](docs/sdks/keys/README.md#updateremaining)
 * [GetVerifications](docs/sdks/keys/README.md#getverifications)
+* [AddPermissions](docs/sdks/keys/README.md#addpermissions)
+* [RemovePermissions](docs/sdks/keys/README.md#removepermissions)
+* [SetPermissions](docs/sdks/keys/README.md#setpermissions)
+* [AddRoles](docs/sdks/keys/README.md#addroles)
+* [RemoveRoles](docs/sdks/keys/README.md#removeroles)
+* [SetRoles](docs/sdks/keys/README.md#setroles)
 
 ### [Apis](docs/sdks/apis/README.md)
 

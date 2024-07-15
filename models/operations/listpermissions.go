@@ -6,7 +6,7 @@ import (
 	"github.com/unkeyed/unkey-go/models/components"
 )
 
-type ResponseBody struct {
+type ListPermissionsResponseBody struct {
 	// The id of the permission
 	ID string `json:"id"`
 	// The name of the permission.
@@ -15,21 +15,21 @@ type ResponseBody struct {
 	Description *string `json:"description,omitempty"`
 }
 
-func (o *ResponseBody) GetID() string {
+func (o *ListPermissionsResponseBody) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *ResponseBody) GetName() string {
+func (o *ListPermissionsResponseBody) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *ResponseBody) GetDescription() *string {
+func (o *ListPermissionsResponseBody) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
@@ -39,7 +39,7 @@ func (o *ResponseBody) GetDescription() *string {
 type ListPermissionsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The permissions in your workspace
-	ResponseBodies []ResponseBody
+	ResponseBodies []ListPermissionsResponseBody
 }
 
 func (o *ListPermissionsResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -49,7 +49,7 @@ func (o *ListPermissionsResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *ListPermissionsResponse) GetResponseBodies() []ResponseBody {
+func (o *ListPermissionsResponse) GetResponseBodies() []ListPermissionsResponseBody {
 	if o == nil {
 		return nil
 	}

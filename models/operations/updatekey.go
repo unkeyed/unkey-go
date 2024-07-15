@@ -169,6 +169,71 @@ func (o *UpdateKeyRefill) GetAmount() int64 {
 	return o.Amount
 }
 
+type Roles struct {
+	// The id of the role. Provide either `id` or `name`. If both are provided `id` is used.
+	ID *string `json:"id,omitempty"`
+	// Identify the role via its name. Provide either `id` or `name`. If both are provided `id` is used.
+	Name *string `json:"name,omitempty"`
+	// Set to true to automatically create the permissions they do not exist yet. Only works when specifying `name`.
+	//                     Autocreating roles requires your root key to have the `rbac.*.create_role` permission, otherwise the request will get rejected
+	Create *bool `json:"create,omitempty"`
+}
+
+func (o *Roles) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Roles) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Roles) GetCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Create
+}
+
+type Permissions struct {
+	// The id of the permission. Provide either `id` or `name`. If both are provided `id` is used.
+	ID *string `json:"id,omitempty"`
+	// Identify the permission via its name. Provide either `id` or `name`. If both are provided `id` is used.
+	Name *string `json:"name,omitempty"`
+	// Set to true to automatically create the permissions they do not exist yet. Only works when specifying `name`.
+	//                     Autocreating permissions requires your root key to have the `rbac.*.create_permission` permission, otherwise the request will get rejected
+	Create *bool `json:"create,omitempty"`
+}
+
+func (o *Permissions) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Permissions) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *Permissions) GetCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Create
+}
+
+// UpdateKeyRequestBody - Update a key's configuration.
+//
+//	The `apis.<API_ID>.update_key` permission is required.
 type UpdateKeyRequestBody struct {
 	// The id of the key you want to modify
 	KeyID string `json:"keyId"`
@@ -188,6 +253,12 @@ type UpdateKeyRequestBody struct {
 	Refill *UpdateKeyRefill `json:"refill,omitempty"`
 	// Set if key is enabled or disabled. If disabled, the key cannot be used to verify.
 	Enabled *bool `json:"enabled,omitempty"`
+	// The roles you want to set for this key. This overwrites all existing roles.
+	//                 Setting roles requires the `rbac.*.add_role_to_key` permission.
+	Roles []Roles `json:"roles,omitempty"`
+	// The permissions you want to set for this key. This overwrites all existing permissions.
+	//                 Setting permissions requires the `rbac.*.add_permission_to_key` permission.
+	Permissions []Permissions `json:"permissions,omitempty"`
 }
 
 func (o *UpdateKeyRequestBody) GetKeyID() string {
@@ -251,6 +322,20 @@ func (o *UpdateKeyRequestBody) GetEnabled() *bool {
 		return nil
 	}
 	return o.Enabled
+}
+
+func (o *UpdateKeyRequestBody) GetRoles() []Roles {
+	if o == nil {
+		return nil
+	}
+	return o.Roles
+}
+
+func (o *UpdateKeyRequestBody) GetPermissions() []Permissions {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
 }
 
 // UpdateKeyResponseBody - The key was successfully updated, it may take up to 30s for this to take effect in all regions

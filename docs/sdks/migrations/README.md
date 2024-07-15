@@ -14,6 +14,7 @@
 package main
 
 import(
+	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -22,7 +23,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
     )
     request := []operations.RequestBody{
         operations.RequestBody{
@@ -98,6 +99,7 @@ func main() {
 package main
 
 import(
+	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -106,7 +108,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
     )
     request := operations.V1MigrationsEnqueueKeysRequestBody{
         MigrationID: "<value>",

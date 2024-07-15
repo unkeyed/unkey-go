@@ -1,20 +1,22 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 0785f5659b7521373ececdc3425c7efc
+  docChecksum: 1adbad72708fe75ac7626a1e7e1dfc13
   docVersion: 1.0.0
-  speakeasyVersion: 1.330.0
-  generationVersion: 2.361.10
-  releaseVersion: 0.6.1
-  configChecksum: b411f7847c3a11ea34842f8b693e6fd0
+  speakeasyVersion: 1.335.2
+  generationVersion: 2.372.3
+  releaseVersion: 0.7.0
+  configChecksum: c299315b1cde1ca427dc047689fa60ff
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.14
+    core: 3.4.15
+    defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
+    envVarSecurityUsage: 0.2.0
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -62,6 +64,12 @@ generatedFiles:
   - /models/operations/updatekey.go
   - /models/operations/updateremaining.go
   - /models/operations/getverifications.go
+  - /models/operations/addpermissions.go
+  - /models/operations/removepermissions.go
+  - /models/operations/setpermissions.go
+  - /models/operations/addroles.go
+  - /models/operations/removeroles.go
+  - /models/operations/setroles.go
   - /models/operations/getapi.go
   - /models/operations/listkeys.go
   - /models/operations/deletekeys.go
@@ -115,6 +123,8 @@ generatedFiles:
   - docs/models/operations/updatekeyratelimit.md
   - docs/models/operations/updatekeyinterval.md
   - docs/models/operations/updatekeyrefill.md
+  - docs/models/operations/roles.md
+  - docs/models/operations/permissions.md
   - docs/models/operations/updatekeyrequestbody.md
   - docs/models/operations/updatekeyresponsebody.md
   - docs/models/operations/updatekeyresponse.md
@@ -127,6 +137,30 @@ generatedFiles:
   - docs/models/operations/verifications.md
   - docs/models/operations/getverificationsresponsebody.md
   - docs/models/operations/getverificationsresponse.md
+  - docs/models/operations/addpermissionspermissions.md
+  - docs/models/operations/addpermissionsrequestbody.md
+  - docs/models/operations/responsebody.md
+  - docs/models/operations/addpermissionsresponse.md
+  - docs/models/operations/removepermissionspermissions.md
+  - docs/models/operations/removepermissionsrequestbody.md
+  - docs/models/operations/removepermissionsresponsebody.md
+  - docs/models/operations/removepermissionsresponse.md
+  - docs/models/operations/setpermissionspermissions.md
+  - docs/models/operations/setpermissionsrequestbody.md
+  - docs/models/operations/setpermissionsresponsebody.md
+  - docs/models/operations/setpermissionsresponse.md
+  - docs/models/operations/addrolesroles.md
+  - docs/models/operations/addrolesrequestbody.md
+  - docs/models/operations/addrolesresponsebody.md
+  - docs/models/operations/addrolesresponse.md
+  - docs/models/operations/removerolesroles.md
+  - docs/models/operations/removerolesrequestbody.md
+  - docs/models/operations/removerolesresponsebody.md
+  - docs/models/operations/removerolesresponse.md
+  - docs/models/operations/setrolesroles.md
+  - docs/models/operations/setrolesrequestbody.md
+  - docs/models/operations/setrolesresponsebody.md
+  - docs/models/operations/setrolesresponse.md
   - docs/models/operations/getapirequest.md
   - docs/models/operations/getapiresponsebody.md
   - docs/models/operations/getapiresponse.md
@@ -168,7 +202,7 @@ generatedFiles:
   - docs/models/operations/getpermissionrequest.md
   - docs/models/operations/getpermissionresponsebody.md
   - docs/models/operations/getpermissionresponse.md
-  - docs/models/operations/responsebody.md
+  - docs/models/operations/listpermissionsresponsebody.md
   - docs/models/operations/listpermissionsresponse.md
   - docs/models/operations/createrolerequestbody.md
   - docs/models/operations/createroleresponsebody.md

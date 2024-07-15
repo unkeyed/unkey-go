@@ -26,11 +26,12 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -69,6 +70,12 @@ func main() {
 * [UpdateKey](docs/sdks/keys/README.md#updatekey)
 * [UpdateRemaining](docs/sdks/keys/README.md#updateremaining)
 * [GetVerifications](docs/sdks/keys/README.md#getverifications)
+* [AddPermissions](docs/sdks/keys/README.md#addpermissions)
+* [RemovePermissions](docs/sdks/keys/README.md#removepermissions)
+* [SetPermissions](docs/sdks/keys/README.md#setpermissions)
+* [AddRoles](docs/sdks/keys/README.md#addroles)
+* [RemoveRoles](docs/sdks/keys/README.md#removeroles)
+* [SetRoles](docs/sdks/keys/README.md#setroles)
 
 ### [Apis](docs/sdks/apis/README.md)
 
@@ -125,11 +132,12 @@ import (
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -212,12 +220,13 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithServerIndex(0),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -246,12 +255,13 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithServerURL("https://api.unkey.dev"),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -318,11 +328,12 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -362,11 +373,12 @@ import (
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
 	"models/operations"
+	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",
@@ -403,6 +415,7 @@ import (
 	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
+	"os"
 )
 
 func main() {
@@ -418,7 +431,7 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
 	request := operations.CreateAPIRequestBody{
 		Name: "my-api",

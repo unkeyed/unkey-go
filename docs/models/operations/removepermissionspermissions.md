@@ -1,0 +1,9 @@
+# RemovePermissionsPermissions
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `ID`                                                                                                    | **string*                                                                                               | :heavy_minus_sign:                                                                                      | The id of the permission. Provide either `id` or `name`. If both are provided `id` is used.             |
+| `Name`                                                                                                  | **string*                                                                                               | :heavy_minus_sign:                                                                                      | Identify the permission via its name. Provide either `id` or `name`. If both are provided `id` is used. |

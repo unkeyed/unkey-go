@@ -1,4 +1,4 @@
-# ResponseBody
+# SetPermissionsResponseBody
 
 
 ## Fields

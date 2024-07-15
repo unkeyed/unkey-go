@@ -6,6 +6,7 @@ import (
 	"errors"
 	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/retry"
+	"time"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
@@ -13,12 +14,14 @@ var ErrUnsupportedOption = errors.New("unsupported option")
 const (
 	SupportedOptionServerURL            = "serverURL"
 	SupportedOptionRetries              = "retries"
+	SupportedOptionTimeout              = "timeout"
 	SupportedOptionAcceptHeaderOverride = "acceptHeaderOverride"
 )
 
 type Options struct {
 	ServerURL *string
 	Retries   *retry.Config
+	Timeout   *time.Duration
 }
 
 type Option func(*Options, ...string) error
@@ -59,6 +62,18 @@ func WithRetries(config retry.Config) Option {
 		}
 
 		opts.Retries = &config
+		return nil
+	}
+}
+
+// WithOperationTimeout allows setting the request timeout applied for an operation.
+func WithOperationTimeout(timeout time.Duration) Option {
+	return func(opts *Options, supportedOptions ...string) error {
+		if !utils.Contains(supportedOptions, SupportedOptionRetries) {
+			return ErrUnsupportedOption
+		}
+
+		opts.Timeout = &timeout
 		return nil
 	}
 }

@@ -4,6 +4,7 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
@@ -169,6 +170,205 @@ func (o *UpdateKeyRefill) GetAmount() int64 {
 	return o.Amount
 }
 
+type Two struct {
+	// The name of the role
+	Name string `json:"name"`
+	// Set to true to automatically create the permissions they do not exist yet.
+	//                       Autocreating roles requires your root key to have the `rbac.*.create_role` permission, otherwise the request will get rejected
+	//
+	Create *bool `json:"create,omitempty"`
+}
+
+func (o *Two) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Two) GetCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Create
+}
+
+type One struct {
+	// The id of the role.
+	ID string `json:"id"`
+}
+
+func (o *One) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+type RolesType string
+
+const (
+	RolesTypeOne RolesType = "1"
+	RolesTypeTwo RolesType = "2"
+)
+
+type Roles struct {
+	One *One
+	Two *Two
+
+	Type RolesType
+}
+
+func CreateRolesOne(one One) Roles {
+	typ := RolesTypeOne
+
+	return Roles{
+		One:  &one,
+		Type: typ,
+	}
+}
+
+func CreateRolesTwo(two Two) Roles {
+	typ := RolesTypeTwo
+
+	return Roles{
+		Two:  &two,
+		Type: typ,
+	}
+}
+
+func (u *Roles) UnmarshalJSON(data []byte) error {
+
+	var one One = One{}
+	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
+		u.One = &one
+		u.Type = RolesTypeOne
+		return nil
+	}
+
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
+		u.Two = &two
+		u.Type = RolesTypeTwo
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Roles", string(data))
+}
+
+func (u Roles) MarshalJSON() ([]byte, error) {
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
+	}
+
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Roles: all fields are null")
+}
+
+type Permissions2 struct {
+	// The name of the permissions
+	Name string `json:"name"`
+	// Set to true to automatically create the permissions they do not exist yet.
+	// Autocreating permissions requires your root key to have the `rbac.*.create_permission` permission, otherwise the request will get rejected
+	//
+	Create *bool `json:"create,omitempty"`
+}
+
+func (o *Permissions2) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Permissions2) GetCreate() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Create
+}
+
+type Permissions1 struct {
+	// The id of the permissions.
+	ID string `json:"id"`
+}
+
+func (o *Permissions1) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+type PermissionsType string
+
+const (
+	PermissionsTypePermissions1 PermissionsType = "permissions_1"
+	PermissionsTypePermissions2 PermissionsType = "permissions_2"
+)
+
+type Permissions struct {
+	Permissions1 *Permissions1
+	Permissions2 *Permissions2
+
+	Type PermissionsType
+}
+
+func CreatePermissionsPermissions1(permissions1 Permissions1) Permissions {
+	typ := PermissionsTypePermissions1
+
+	return Permissions{
+		Permissions1: &permissions1,
+		Type:         typ,
+	}
+}
+
+func CreatePermissionsPermissions2(permissions2 Permissions2) Permissions {
+	typ := PermissionsTypePermissions2
+
+	return Permissions{
+		Permissions2: &permissions2,
+		Type:         typ,
+	}
+}
+
+func (u *Permissions) UnmarshalJSON(data []byte) error {
+
+	var permissions1 Permissions1 = Permissions1{}
+	if err := utils.UnmarshalJSON(data, &permissions1, "", true, true); err == nil {
+		u.Permissions1 = &permissions1
+		u.Type = PermissionsTypePermissions1
+		return nil
+	}
+
+	var permissions2 Permissions2 = Permissions2{}
+	if err := utils.UnmarshalJSON(data, &permissions2, "", true, true); err == nil {
+		u.Permissions2 = &permissions2
+		u.Type = PermissionsTypePermissions2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Permissions", string(data))
+}
+
+func (u Permissions) MarshalJSON() ([]byte, error) {
+	if u.Permissions1 != nil {
+		return utils.MarshalJSON(u.Permissions1, "", true)
+	}
+
+	if u.Permissions2 != nil {
+		return utils.MarshalJSON(u.Permissions2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Permissions: all fields are null")
+}
+
+// UpdateKeyRequestBody - Update a key's configuration.
+//
+//	The `apis.<API_ID>.update_key` permission is required.
 type UpdateKeyRequestBody struct {
 	// The id of the key you want to modify
 	KeyID string `json:"keyId"`
@@ -188,6 +388,12 @@ type UpdateKeyRequestBody struct {
 	Refill *UpdateKeyRefill `json:"refill,omitempty"`
 	// Set if key is enabled or disabled. If disabled, the key cannot be used to verify.
 	Enabled *bool `json:"enabled,omitempty"`
+	// The roles you want to set for this key. This overwrites all existing roles.
+	//                   Setting roles requires the `rbac.*.add_role_to_key` permission.
+	Roles []Roles `json:"roles,omitempty"`
+	// The permissions you want to set for this key. This overwrites all existing permissions.
+	//                 Setting permissions requires the `rbac.*.add_permission_to_key` permission.
+	Permissions []Permissions `json:"permissions,omitempty"`
 }
 
 func (o *UpdateKeyRequestBody) GetKeyID() string {
@@ -251,6 +457,20 @@ func (o *UpdateKeyRequestBody) GetEnabled() *bool {
 		return nil
 	}
 	return o.Enabled
+}
+
+func (o *UpdateKeyRequestBody) GetRoles() []Roles {
+	if o == nil {
+		return nil
+	}
+	return o.Roles
+}
+
+func (o *UpdateKeyRequestBody) GetPermissions() []Permissions {
+	if o == nil {
+		return nil
+	}
+	return o.Permissions
 }
 
 // UpdateKeyResponseBody - The key was successfully updated, it may take up to 30s for this to take effect in all regions

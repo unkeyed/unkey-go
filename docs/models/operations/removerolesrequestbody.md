@@ -1,0 +1,9 @@
+# RemoveRolesRequestBody
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `KeyID`                                                                      | *string*                                                                     | :heavy_check_mark:                                                           | The id of the key.                                                           |
+| `Roles`                                                                      | [][operations.RemoveRolesRoles](../../models/operations/removerolesroles.md) | :heavy_check_mark:                                                           | The roles you want to remove from this key                                   |

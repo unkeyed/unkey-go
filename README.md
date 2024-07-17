@@ -56,6 +56,8 @@ func main() {
 
 * [CreateAPI](docs/sdks/unkey/README.md#createapi)
 * [DeleteAPI](docs/sdks/unkey/README.md#deleteapi)
+* [CreateIdentity](docs/sdks/unkey/README.md#createidentity)
+* [DeleteeIdentity](docs/sdks/unkey/README.md#deleteeidentity)
 
 ### [Liveness](docs/sdks/liveness/README.md)
 
@@ -102,6 +104,12 @@ func main() {
 * [DeleteRole](docs/sdks/permissions/README.md#deleterole)
 * [GetRole](docs/sdks/permissions/README.md#getrole)
 * [ListRoles](docs/sdks/permissions/README.md#listroles)
+
+### [Identities](docs/sdks/identities/README.md)
+
+* [GetIdentity](docs/sdks/identities/README.md#getidentity)
+* [ListIdentities](docs/sdks/identities/README.md#listidentities)
+* [UpdateIdentity](docs/sdks/identities/README.md#updateidentity)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -448,6 +456,58 @@ func main() {
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```go
+package main
+
+import (
+	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"log"
+	"os"
+)
+
+func main() {
+	s := unkeygo.New(
+		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+	)
+	request := operations.ListIdentitiesRequest{
+		Limit: unkeygo.Int64(100),
+	}
+	ctx := context.Background()
+	res, err := s.Identities.ListIdentities(ctx, request)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.Object != nil {
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
+	}
+}
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

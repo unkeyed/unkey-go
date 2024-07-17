@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 1adbad72708fe75ac7626a1e7e1dfc13
+  docChecksum: 75f7e089853056de07ee9bd3d0b1678d
   docVersion: 1.0.0
-  speakeasyVersion: 1.335.2
-  generationVersion: 2.372.3
-  releaseVersion: 0.7.0
-  configChecksum: c299315b1cde1ca427dc047689fa60ff
+  speakeasyVersion: 1.340.0
+  generationVersion: 2.375.5
+  releaseVersion: 0.8.0
+  configChecksum: f7715aaf0773d3aaeefa9a127727517d
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.15
+    core: 3.5.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.2.0
@@ -24,6 +24,7 @@ features:
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nullables: 0.1.0
+    pagination: 2.82.1
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -35,6 +36,7 @@ generatedFiles:
   - ratelimits.go
   - migrations.go
   - permissions.go
+  - identities.go
   - unkey.go
   - go.mod
   - models/sdkerrors/sdkerror.go
@@ -56,6 +58,8 @@ generatedFiles:
   - internal/utils/utils.go
   - /models/operations/createapi.go
   - /models/operations/deleteapi.go
+  - /models/operations/createidentity.go
+  - /models/operations/deleteeidentity.go
   - /models/operations/v1liveness.go
   - /models/operations/getkey.go
   - /models/operations/deletekey.go
@@ -84,6 +88,9 @@ generatedFiles:
   - /models/operations/deleterole.go
   - /models/operations/getrole.go
   - /models/operations/listroles.go
+  - /models/operations/getidentity.go
+  - /models/operations/listidentities.go
+  - /models/operations/updateidentity.go
   - /models/components/httpmetadata.go
   - /models/components/key.go
   - /models/components/v1keysverifykeyresponse.go
@@ -103,6 +110,13 @@ generatedFiles:
   - docs/models/operations/deleteapirequestbody.md
   - docs/models/operations/deleteapiresponsebody.md
   - docs/models/operations/deleteapiresponse.md
+  - docs/models/operations/ratelimits.md
+  - docs/models/operations/createidentityrequestbody.md
+  - docs/models/operations/createidentityresponsebody.md
+  - docs/models/operations/createidentityresponse.md
+  - docs/models/operations/deleteeidentityrequestbody.md
+  - docs/models/operations/deleteeidentityresponsebody.md
+  - docs/models/operations/deleteeidentityresponse.md
   - docs/models/operations/services.md
   - docs/models/operations/v1livenessresponsebody.md
   - docs/models/operations/v1livenessresponse.md
@@ -215,6 +229,19 @@ generatedFiles:
   - docs/models/operations/getroleresponse.md
   - docs/models/operations/listrolesresponsebody.md
   - docs/models/operations/listrolesresponse.md
+  - docs/models/operations/getidentityrequest.md
+  - docs/models/operations/getidentityratelimits.md
+  - docs/models/operations/getidentityresponsebody.md
+  - docs/models/operations/getidentityresponse.md
+  - docs/models/operations/listidentitiesrequest.md
+  - docs/models/operations/listidentitiesratelimits.md
+  - docs/models/operations/identities.md
+  - docs/models/operations/listidentitiesresponsebody.md
+  - docs/models/operations/listidentitiesresponse.md
+  - docs/models/operations/updateidentityratelimits.md
+  - docs/models/operations/updateidentityrequestbody.md
+  - docs/models/operations/updateidentityresponsebody.md
+  - docs/models/operations/updateidentityresponse.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/interval.md
   - docs/models/components/refill.md
@@ -223,6 +250,7 @@ generatedFiles:
   - docs/models/components/key.md
   - docs/models/components/v1keysverifykeyresponseratelimit.md
   - docs/models/components/code.md
+  - docs/models/components/identity.md
   - docs/models/components/v1keysverifykeyresponse.md
   - docs/models/components/authorization.md
   - docs/models/components/v1keysverifykeyrequestratelimit.md
@@ -261,7 +289,9 @@ generatedFiles:
   - docs/sdks/ratelimits/README.md
   - docs/sdks/migrations/README.md
   - docs/sdks/permissions/README.md
+  - docs/sdks/identities/README.md
   - USAGE.md
   - models/operations/options.go
   - .gitattributes
   - internal/hooks/hooks.go
+  - CONTRIBUTING.md

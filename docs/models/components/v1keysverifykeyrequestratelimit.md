@@ -1,4 +1,8 @@
-# V1KeysVerifyKeyRequestRatelimit
+# ~~V1KeysVerifyKeyRequestRatelimit~~
+
+Use 'ratelimits' with `[{ name: "default", cost: 2}]`
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 
 ## Fields

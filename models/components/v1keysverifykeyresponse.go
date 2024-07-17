@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// V1KeysVerifyKeyResponseRatelimit - Multi ratelimits TODO:
+// V1KeysVerifyKeyResponseRatelimit - The ratelimit configuration for this key. If this field is null or undefined, the key has no ratelimit.
 type V1KeysVerifyKeyResponseRatelimit struct {
 	// Maximum number of requests that can be made inside a window
 	Limit int64 `json:"limit"`
@@ -96,6 +96,34 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Identity - The associated identity of this key.
+type Identity struct {
+	ID         string         `json:"id"`
+	ExternalID string         `json:"externalId"`
+	Meta       map[string]any `json:"meta"`
+}
+
+func (o *Identity) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Identity) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
+func (o *Identity) GetMeta() map[string]any {
+	if o == nil {
+		return map[string]any{}
+	}
+	return o.Meta
+}
+
 type V1KeysVerifyKeyResponse struct {
 	// The id of the key
 	KeyID *string `json:"keyId,omitempty"`
@@ -110,7 +138,7 @@ type V1KeysVerifyKeyResponse struct {
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
 	Expires *int64 `json:"expires,omitempty"`
-	// Multi ratelimits TODO:
+	// The ratelimit configuration for this key. If this field is null or undefined, the key has no ratelimit.
 	Ratelimit *V1KeysVerifyKeyResponseRatelimit `json:"ratelimit,omitempty"`
 	// The number of requests that can be made with this key before it becomes invalid. If this field is null or undefined, the key has no request limit.
 	Remaining *int64 `json:"remaining,omitempty"`
@@ -133,6 +161,8 @@ type V1KeysVerifyKeyResponse struct {
 	Permissions []string `json:"permissions,omitempty"`
 	// The environment of the key, this is what what you set when you crated the key
 	Environment *string `json:"environment,omitempty"`
+	// The associated identity of this key.
+	Identity *Identity `json:"identity,omitempty"`
 }
 
 func (o *V1KeysVerifyKeyResponse) GetKeyID() *string {
@@ -217,4 +247,11 @@ func (o *V1KeysVerifyKeyResponse) GetEnvironment() *string {
 		return nil
 	}
 	return o.Environment
+}
+
+func (o *V1KeysVerifyKeyResponse) GetIdentity() *Identity {
+	if o == nil {
+		return nil
+	}
+	return o.Identity
 }

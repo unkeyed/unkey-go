@@ -19,6 +19,9 @@ func (o *Authorization) GetPermissions() *PermissionQuery {
 	return o.Permissions
 }
 
+// V1KeysVerifyKeyRequestRatelimit - Use 'ratelimits' with `[{ name: "default", cost: 2}]`
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type V1KeysVerifyKeyRequestRatelimit struct {
 	// Override how many tokens are deducted during the ratelimit operation.
 	Cost *int64 `default:"1" json:"cost"`
@@ -43,12 +46,10 @@ func (o *V1KeysVerifyKeyRequestRatelimit) GetCost() *int64 {
 }
 
 type Ratelimits struct {
-	// The name of the ratelimit
+	// The name of the ratelimit.
 	Name string `json:"name"`
 	// Optionally override how expensive this operation is and how many tokens are deducted from the current limit.
 	Cost *int64 `default:"1" json:"cost"`
-	// The identifier used for ratelimiting. If omitted, we use the key's id.
-	Identifier *string `default:"key id" json:"identifier"`
 	// Optionally override the limit.
 	Limit *float64 `json:"limit,omitempty"`
 	// Optionally override the ratelimit window duration.
@@ -80,13 +81,6 @@ func (o *Ratelimits) GetCost() *int64 {
 	return o.Cost
 }
 
-func (o *Ratelimits) GetIdentifier() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Identifier
-}
-
 func (o *Ratelimits) GetLimit() *float64 {
 	if o == nil {
 		return nil
@@ -108,9 +102,14 @@ type V1KeysVerifyKeyRequest struct {
 	// The key to verify
 	Key string `json:"key"`
 	// Perform RBAC checks
-	Authorization *Authorization                   `json:"authorization,omitempty"`
-	Ratelimit     *V1KeysVerifyKeyRequestRatelimit `json:"ratelimit,omitempty"`
-	Ratelimits    []Ratelimits                     `json:"ratelimits,omitempty"`
+	Authorization *Authorization `json:"authorization,omitempty"`
+	// Use 'ratelimits' with `[{ name: "default", cost: 2}]`
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	Ratelimit *V1KeysVerifyKeyRequestRatelimit `json:"ratelimit,omitempty"`
+	// You can check against multiple ratelimits when verifying a key. Let's say you are building an app that uses AI under the hood and you want to limit your customers to 500 requests per hour, but also ensure they use up less than 20k tokens per day.
+	//
+	Ratelimits []Ratelimits `json:"ratelimits,omitempty"`
 }
 
 func (o *V1KeysVerifyKeyRequest) GetAPIID() *string {

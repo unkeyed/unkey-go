@@ -178,9 +178,13 @@ type CreateKeyRequestBody struct {
 	Name *string `json:"name,omitempty"`
 	// The byte length used to generate your key determines its entropy as well as its length. Higher is better, but keys become longer and more annoying to handle. The default is 16 bytes, or 2^^128 possible combinations.
 	ByteLength *int64 `default:"16" json:"byteLength"`
-	// Your user’s Id. This will provide a link between Unkey and your customer record.
-	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.
+	// Deprecated, use `externalId`
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	OwnerID *string `json:"ownerId,omitempty"`
+	// Your user's Id. This will provide a link between Unkey and your customer record.
+	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.
+	ExternalID *string `json:"externalId,omitempty"`
 	// This is a place for dynamic meta data, anything that feels useful for you should go here
 	Meta map[string]any `json:"meta,omitempty"`
 	// A list of roles that this key should have. If the role does not exist, an error is thrown
@@ -253,6 +257,13 @@ func (o *CreateKeyRequestBody) GetOwnerID() *string {
 		return nil
 	}
 	return o.OwnerID
+}
+
+func (o *CreateKeyRequestBody) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
 }
 
 func (o *CreateKeyRequestBody) GetMeta() map[string]any {

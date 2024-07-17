@@ -151,7 +151,7 @@ func main() {
     request := operations.CreateKeyRequestBody{
         APIID: "api_123",
         Name: unkeygo.String("my key"),
-        OwnerID: unkeygo.String("team_123"),
+        ExternalID: unkeygo.String("team_123"),
         Meta: map[string]any{
             "billingTier": "PRO",
             "trialEnds": "2023-06-16T17:16:37.161Z",
@@ -234,7 +234,14 @@ func main() {
         Key: "sk_1234",
         Ratelimits: []components.Ratelimits{
             components.Ratelimits{
+                Name: "requests",
+                Limit: unkeygo.Float64(500),
+                Duration: unkeygo.Float64(3600000),
+            },
+            components.Ratelimits{
                 Name: "tokens",
+                Limit: unkeygo.Float64(20000),
+                Duration: unkeygo.Float64(86400000),
             },
         },
     }

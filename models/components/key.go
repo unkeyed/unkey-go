@@ -41,7 +41,7 @@ type Refill struct {
 	// Resets `remaining` to this value every interval.
 	Amount int64 `json:"amount"`
 	// The unix timestamp in miliseconds when the key was last refilled.
-	LastRefillAt *float64 `json:"lastRefillAt,omitempty"`
+	LastRefillAt *int64 `json:"lastRefillAt,omitempty"`
 }
 
 func (o *Refill) GetInterval() Interval {
@@ -58,7 +58,7 @@ func (o *Refill) GetAmount() int64 {
 	return o.Amount
 }
 
-func (o *Refill) GetLastRefillAt() *float64 {
+func (o *Refill) GetLastRefillAt() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -167,15 +167,15 @@ type Key struct {
 	// Any additional metadata you want to store with the key
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key was created
-	CreatedAt float64 `json:"createdAt"`
+	CreatedAt int64 `json:"createdAt"`
 	// The unix timestamp in milliseconds when the key was last updated
-	UpdatedAt *float64 `json:"updatedAt,omitempty"`
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
 	// The unix timestamp in milliseconds when the key was deleted. We don't delete the key outright, you can restore it later.
-	DeletedAt *float64 `json:"deletedAt,omitempty"`
+	DeletedAt *int64 `json:"deletedAt,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
-	Expires *float64 `json:"expires,omitempty"`
+	Expires *int64 `json:"expires,omitempty"`
 	// The number of requests that can be made with this key before it becomes invalid. If this field is null or undefined, the key has no request limit.
-	Remaining *float64 `json:"remaining,omitempty"`
+	Remaining *int64 `json:"remaining,omitempty"`
 	// Unkey allows you to refill remaining verifications on a key on a regular interval.
 	Refill *Refill `json:"refill,omitempty"`
 	// Unkey comes with per-key ratelimiting out of the box.
@@ -239,35 +239,35 @@ func (o *Key) GetMeta() map[string]any {
 	return o.Meta
 }
 
-func (o *Key) GetCreatedAt() float64 {
+func (o *Key) GetCreatedAt() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.CreatedAt
 }
 
-func (o *Key) GetUpdatedAt() *float64 {
+func (o *Key) GetUpdatedAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *Key) GetDeletedAt() *float64 {
+func (o *Key) GetDeletedAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.DeletedAt
 }
 
-func (o *Key) GetExpires() *float64 {
+func (o *Key) GetExpires() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Expires
 }
 
-func (o *Key) GetRemaining() *float64 {
+func (o *Key) GetRemaining() *int64 {
 	if o == nil {
 		return nil
 	}

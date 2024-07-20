@@ -7,4 +7,4 @@ The keys have been deleted
 
 | Field                                | Type                                 | Required                             | Description                          |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `DeletedKeys`                        | *float64*                            | :heavy_check_mark:                   | The number of keys that were deleted |
+| `DeletedKeys`                        | *int64*                              | :heavy_check_mark:                   | The number of keys that were deleted |

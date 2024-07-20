@@ -51,9 +51,9 @@ type Ratelimits struct {
 	// Optionally override how expensive this operation is and how many tokens are deducted from the current limit.
 	Cost *int64 `default:"1" json:"cost"`
 	// Optionally override the limit.
-	Limit *float64 `json:"limit,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
 	// Optionally override the ratelimit window duration.
-	Duration *float64 `json:"duration,omitempty"`
+	Duration *int64 `json:"duration,omitempty"`
 }
 
 func (r Ratelimits) MarshalJSON() ([]byte, error) {
@@ -81,14 +81,14 @@ func (o *Ratelimits) GetCost() *int64 {
 	return o.Cost
 }
 
-func (o *Ratelimits) GetLimit() *float64 {
+func (o *Ratelimits) GetLimit() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.Limit
 }
 
-func (o *Ratelimits) GetDuration() *float64 {
+func (o *Ratelimits) GetDuration() *int64 {
 	if o == nil {
 		return nil
 	}

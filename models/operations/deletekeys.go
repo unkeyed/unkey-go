@@ -42,12 +42,12 @@ func (o *DeleteKeysRequestBody) GetPermanent() *bool {
 // DeleteKeysResponseBody - The keys have been deleted
 type DeleteKeysResponseBody struct {
 	// The number of keys that were deleted
-	DeletedKeys float64 `json:"deletedKeys"`
+	DeletedKeys int64 `json:"deletedKeys"`
 }
 
-func (o *DeleteKeysResponseBody) GetDeletedKeys() float64 {
+func (o *DeleteKeysResponseBody) GetDeletedKeys() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.DeletedKeys
 }

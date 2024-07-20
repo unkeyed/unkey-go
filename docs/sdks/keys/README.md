@@ -235,13 +235,13 @@ func main() {
         Ratelimits: []components.Ratelimits{
             components.Ratelimits{
                 Name: "requests",
-                Limit: unkeygo.Float64(500),
-                Duration: unkeygo.Float64(3600000),
+                Limit: unkeygo.Int64(500),
+                Duration: unkeygo.Int64(3600000),
             },
             components.Ratelimits{
                 Name: "tokens",
-                Limit: unkeygo.Float64(20000),
-                Duration: unkeygo.Float64(86400000),
+                Limit: unkeygo.Int64(20000),
+                Duration: unkeygo.Int64(86400000),
             },
         },
     }
@@ -309,13 +309,13 @@ func main() {
             },
             "stripeCustomerId": "cus_1234",
         },
-        Expires: unkeygo.Float64(0),
+        Expires: unkeygo.Int64(0),
         Ratelimit: &operations.UpdateKeyRatelimit{
             Limit: 10,
             RefillRate: unkeygo.Int64(1),
             RefillInterval: unkeygo.Int64(60),
         },
-        Remaining: unkeygo.Float64(1000),
+        Remaining: unkeygo.Int64(1000),
         Refill: &operations.UpdateKeyRefill{
             Interval: operations.UpdateKeyIntervalDaily,
             Amount: 100,

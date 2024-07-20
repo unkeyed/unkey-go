@@ -244,11 +244,11 @@ type UpdateKeyRequestBody struct {
 	// Any additional metadata you want to store with the key
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
-	Expires *float64 `json:"expires,omitempty"`
+	Expires *int64 `json:"expires,omitempty"`
 	// Unkey comes with per-key ratelimiting out of the box. Set `null` to disable.
 	Ratelimit *UpdateKeyRatelimit `json:"ratelimit,omitempty"`
 	// The number of requests that can be made with this key before it becomes invalid. Set `null` to disable.
-	Remaining *float64 `json:"remaining,omitempty"`
+	Remaining *int64 `json:"remaining,omitempty"`
 	// Unkey enables you to refill verifications for each key at regular intervals.
 	Refill *UpdateKeyRefill `json:"refill,omitempty"`
 	// Set if key is enabled or disabled. If disabled, the key cannot be used to verify.
@@ -289,7 +289,7 @@ func (o *UpdateKeyRequestBody) GetMeta() map[string]any {
 	return o.Meta
 }
 
-func (o *UpdateKeyRequestBody) GetExpires() *float64 {
+func (o *UpdateKeyRequestBody) GetExpires() *int64 {
 	if o == nil {
 		return nil
 	}
@@ -303,7 +303,7 @@ func (o *UpdateKeyRequestBody) GetRatelimit() *UpdateKeyRatelimit {
 	return o.Ratelimit
 }
 
-func (o *UpdateKeyRequestBody) GetRemaining() *float64 {
+func (o *UpdateKeyRequestBody) GetRemaining() *int64 {
 	if o == nil {
 		return nil
 	}

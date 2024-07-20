@@ -49,9 +49,9 @@ type ListIdentitiesRatelimits struct {
 	// The name of this limit. You will need to use this again when verifying a key.
 	Name string `json:"name"`
 	// How many requests may pass within a given window before requests are rejected.
-	Limit float64 `json:"limit"`
+	Limit int64 `json:"limit"`
 	// The duration for each ratelimit window in milliseconds.
-	Duration float64 `json:"duration"`
+	Duration int64 `json:"duration"`
 }
 
 func (o *ListIdentitiesRatelimits) GetName() string {
@@ -61,16 +61,16 @@ func (o *ListIdentitiesRatelimits) GetName() string {
 	return o.Name
 }
 
-func (o *ListIdentitiesRatelimits) GetLimit() float64 {
+func (o *ListIdentitiesRatelimits) GetLimit() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Limit
 }
 
-func (o *ListIdentitiesRatelimits) GetDuration() float64 {
+func (o *ListIdentitiesRatelimits) GetDuration() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Duration
 }

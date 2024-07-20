@@ -92,11 +92,11 @@ type Verifications struct {
 	// The timestamp of the usage data
 	Time int64 `json:"time"`
 	// The number of successful requests
-	Success float64 `json:"success"`
+	Success int64 `json:"success"`
 	// The number of requests that were rate limited
-	RateLimited float64 `json:"rateLimited"`
+	RateLimited int64 `json:"rateLimited"`
 	// The number of requests that exceeded the usage limit
-	UsageExceeded float64 `json:"usageExceeded"`
+	UsageExceeded int64 `json:"usageExceeded"`
 }
 
 func (o *Verifications) GetTime() int64 {
@@ -106,23 +106,23 @@ func (o *Verifications) GetTime() int64 {
 	return o.Time
 }
 
-func (o *Verifications) GetSuccess() float64 {
+func (o *Verifications) GetSuccess() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.Success
 }
 
-func (o *Verifications) GetRateLimited() float64 {
+func (o *Verifications) GetRateLimited() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.RateLimited
 }
 
-func (o *Verifications) GetUsageExceeded() float64 {
+func (o *Verifications) GetUsageExceeded() int64 {
 	if o == nil {
-		return 0.0
+		return 0
 	}
 	return o.UsageExceeded
 }

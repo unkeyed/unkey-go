@@ -56,7 +56,6 @@ func main() {
 
 * [CreateAPI](docs/sdks/unkey/README.md#createapi)
 * [DeleteAPI](docs/sdks/unkey/README.md#deleteapi)
-* [CreateIdentity](docs/sdks/unkey/README.md#createidentity)
 * [DeleteeIdentity](docs/sdks/unkey/README.md#deleteeidentity)
 
 ### [Liveness](docs/sdks/liveness/README.md)
@@ -107,6 +106,7 @@ func main() {
 
 ### [Identities](docs/sdks/identities/README.md)
 
+* [CreateIdentity](docs/sdks/identities/README.md#createidentity)
 * [GetIdentity](docs/sdks/identities/README.md#getidentity)
 * [ListIdentities](docs/sdks/identities/README.md#listidentities)
 * [UpdateIdentity](docs/sdks/identities/README.md#updateidentity)

@@ -3,9 +3,73 @@
 
 ### Available Operations
 
+* [CreateIdentity](#createidentity)
 * [GetIdentity](#getidentity)
 * [ListIdentities](#listidentities)
 * [UpdateIdentity](#updateidentity)
+
+## CreateIdentity
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"os"
+	unkeygo "github.com/unkeyed/unkey-go"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+    )
+    request := operations.CreateIdentityRequestBody{
+        ExternalID: "user_123",
+        Ratelimits: []operations.Ratelimits{
+            operations.Ratelimits{
+                Name: "tokens",
+                Limit: 10,
+                Duration: 1000,
+            },
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Identities.CreateIdentity(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.CreateIdentityRequestBody](../../models/operations/createidentityrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+
+### Response
+
+**[*operations.CreateIdentityResponse](../../models/operations/createidentityresponse.md), error**
+| Error Object                     | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
 ## GetIdentity
 

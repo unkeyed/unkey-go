@@ -1,19 +1,18 @@
-speakeasyVersion: 1.344.1
+speakeasyVersion: 1.345.4
 sources:
     openapi.json:
         sourceNamespace: openapi-json
-        sourceRevisionDigest: sha256:c3b38fb469289b8fdabbc28051440112c3199ee411dbf4336acd8b2c18a27263
-        sourceBlobDigest: sha256:2f792761f282e88f85c1494eb7e382e95031c0a7155cbb121aa049fb68473e55
+        sourceRevisionDigest: sha256:8e6e3223a485d24e81ef02f83949b08418d1d724e49b201ac14f3290001d84da
+        sourceBlobDigest: sha256:770d60d67406eff3aaa57132c5c0817dedbc3a003849434bd021d718acea605a
         tags:
             - latest
-            - main
 targets:
     go:
         source: openapi.json
         sourceNamespace: openapi-json
-        sourceRevisionDigest: sha256:c3b38fb469289b8fdabbc28051440112c3199ee411dbf4336acd8b2c18a27263
-        sourceBlobDigest: sha256:2f792761f282e88f85c1494eb7e382e95031c0a7155cbb121aa049fb68473e55
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:8e6e3223a485d24e81ef02f83949b08418d1d724e49b201ac14f3290001d84da
+        sourceBlobDigest: sha256:770d60d67406eff3aaa57132c5c0817dedbc3a003849434bd021d718acea605a
+        outLocation: /Users/andreasthomas/github/unkeyed/unkey-go
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 29e2d5c7a947cc6ebcfd6934ff2cb957
+  docChecksum: bc1da1acce65f91a3b2c34e4bed50abd
   docVersion: 1.0.0
   speakeasyVersion: 1.345.4
   generationVersion: 2.378.3
-  releaseVersion: 0.8.4
-  configChecksum: 546bb4c4880914530e8fcbfb360083ca
+  releaseVersion: 0.8.5
+  configChecksum: db61df26b6a3193dc6016e9c09dd68cd
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
@@ -58,7 +58,6 @@ generatedFiles:
   - internal/utils/utils.go
   - /models/operations/createapi.go
   - /models/operations/deleteapi.go
-  - /models/operations/createidentity.go
   - /models/operations/deleteeidentity.go
   - /models/operations/v1liveness.go
   - /models/operations/getkey.go
@@ -88,6 +87,7 @@ generatedFiles:
   - /models/operations/deleterole.go
   - /models/operations/getrole.go
   - /models/operations/listroles.go
+  - /models/operations/createidentity.go
   - /models/operations/getidentity.go
   - /models/operations/listidentities.go
   - /models/operations/updateidentity.go
@@ -110,10 +110,6 @@ generatedFiles:
   - docs/models/operations/deleteapirequestbody.md
   - docs/models/operations/deleteapiresponsebody.md
   - docs/models/operations/deleteapiresponse.md
-  - docs/models/operations/ratelimits.md
-  - docs/models/operations/createidentityrequestbody.md
-  - docs/models/operations/createidentityresponsebody.md
-  - docs/models/operations/createidentityresponse.md
   - docs/models/operations/deleteeidentityrequestbody.md
   - docs/models/operations/deleteeidentityresponsebody.md
   - docs/models/operations/deleteeidentityresponse.md
@@ -229,6 +225,10 @@ generatedFiles:
   - docs/models/operations/getroleresponse.md
   - docs/models/operations/listrolesresponsebody.md
   - docs/models/operations/listrolesresponse.md
+  - docs/models/operations/ratelimits.md
+  - docs/models/operations/createidentityrequestbody.md
+  - docs/models/operations/createidentityresponsebody.md
+  - docs/models/operations/createidentityresponse.md
   - docs/models/operations/getidentityrequest.md
   - docs/models/operations/getidentityratelimits.md
   - docs/models/operations/getidentityresponsebody.md

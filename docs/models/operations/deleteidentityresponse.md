@@ -1,4 +1,4 @@
-# DeleteeIdentityResponse
+# DeleteIdentityResponse
 
 
 ## Fields
@@ -6,4 +6,4 @@
 | Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `HTTPMeta`                                                                                          | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                  | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
-| `Object`                                                                                            | [*operations.DeleteeIdentityResponseBody](../../models/operations/deleteeidentityresponsebody.md)   | :heavy_minus_sign:                                                                                  | The identity was successfully deleted, it may take up to 30s for this to take effect in all regions |
+| `Object`                                                                                            | [*operations.DeleteIdentityResponseBody](../../models/operations/deleteidentityresponsebody.md)     | :heavy_minus_sign:                                                                                  | The identity was successfully deleted, it may take up to 30s for this to take effect in all regions |

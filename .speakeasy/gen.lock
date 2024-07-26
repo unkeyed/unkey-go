@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: bc1da1acce65f91a3b2c34e4bed50abd
+  docChecksum: ca514a85686177fc28c1977d015834dc
   docVersion: 1.0.0
-  speakeasyVersion: 1.345.4
-  generationVersion: 2.378.3
-  releaseVersion: 0.8.5
-  configChecksum: db61df26b6a3193dc6016e9c09dd68cd
+  speakeasyVersion: 1.346.0
+  generationVersion: 2.379.3
+  releaseVersion: 0.8.6
+  configChecksum: bc71289136f42ad59a24ac2ec049a5ed
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.5.1
+    core: 3.5.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.2.0
@@ -56,9 +56,6 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
-  - /models/operations/createapi.go
-  - /models/operations/deleteapi.go
-  - /models/operations/deleteeidentity.go
   - /models/operations/v1liveness.go
   - /models/operations/getkey.go
   - /models/operations/deletekey.go
@@ -74,7 +71,9 @@ generatedFiles:
   - /models/operations/removeroles.go
   - /models/operations/setroles.go
   - /models/operations/getapi.go
+  - /models/operations/createapi.go
   - /models/operations/listkeys.go
+  - /models/operations/deleteapi.go
   - /models/operations/deletekeys.go
   - /models/operations/limit.go
   - /models/operations/v1migrationscreatekeys.go
@@ -91,6 +90,7 @@ generatedFiles:
   - /models/operations/getidentity.go
   - /models/operations/listidentities.go
   - /models/operations/updateidentity.go
+  - /models/operations/deleteidentity.go
   - /models/components/httpmetadata.go
   - /models/components/key.go
   - /models/components/v1keysverifykeyresponse.go
@@ -104,15 +104,6 @@ generatedFiles:
   - /models/sdkerrors/errconflict.go
   - /models/sdkerrors/errtoomanyrequests.go
   - /models/sdkerrors/errinternalservererror.go
-  - docs/models/operations/createapirequestbody.md
-  - docs/models/operations/createapiresponsebody.md
-  - docs/models/operations/createapiresponse.md
-  - docs/models/operations/deleteapirequestbody.md
-  - docs/models/operations/deleteapiresponsebody.md
-  - docs/models/operations/deleteapiresponse.md
-  - docs/models/operations/deleteeidentityrequestbody.md
-  - docs/models/operations/deleteeidentityresponsebody.md
-  - docs/models/operations/deleteeidentityresponse.md
   - docs/models/operations/services.md
   - docs/models/operations/v1livenessresponsebody.md
   - docs/models/operations/v1livenessresponse.md
@@ -174,9 +165,15 @@ generatedFiles:
   - docs/models/operations/getapirequest.md
   - docs/models/operations/getapiresponsebody.md
   - docs/models/operations/getapiresponse.md
+  - docs/models/operations/createapirequestbody.md
+  - docs/models/operations/createapiresponsebody.md
+  - docs/models/operations/createapiresponse.md
   - docs/models/operations/listkeysrequest.md
   - docs/models/operations/listkeysresponsebody.md
   - docs/models/operations/listkeysresponse.md
+  - docs/models/operations/deleteapirequestbody.md
+  - docs/models/operations/deleteapiresponsebody.md
+  - docs/models/operations/deleteapiresponse.md
   - docs/models/operations/deletekeysrequestbody.md
   - docs/models/operations/deletekeysresponsebody.md
   - docs/models/operations/deletekeysresponse.md
@@ -240,8 +237,12 @@ generatedFiles:
   - docs/models/operations/listidentitiesresponse.md
   - docs/models/operations/updateidentityratelimits.md
   - docs/models/operations/updateidentityrequestbody.md
+  - docs/models/operations/updateidentityidentitiesratelimits.md
   - docs/models/operations/updateidentityresponsebody.md
   - docs/models/operations/updateidentityresponse.md
+  - docs/models/operations/deleteidentityrequestbody.md
+  - docs/models/operations/deleteidentityresponsebody.md
+  - docs/models/operations/deleteidentityresponse.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/interval.md
   - docs/models/components/refill.md
@@ -281,8 +282,8 @@ generatedFiles:
   - docs/models/sdkerrors/errinternalservererrorcode.md
   - docs/models/sdkerrors/errinternalservererrorerror.md
   - docs/models/sdkerrors/errinternalservererror.md
-  - docs/models/operations/option.md
   - docs/sdks/unkey/README.md
+  - docs/models/operations/option.md
   - docs/sdks/liveness/README.md
   - docs/sdks/keys/README.md
   - docs/sdks/apis/README.md

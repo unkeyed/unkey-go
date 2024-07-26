@@ -24,7 +24,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 	"os"
 )
@@ -33,11 +32,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -51,12 +48,6 @@ func main() {
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
-### [Unkey SDK](docs/sdks/unkey/README.md)
-
-* [CreateAPI](docs/sdks/unkey/README.md#createapi)
-* [DeleteAPI](docs/sdks/unkey/README.md#deleteapi)
-* [DeleteeIdentity](docs/sdks/unkey/README.md#deleteeidentity)
 
 ### [Liveness](docs/sdks/liveness/README.md)
 
@@ -81,7 +72,9 @@ func main() {
 ### [Apis](docs/sdks/apis/README.md)
 
 * [GetAPI](docs/sdks/apis/README.md#getapi)
+* [CreateAPI](docs/sdks/apis/README.md#createapi)
 * [ListKeys](docs/sdks/apis/README.md#listkeys)
+* [DeleteAPI](docs/sdks/apis/README.md#deleteapi)
 * [DeleteKeys](docs/sdks/apis/README.md#deletekeys)
 
 ### [Ratelimits](docs/sdks/ratelimits/README.md)
@@ -110,6 +103,7 @@ func main() {
 * [GetIdentity](docs/sdks/identities/README.md#getidentity)
 * [ListIdentities](docs/sdks/identities/README.md#listidentities)
 * [UpdateIdentity](docs/sdks/identities/README.md#updateidentity)
+* [DeleteIdentity](docs/sdks/identities/README.md#deleteidentity)
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -137,7 +131,6 @@ import (
 	"context"
 	"errors"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
 	"os"
@@ -147,11 +140,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 
 		var e *sdkerrors.ErrBadRequest
@@ -226,7 +217,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 	"os"
 )
@@ -236,11 +226,9 @@ func main() {
 		unkeygo.WithServerIndex(0),
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -261,7 +249,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 	"os"
 )
@@ -271,11 +258,9 @@ func main() {
 		unkeygo.WithServerURL("https://api.unkey.dev"),
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -334,7 +319,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 	"os"
 )
@@ -343,11 +327,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -377,7 +359,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
 	"models/operations"
@@ -388,11 +369,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request, operations.WithRetries(
+	res, err := s.Liveness.V1Liveness(ctx, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -420,7 +399,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
 	"os"
@@ -441,11 +419,9 @@ func main() {
 			}),
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}

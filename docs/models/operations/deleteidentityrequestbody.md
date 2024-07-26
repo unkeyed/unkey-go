@@ -1,4 +1,4 @@
-# DeleteeIdentityRequestBody
+# DeleteIdentityRequestBody
 
 
 ## Fields

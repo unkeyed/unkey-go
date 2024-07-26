@@ -5,7 +5,6 @@ package main
 import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 	"os"
 )
@@ -14,11 +13,9 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
 	)
-	request := operations.CreateAPIRequestBody{
-		Name: "my-api",
-	}
+
 	ctx := context.Background()
-	res, err := s.CreateAPI(ctx, request)
+	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: ca514a85686177fc28c1977d015834dc
+  docChecksum: cb57c3e224d3fc744f0f42932b21be86
   docVersion: 1.0.0
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 0.8.7
-  configChecksum: 0072bcb8435b9f121bef6905b3a70c1b
+  speakeasyVersion: 1.349.2
+  generationVersion: 2.382.2
+  releaseVersion: 0.8.8
+  configChecksum: f26de192591b96f25f0f067caeea31f9
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
@@ -16,7 +16,7 @@ features:
     core: 3.5.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.2.0
+    envVarSecurityUsage: 0.2.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -248,10 +248,11 @@ generatedFiles:
   - docs/models/components/refill.md
   - docs/models/components/type.md
   - docs/models/components/ratelimit.md
+  - docs/models/components/identity.md
   - docs/models/components/key.md
   - docs/models/components/v1keysverifykeyresponseratelimit.md
   - docs/models/components/code.md
-  - docs/models/components/identity.md
+  - docs/models/components/v1keysverifykeyresponseidentity.md
   - docs/models/components/v1keysverifykeyresponse.md
   - docs/models/components/authorization.md
   - docs/models/components/v1keysverifykeyrequestratelimit.md

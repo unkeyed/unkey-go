@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: cb57c3e224d3fc744f0f42932b21be86
+  docChecksum: a734355b6031203a16e528f8bd937864
   docVersion: 1.0.0
-  speakeasyVersion: 1.349.2
-  generationVersion: 2.382.2
-  releaseVersion: 0.8.8
-  configChecksum: f26de192591b96f25f0f067caeea31f9
+  speakeasyVersion: 1.352.2
+  generationVersion: 2.385.2
+  releaseVersion: 0.8.9
+  configChecksum: 8faf54ef797f49985007dd8c70ffeccc
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.5.2
+    core: 3.5.3
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.2.1
-    globalSecurity: 2.82.9
+    envVarSecurityUsage: 0.2.2
+    globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2

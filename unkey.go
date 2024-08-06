@@ -118,7 +118,7 @@ func WithClient(client HTTPClient) SDKOption {
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(bearerAuth string) SDKOption {
 	return func(sdk *Unkey) {
-		security := components.Security{BearerAuth: &bearerAuth}
+		security := components.Security{BearerAuth: bearerAuth}
 		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
@@ -151,9 +151,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.8.8",
-			GenVersion:        "2.382.2",
-			UserAgent:         "speakeasy-sdk/go 0.8.8 2.382.2 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.8.9",
+			GenVersion:        "2.385.2",
+			UserAgent:         "speakeasy-sdk/go 0.8.9 2.385.2 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}

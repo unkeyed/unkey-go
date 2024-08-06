@@ -10,7 +10,7 @@ import (
 type DeleteKeysRequestBody struct {
 	// The id of the api, that the keys belong to.
 	APIID string `json:"apiId"`
-	// If true, the keys will be permanently deleted. If false, the keys will be soft-deleted and can be restored later.
+	// Delete the keys permanently, if false the keys will be marked as deleted but not removed from the database. In either case, the keys will no longer be valid when verifying them.
 	Permanent *bool `default:"false" json:"permanent"`
 }
 

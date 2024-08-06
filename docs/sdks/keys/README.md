@@ -25,7 +25,6 @@
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -34,7 +33,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.GetKeyRequest{
         KeyID: "key_1234",
@@ -81,7 +80,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -90,7 +88,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.DeleteKeyRequestBody{
         KeyID: "key_1234",
@@ -137,7 +135,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -146,7 +143,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.CreateKeyRequestBody{
         APIID: "api_123",
@@ -218,7 +215,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/components"
 	"context"
@@ -227,7 +223,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := components.V1KeysVerifyKeyRequest{
         APIID: unkeygo.String("api_1234"),
@@ -287,7 +283,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -296,7 +291,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.UpdateKeyRequestBody{
         KeyID: "key_123",
@@ -388,7 +383,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -397,7 +391,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.UpdateRemainingRequestBody{
         KeyID: "key_123",
@@ -446,7 +440,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -455,7 +448,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.GetVerificationsRequest{
         KeyID: unkeygo.String("key_1234"),
@@ -506,7 +499,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -515,7 +507,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.AddPermissionsRequestBody{
         KeyID: "<value>",
@@ -565,7 +557,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -574,7 +565,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.RemovePermissionsRequestBody{
         KeyID: "<value>",
@@ -629,7 +620,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -638,7 +628,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.SetPermissionsRequestBody{
         KeyID: "<value>",
@@ -697,7 +687,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -706,7 +695,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.AddRolesRequestBody{
         KeyID: "<value>",
@@ -765,7 +754,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -774,7 +762,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.RemoveRolesRequestBody{
         KeyID: "<value>",
@@ -829,7 +817,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -838,7 +825,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.SetRolesRequestBody{
         KeyID: "<value>",

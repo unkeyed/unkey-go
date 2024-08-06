@@ -27,12 +27,11 @@ import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -135,12 +134,11 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/sdkerrors"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -220,13 +218,12 @@ import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithServerIndex(0),
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -252,13 +249,12 @@ import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithServerURL("https://api.unkey.dev"),
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -322,12 +318,11 @@ import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -364,12 +359,11 @@ import (
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
 	"models/operations"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -403,7 +397,6 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/retry"
 	"log"
-	"os"
 )
 
 func main() {
@@ -419,7 +412,7 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()
@@ -451,12 +444,11 @@ import (
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 	request := operations.ListIdentitiesRequest{
 		Limit: unkeygo.Int64(100),

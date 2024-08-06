@@ -201,6 +201,12 @@ type CreateKeyRequestBody struct {
 	Ratelimit *Ratelimit `json:"ratelimit,omitempty"`
 	// Sets if key is enabled or disabled. Disabled keys are not valid.
 	Enabled *bool `default:"true" json:"enabled"`
+	// You may want to show keys again later. While we do not recommend this, we leave this option open for you.
+	//
+	// In addition to storing the key's hash, recoverable keys are stored in an encrypted vault, allowing you to retrieve and display the plaintext later.
+	//
+	// https://www.unkey.com/docs/security/recovering-keys for more information.
+	Recoverable *bool `default:"false" json:"recoverable"`
 	// Environments allow you to divide your keyspace.
 	//
 	// Some applications like Stripe, Clerk, WorkOS and others have a concept of "live" and "test" keys to
@@ -320,6 +326,13 @@ func (o *CreateKeyRequestBody) GetEnabled() *bool {
 		return nil
 	}
 	return o.Enabled
+}
+
+func (o *CreateKeyRequestBody) GetRecoverable() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Recoverable
 }
 
 func (o *CreateKeyRequestBody) GetEnvironment() *string {

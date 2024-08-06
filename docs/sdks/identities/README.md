@@ -17,7 +17,6 @@
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -26,7 +25,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.CreateIdentityRequestBody{
         ExternalID: "user_123",
@@ -80,7 +79,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -89,7 +87,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.GetIdentityRequest{
         IdentityID: unkeygo.String("id_1234"),
@@ -137,7 +135,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -146,7 +143,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.ListIdentitiesRequest{
         Limit: unkeygo.Int64(100),
@@ -206,7 +203,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -215,7 +211,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.UpdateIdentityRequestBody{
         IdentityID: unkeygo.String("id_1234"),
@@ -270,7 +266,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -279,7 +274,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.DeleteIdentityRequestBody{
         IdentityID: "id_1234",

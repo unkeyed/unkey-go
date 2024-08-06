@@ -201,8 +201,6 @@ type Key struct {
 	CreatedAt int64 `json:"createdAt"`
 	// The unix timestamp in milliseconds when the key was last updated
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
-	// The unix timestamp in milliseconds when the key was deleted. We don't delete the key outright, you can restore it later.
-	DeletedAt *int64 `json:"deletedAt,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
 	Expires *int64 `json:"expires,omitempty"`
 	// The number of requests that can be made with this key before it becomes invalid. If this field is null or undefined, the key has no request limit.
@@ -284,13 +282,6 @@ func (o *Key) GetUpdatedAt() *int64 {
 		return nil
 	}
 	return o.UpdatedAt
-}
-
-func (o *Key) GetDeletedAt() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.DeletedAt
 }
 
 func (o *Key) GetExpires() *int64 {

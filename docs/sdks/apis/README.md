@@ -17,7 +17,6 @@
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -26,7 +25,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.GetAPIRequest{
         APIID: "api_1234",
@@ -73,7 +72,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -82,7 +80,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.CreateAPIRequestBody{
         Name: "my-api",
@@ -129,7 +127,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -138,7 +135,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.ListKeysRequest{
         APIID: "api_1234",
@@ -186,7 +183,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -195,7 +191,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.DeleteAPIRequestBody{
         APIID: "api_1234",
@@ -230,7 +226,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
-| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrDeleteProtected     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
@@ -242,7 +238,6 @@ func main() {
 package main
 
 import(
-	"os"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
@@ -251,7 +246,7 @@ import(
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
     request := operations.DeleteKeysRequestBody{
         APIID: "api_1234",

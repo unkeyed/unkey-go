@@ -6,12 +6,11 @@ import (
 	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
-	"os"
 )
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity(os.Getenv("BEARER_AUTH")),
+		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
 
 	ctx := context.Background()

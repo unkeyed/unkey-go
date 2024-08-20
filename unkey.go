@@ -151,9 +151,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.8.9",
-			GenVersion:        "2.385.2",
-			UserAgent:         "speakeasy-sdk/go 0.8.9 2.385.2 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.9.0",
+			GenVersion:        "2.402.5",
+			UserAgent:         "speakeasy-sdk/go 0.9.0 2.402.5 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}

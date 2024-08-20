@@ -49,6 +49,7 @@ func main() {
                 Amount: 100,
             },
             Ratelimit: &operations.V1MigrationsCreateKeysRatelimit{
+                Type: operations.V1MigrationsCreateKeysTypeFast.ToPointer(),
                 Limit: 10,
                 RefillRate: 1,
                 RefillInterval: 60,
@@ -66,6 +67,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -135,6 +138,7 @@ func main() {
                     Amount: 100,
                 },
                 Ratelimit: &operations.V1MigrationsEnqueueKeysRatelimit{
+                    Type: operations.V1MigrationsEnqueueKeysTypeFast.ToPointer(),
                     Limit: 10,
                     Duration: 60000,
                 },
@@ -152,6 +156,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

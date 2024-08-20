@@ -1,6 +1,6 @@
 # ListKeysResponseBody
 
-The configuration for an api
+List of keys for the api
 
 
 ## Fields

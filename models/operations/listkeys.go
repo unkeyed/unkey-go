@@ -8,12 +8,13 @@ import (
 )
 
 type ListKeysRequest struct {
-	APIID      string  `queryParam:"style=form,explode=true,name=apiId"`
-	Limit      *int64  `default:"100" queryParam:"style=form,explode=true,name=limit"`
-	Cursor     *string `queryParam:"style=form,explode=true,name=cursor"`
-	OwnerID    *string `queryParam:"style=form,explode=true,name=ownerId"`
-	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	Decrypt    *bool   `queryParam:"style=form,explode=true,name=decrypt"`
+	APIID               string  `queryParam:"style=form,explode=true,name=apiId"`
+	Limit               *int64  `default:"100" queryParam:"style=form,explode=true,name=limit"`
+	Cursor              *string `queryParam:"style=form,explode=true,name=cursor"`
+	OwnerID             *string `queryParam:"style=form,explode=true,name=ownerId"`
+	ExternalID          *string `queryParam:"style=form,explode=true,name=externalId"`
+	Decrypt             *bool   `queryParam:"style=form,explode=true,name=decrypt"`
+	RevalidateKeysCache *bool   `default:"false" queryParam:"style=form,explode=true,name=revalidateKeysCache"`
 }
 
 func (l ListKeysRequest) MarshalJSON() ([]byte, error) {
@@ -69,7 +70,14 @@ func (o *ListKeysRequest) GetDecrypt() *bool {
 	return o.Decrypt
 }
 
-// ListKeysResponseBody - The configuration for an api
+func (o *ListKeysRequest) GetRevalidateKeysCache() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.RevalidateKeysCache
+}
+
+// ListKeysResponseBody - List of keys for the api
 type ListKeysResponseBody struct {
 	Keys []components.Key `json:"keys"`
 	// The cursor to use for the next page of results, if no cursor is returned, there are no more results
@@ -101,7 +109,7 @@ func (o *ListKeysResponseBody) GetTotal() int64 {
 
 type ListKeysResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The configuration for an api
+	// List of keys for the api
 	Object *ListKeysResponseBody
 }
 

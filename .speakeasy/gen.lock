@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 5c90969528e4ba20ca9e64ea3b1e6a95
+  docChecksum: 621c3289c396eb08c056d389a37c2f2d
   docVersion: 1.0.0
-  speakeasyVersion: 1.352.2
-  generationVersion: 2.385.2
-  releaseVersion: 0.8.9
-  configChecksum: 8faf54ef797f49985007dd8c70ffeccc
+  speakeasyVersion: 1.376.0
+  generationVersion: 2.402.5
+  releaseVersion: 0.9.0
+  configChecksum: 0d5ecbbed7f980333206941ee50386c7
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.4
-    core: 3.5.3
+    constsAndDefaults: 0.1.6
+    core: 3.5.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.2.2
+    envVarSecurityUsage: 0.3.0
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -28,7 +28,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.8
+    unions: 2.85.9
 generatedFiles:
   - liveness.go
   - keys.go

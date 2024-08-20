@@ -49,6 +49,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
@@ -103,6 +105,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -168,6 +172,7 @@ func main() {
             Amount: 100,
         },
         Ratelimit: &operations.Ratelimit{
+            Type: operations.TypeFast.ToPointer(),
             Limit: 10,
             Duration: unkeygo.Int64(60000),
         },
@@ -183,6 +188,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -252,6 +259,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
@@ -306,6 +315,7 @@ func main() {
         },
         Expires: unkeygo.Int64(0),
         Ratelimit: &operations.UpdateKeyRatelimit{
+            Type: operations.UpdateKeyTypeFast.ToPointer(),
             Limit: 10,
             RefillRate: unkeygo.Int64(1),
             RefillInterval: unkeygo.Int64(60),
@@ -351,6 +361,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -408,6 +420,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -468,6 +482,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -525,6 +541,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -588,6 +606,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -656,6 +676,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -723,6 +745,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -785,6 +809,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -852,6 +878,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

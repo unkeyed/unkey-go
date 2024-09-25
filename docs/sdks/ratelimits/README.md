@@ -1,6 +1,8 @@
 # Ratelimits
 (*Ratelimits*)
 
+## Overview
+
 ### Available Operations
 
 * [Limit](#limit)
@@ -14,8 +16,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -23,7 +25,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.LimitRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Ratelimits.Limit(ctx, operations.LimitRequestBody{
         Namespace: unkeygo.String("email.outbound"),
         Identifier: "user_123",
         Limit: 10,
@@ -31,14 +35,12 @@ func main() {
         Cost: unkeygo.Int64(2),
         Resources: []operations.Resources{
             operations.Resources{
-                Type: "project",
-                ID: "p_123",
-                Name: unkeygo.String("dub"),
+                Type: "organization",
+                ID: "org_123",
+                Name: unkeygo.String("unkey"),
             },
         },
-    }
-    ctx := context.Background()
-    res, err := s.Ratelimits.Limit(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -48,8 +50,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
@@ -58,10 +58,12 @@ func main() {
 | `request`                                                                  | [operations.LimitRequestBody](../../models/operations/limitrequestbody.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*operations.LimitResponse](../../models/operations/limitresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

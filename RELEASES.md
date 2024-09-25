@@ -209,3 +209,13 @@ Based on:
 - [go v0.9.0] .
 ### Releases
 - [Go v0.9.0] https://github.com/unkeyed/unkey-go/releases/tag/v0.9.0 - .
+
+## 2024-09-25 09:02:05
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.402.12 (2.422.15) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.9.1] .
+### Releases
+- [Go v0.9.1] https://github.com/unkeyed/unkey-go/releases/tag/v0.9.1 - .

@@ -1,6 +1,6 @@
 # ~~Type~~
 
-Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 
 Learn more
 <https://unkey.dev/docs/features/ratelimiting>

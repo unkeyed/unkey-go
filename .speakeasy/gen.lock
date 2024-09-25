@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 621c3289c396eb08c056d389a37c2f2d
+  docChecksum: fedf8d1926c823e4a6b4787e9788634a
   docVersion: 1.0.0
-  speakeasyVersion: 1.376.0
-  generationVersion: 2.402.5
-  releaseVersion: 0.9.0
-  configChecksum: 0d5ecbbed7f980333206941ee50386c7
+  speakeasyVersion: 1.402.12
+  generationVersion: 2.422.15
+  releaseVersion: 0.9.1
+  configChecksum: d3a75ceda7f8ec35a8fa0d16f319ba62
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.5
+    core: 3.5.9
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.3.0
+    envVarSecurityUsage: 0.3.1
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -30,22 +30,253 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.9
 generatedFiles:
-  - liveness.go
-  - keys.go
+  - .gitattributes
+  - /models/components/httpmetadata.go
+  - /models/components/key.go
+  - /models/components/permissionquery.go
+  - /models/components/security.go
+  - /models/components/v1keysverifykeyrequest.go
+  - /models/components/v1keysverifykeyresponse.go
+  - /models/operations/addpermissions.go
+  - /models/operations/addroles.go
+  - /models/operations/createapi.go
+  - /models/operations/createidentity.go
+  - /models/operations/createkey.go
+  - /models/operations/createpermission.go
+  - /models/operations/createrole.go
+  - /models/operations/deleteapi.go
+  - /models/operations/deleteidentity.go
+  - /models/operations/deletekey.go
+  - /models/operations/deletekeys.go
+  - /models/operations/deletepermission.go
+  - /models/operations/deleterole.go
+  - /models/operations/getapi.go
+  - /models/operations/getidentity.go
+  - /models/operations/getkey.go
+  - /models/operations/getpermission.go
+  - /models/operations/getrole.go
+  - /models/operations/getverifications.go
+  - /models/operations/limit.go
+  - /models/operations/listidentities.go
+  - /models/operations/listkeys.go
+  - /models/operations/listpermissions.go
+  - /models/operations/listroles.go
+  - /models/operations/removepermissions.go
+  - /models/operations/removeroles.go
+  - /models/operations/setpermissions.go
+  - /models/operations/setroles.go
+  - /models/operations/updateidentity.go
+  - /models/operations/updatekey.go
+  - /models/operations/updateremaining.go
+  - /models/operations/v1liveness.go
+  - /models/operations/v1migrationscreatekeys.go
+  - /models/operations/v1migrationsenqueuekeys.go
+  - /models/operations/verifykey.go
+  - /models/sdkerrors/errbadrequest.go
+  - /models/sdkerrors/errconflict.go
+  - /models/sdkerrors/errdeleteprotected.go
+  - /models/sdkerrors/errforbidden.go
+  - /models/sdkerrors/errinternalservererror.go
+  - /models/sdkerrors/errnotfound.go
+  - /models/sdkerrors/errtoomanyrequests.go
+  - /models/sdkerrors/errunauthorized.go
+  - CONTRIBUTING.md
+  - USAGE.md
   - apis.go
-  - ratelimits.go
-  - migrations.go
-  - permissions.go
-  - identities.go
-  - unkey.go
+  - docs/models/components/and.md
+  - docs/models/components/authorization.md
+  - docs/models/components/code.md
+  - docs/models/components/httpmetadata.md
+  - docs/models/components/identity.md
+  - docs/models/components/interval.md
+  - docs/models/components/key.md
+  - docs/models/components/or.md
+  - docs/models/components/permissionquery.md
+  - docs/models/components/ratelimit.md
+  - docs/models/components/ratelimits.md
+  - docs/models/components/refill.md
+  - docs/models/components/security.md
+  - docs/models/components/type.md
+  - docs/models/components/v1keysverifykeyrequest.md
+  - docs/models/components/v1keysverifykeyrequestratelimit.md
+  - docs/models/components/v1keysverifykeyresponse.md
+  - docs/models/components/v1keysverifykeyresponseidentity.md
+  - docs/models/components/v1keysverifykeyresponseratelimit.md
+  - docs/models/operations/addpermissionspermissions.md
+  - docs/models/operations/addpermissionsrequestbody.md
+  - docs/models/operations/addpermissionsresponse.md
+  - docs/models/operations/addrolesrequestbody.md
+  - docs/models/operations/addrolesresponse.md
+  - docs/models/operations/addrolesresponsebody.md
+  - docs/models/operations/addrolesroles.md
+  - docs/models/operations/createapirequestbody.md
+  - docs/models/operations/createapiresponse.md
+  - docs/models/operations/createapiresponsebody.md
+  - docs/models/operations/createidentityrequestbody.md
+  - docs/models/operations/createidentityresponse.md
+  - docs/models/operations/createidentityresponsebody.md
+  - docs/models/operations/createkeyrequestbody.md
+  - docs/models/operations/createkeyresponse.md
+  - docs/models/operations/createkeyresponsebody.md
+  - docs/models/operations/createpermissionrequestbody.md
+  - docs/models/operations/createpermissionresponse.md
+  - docs/models/operations/createpermissionresponsebody.md
+  - docs/models/operations/createrolerequestbody.md
+  - docs/models/operations/createroleresponse.md
+  - docs/models/operations/createroleresponsebody.md
+  - docs/models/operations/deleteapirequestbody.md
+  - docs/models/operations/deleteapiresponse.md
+  - docs/models/operations/deleteapiresponsebody.md
+  - docs/models/operations/deleteidentityrequestbody.md
+  - docs/models/operations/deleteidentityresponse.md
+  - docs/models/operations/deleteidentityresponsebody.md
+  - docs/models/operations/deletekeyrequestbody.md
+  - docs/models/operations/deletekeyresponse.md
+  - docs/models/operations/deletekeyresponsebody.md
+  - docs/models/operations/deletekeysrequestbody.md
+  - docs/models/operations/deletekeysresponse.md
+  - docs/models/operations/deletekeysresponsebody.md
+  - docs/models/operations/deletepermissionrequestbody.md
+  - docs/models/operations/deletepermissionresponse.md
+  - docs/models/operations/deletepermissionresponsebody.md
+  - docs/models/operations/deleterolerequestbody.md
+  - docs/models/operations/deleteroleresponse.md
+  - docs/models/operations/deleteroleresponsebody.md
+  - docs/models/operations/getapirequest.md
+  - docs/models/operations/getapiresponse.md
+  - docs/models/operations/getapiresponsebody.md
+  - docs/models/operations/getidentityratelimits.md
+  - docs/models/operations/getidentityrequest.md
+  - docs/models/operations/getidentityresponse.md
+  - docs/models/operations/getidentityresponsebody.md
+  - docs/models/operations/getkeyrequest.md
+  - docs/models/operations/getkeyresponse.md
+  - docs/models/operations/getpermissionrequest.md
+  - docs/models/operations/getpermissionresponse.md
+  - docs/models/operations/getpermissionresponsebody.md
+  - docs/models/operations/getrolerequest.md
+  - docs/models/operations/getroleresponse.md
+  - docs/models/operations/getroleresponsebody.md
+  - docs/models/operations/getverificationsrequest.md
+  - docs/models/operations/getverificationsresponse.md
+  - docs/models/operations/getverificationsresponsebody.md
+  - docs/models/operations/granularity.md
+  - docs/models/operations/hash.md
+  - docs/models/operations/identities.md
+  - docs/models/operations/interval.md
+  - docs/models/operations/keys.md
+  - docs/models/operations/limitrequestbody.md
+  - docs/models/operations/limitresponse.md
+  - docs/models/operations/limitresponsebody.md
+  - docs/models/operations/listidentitiesratelimits.md
+  - docs/models/operations/listidentitiesrequest.md
+  - docs/models/operations/listidentitiesresponse.md
+  - docs/models/operations/listidentitiesresponsebody.md
+  - docs/models/operations/listkeysrequest.md
+  - docs/models/operations/listkeysresponse.md
+  - docs/models/operations/listkeysresponsebody.md
+  - docs/models/operations/listpermissionsresponse.md
+  - docs/models/operations/listpermissionsresponsebody.md
+  - docs/models/operations/listrolesresponse.md
+  - docs/models/operations/listrolesresponsebody.md
+  - docs/models/operations/op.md
+  - docs/models/operations/option.md
+  - docs/models/operations/permissions.md
+  - docs/models/operations/ratelimit.md
+  - docs/models/operations/ratelimits.md
+  - docs/models/operations/refill.md
+  - docs/models/operations/removepermissionspermissions.md
+  - docs/models/operations/removepermissionsrequestbody.md
+  - docs/models/operations/removepermissionsresponse.md
+  - docs/models/operations/removepermissionsresponsebody.md
+  - docs/models/operations/removerolesrequestbody.md
+  - docs/models/operations/removerolesresponse.md
+  - docs/models/operations/removerolesresponsebody.md
+  - docs/models/operations/removerolesroles.md
+  - docs/models/operations/requestbody.md
+  - docs/models/operations/resources.md
+  - docs/models/operations/responsebody.md
+  - docs/models/operations/roles.md
+  - docs/models/operations/services.md
+  - docs/models/operations/setpermissionspermissions.md
+  - docs/models/operations/setpermissionsrequestbody.md
+  - docs/models/operations/setpermissionsresponse.md
+  - docs/models/operations/setpermissionsresponsebody.md
+  - docs/models/operations/setrolesrequestbody.md
+  - docs/models/operations/setrolesresponse.md
+  - docs/models/operations/setrolesresponsebody.md
+  - docs/models/operations/setrolesroles.md
+  - docs/models/operations/type.md
+  - docs/models/operations/updateidentityidentitiesratelimits.md
+  - docs/models/operations/updateidentityratelimits.md
+  - docs/models/operations/updateidentityrequestbody.md
+  - docs/models/operations/updateidentityresponse.md
+  - docs/models/operations/updateidentityresponsebody.md
+  - docs/models/operations/updatekeyinterval.md
+  - docs/models/operations/updatekeyratelimit.md
+  - docs/models/operations/updatekeyrefill.md
+  - docs/models/operations/updatekeyrequestbody.md
+  - docs/models/operations/updatekeyresponse.md
+  - docs/models/operations/updatekeyresponsebody.md
+  - docs/models/operations/updatekeytype.md
+  - docs/models/operations/updateremainingrequestbody.md
+  - docs/models/operations/updateremainingresponse.md
+  - docs/models/operations/updateremainingresponsebody.md
+  - docs/models/operations/v1livenessresponse.md
+  - docs/models/operations/v1livenessresponsebody.md
+  - docs/models/operations/v1migrationscreatekeysinterval.md
+  - docs/models/operations/v1migrationscreatekeysratelimit.md
+  - docs/models/operations/v1migrationscreatekeysrefill.md
+  - docs/models/operations/v1migrationscreatekeysresponse.md
+  - docs/models/operations/v1migrationscreatekeysresponsebody.md
+  - docs/models/operations/v1migrationscreatekeystype.md
+  - docs/models/operations/v1migrationsenqueuekeyshash.md
+  - docs/models/operations/v1migrationsenqueuekeysinterval.md
+  - docs/models/operations/v1migrationsenqueuekeysratelimit.md
+  - docs/models/operations/v1migrationsenqueuekeysrefill.md
+  - docs/models/operations/v1migrationsenqueuekeysrequestbody.md
+  - docs/models/operations/v1migrationsenqueuekeysresponse.md
+  - docs/models/operations/v1migrationsenqueuekeysresponsebody.md
+  - docs/models/operations/v1migrationsenqueuekeystype.md
+  - docs/models/operations/v1migrationsenqueuekeysvariant.md
+  - docs/models/operations/variant.md
+  - docs/models/operations/verifications.md
+  - docs/models/operations/verifykeyresponse.md
+  - docs/models/sdkerrors/code.md
+  - docs/models/sdkerrors/errbadrequest.md
+  - docs/models/sdkerrors/errconflict.md
+  - docs/models/sdkerrors/errconflictcode.md
+  - docs/models/sdkerrors/errconflicterror.md
+  - docs/models/sdkerrors/errdeleteprotected.md
+  - docs/models/sdkerrors/errdeleteprotectedcode.md
+  - docs/models/sdkerrors/errdeleteprotectederror.md
+  - docs/models/sdkerrors/errforbidden.md
+  - docs/models/sdkerrors/errforbiddencode.md
+  - docs/models/sdkerrors/errforbiddenerror.md
+  - docs/models/sdkerrors/errinternalservererror.md
+  - docs/models/sdkerrors/errinternalservererrorcode.md
+  - docs/models/sdkerrors/errinternalservererrorerror.md
+  - docs/models/sdkerrors/errnotfound.md
+  - docs/models/sdkerrors/errnotfoundcode.md
+  - docs/models/sdkerrors/errnotfounderror.md
+  - docs/models/sdkerrors/error.md
+  - docs/models/sdkerrors/errtoomanyrequests.md
+  - docs/models/sdkerrors/errtoomanyrequestscode.md
+  - docs/models/sdkerrors/errtoomanyrequestserror.md
+  - docs/models/sdkerrors/errunauthorized.md
+  - docs/models/sdkerrors/errunauthorizedcode.md
+  - docs/models/sdkerrors/errunauthorizederror.md
+  - docs/sdks/apis/README.md
+  - docs/sdks/identities/README.md
+  - docs/sdks/keys/README.md
+  - docs/sdks/liveness/README.md
+  - docs/sdks/migrations/README.md
+  - docs/sdks/permissions/README.md
+  - docs/sdks/ratelimits/README.md
+  - docs/sdks/unkey/README.md
   - go.mod
-  - models/sdkerrors/sdkerror.go
-  - retry/config.go
-  - types/bigint.go
-  - types/date.go
-  - types/datetime.go
-  - types/decimal.go
-  - types/pointers.go
+  - identities.go
+  - internal/hooks/hooks.go
   - internal/utils/contenttype.go
   - internal/utils/form.go
   - internal/utils/headers.go
@@ -56,248 +287,743 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
-  - /models/operations/v1liveness.go
-  - /models/operations/getkey.go
-  - /models/operations/deletekey.go
-  - /models/operations/createkey.go
-  - /models/operations/verifykey.go
-  - /models/operations/updatekey.go
-  - /models/operations/updateremaining.go
-  - /models/operations/getverifications.go
-  - /models/operations/addpermissions.go
-  - /models/operations/removepermissions.go
-  - /models/operations/setpermissions.go
-  - /models/operations/addroles.go
-  - /models/operations/removeroles.go
-  - /models/operations/setroles.go
-  - /models/operations/getapi.go
-  - /models/operations/createapi.go
-  - /models/operations/listkeys.go
-  - /models/operations/deleteapi.go
-  - /models/operations/deletekeys.go
-  - /models/operations/limit.go
-  - /models/operations/v1migrationscreatekeys.go
-  - /models/operations/v1migrationsenqueuekeys.go
-  - /models/operations/createpermission.go
-  - /models/operations/deletepermission.go
-  - /models/operations/getpermission.go
-  - /models/operations/listpermissions.go
-  - /models/operations/createrole.go
-  - /models/operations/deleterole.go
-  - /models/operations/getrole.go
-  - /models/operations/listroles.go
-  - /models/operations/createidentity.go
-  - /models/operations/getidentity.go
-  - /models/operations/listidentities.go
-  - /models/operations/updateidentity.go
-  - /models/operations/deleteidentity.go
-  - /models/components/httpmetadata.go
-  - /models/components/key.go
-  - /models/components/v1keysverifykeyresponse.go
-  - /models/components/v1keysverifykeyrequest.go
-  - /models/components/permissionquery.go
-  - /models/components/security.go
-  - /models/sdkerrors/errbadrequest.go
-  - /models/sdkerrors/errunauthorized.go
-  - /models/sdkerrors/errforbidden.go
-  - /models/sdkerrors/errnotfound.go
-  - /models/sdkerrors/errconflict.go
-  - /models/sdkerrors/errtoomanyrequests.go
-  - /models/sdkerrors/errinternalservererror.go
-  - /models/sdkerrors/errdeleteprotected.go
-  - docs/models/operations/services.md
-  - docs/models/operations/v1livenessresponsebody.md
-  - docs/models/operations/v1livenessresponse.md
-  - docs/models/operations/getkeyrequest.md
-  - docs/models/operations/getkeyresponse.md
-  - docs/models/operations/deletekeyrequestbody.md
-  - docs/models/operations/deletekeyresponsebody.md
-  - docs/models/operations/deletekeyresponse.md
-  - docs/models/operations/interval.md
-  - docs/models/operations/refill.md
-  - docs/models/operations/type.md
-  - docs/models/operations/ratelimit.md
-  - docs/models/operations/createkeyrequestbody.md
-  - docs/models/operations/createkeyresponsebody.md
-  - docs/models/operations/createkeyresponse.md
-  - docs/models/operations/verifykeyresponse.md
-  - docs/models/operations/updatekeytype.md
-  - docs/models/operations/updatekeyratelimit.md
-  - docs/models/operations/updatekeyinterval.md
-  - docs/models/operations/updatekeyrefill.md
-  - docs/models/operations/roles.md
-  - docs/models/operations/permissions.md
-  - docs/models/operations/updatekeyrequestbody.md
-  - docs/models/operations/updatekeyresponsebody.md
-  - docs/models/operations/updatekeyresponse.md
-  - docs/models/operations/op.md
-  - docs/models/operations/updateremainingrequestbody.md
-  - docs/models/operations/updateremainingresponsebody.md
-  - docs/models/operations/updateremainingresponse.md
-  - docs/models/operations/granularity.md
-  - docs/models/operations/getverificationsrequest.md
-  - docs/models/operations/verifications.md
-  - docs/models/operations/getverificationsresponsebody.md
-  - docs/models/operations/getverificationsresponse.md
-  - docs/models/operations/addpermissionspermissions.md
-  - docs/models/operations/addpermissionsrequestbody.md
-  - docs/models/operations/responsebody.md
-  - docs/models/operations/addpermissionsresponse.md
-  - docs/models/operations/removepermissionspermissions.md
-  - docs/models/operations/removepermissionsrequestbody.md
-  - docs/models/operations/removepermissionsresponsebody.md
-  - docs/models/operations/removepermissionsresponse.md
-  - docs/models/operations/setpermissionspermissions.md
-  - docs/models/operations/setpermissionsrequestbody.md
-  - docs/models/operations/setpermissionsresponsebody.md
-  - docs/models/operations/setpermissionsresponse.md
-  - docs/models/operations/addrolesroles.md
-  - docs/models/operations/addrolesrequestbody.md
-  - docs/models/operations/addrolesresponsebody.md
-  - docs/models/operations/addrolesresponse.md
-  - docs/models/operations/removerolesroles.md
-  - docs/models/operations/removerolesrequestbody.md
-  - docs/models/operations/removerolesresponsebody.md
-  - docs/models/operations/removerolesresponse.md
-  - docs/models/operations/setrolesroles.md
-  - docs/models/operations/setrolesrequestbody.md
-  - docs/models/operations/setrolesresponsebody.md
-  - docs/models/operations/setrolesresponse.md
-  - docs/models/operations/getapirequest.md
-  - docs/models/operations/getapiresponsebody.md
-  - docs/models/operations/getapiresponse.md
-  - docs/models/operations/createapirequestbody.md
-  - docs/models/operations/createapiresponsebody.md
-  - docs/models/operations/createapiresponse.md
-  - docs/models/operations/listkeysrequest.md
-  - docs/models/operations/listkeysresponsebody.md
-  - docs/models/operations/listkeysresponse.md
-  - docs/models/operations/deleteapirequestbody.md
-  - docs/models/operations/deleteapiresponsebody.md
-  - docs/models/operations/deleteapiresponse.md
-  - docs/models/operations/deletekeysrequestbody.md
-  - docs/models/operations/deletekeysresponsebody.md
-  - docs/models/operations/deletekeysresponse.md
-  - docs/models/operations/resources.md
-  - docs/models/operations/limitrequestbody.md
-  - docs/models/operations/limitresponsebody.md
-  - docs/models/operations/limitresponse.md
-  - docs/models/operations/variant.md
-  - docs/models/operations/hash.md
-  - docs/models/operations/v1migrationscreatekeysinterval.md
-  - docs/models/operations/v1migrationscreatekeysrefill.md
-  - docs/models/operations/v1migrationscreatekeystype.md
-  - docs/models/operations/v1migrationscreatekeysratelimit.md
-  - docs/models/operations/requestbody.md
-  - docs/models/operations/v1migrationscreatekeysresponsebody.md
-  - docs/models/operations/v1migrationscreatekeysresponse.md
-  - docs/models/operations/v1migrationsenqueuekeysvariant.md
-  - docs/models/operations/v1migrationsenqueuekeyshash.md
-  - docs/models/operations/v1migrationsenqueuekeysinterval.md
-  - docs/models/operations/v1migrationsenqueuekeysrefill.md
-  - docs/models/operations/v1migrationsenqueuekeystype.md
-  - docs/models/operations/v1migrationsenqueuekeysratelimit.md
-  - docs/models/operations/keys.md
-  - docs/models/operations/v1migrationsenqueuekeysrequestbody.md
-  - docs/models/operations/v1migrationsenqueuekeysresponsebody.md
-  - docs/models/operations/v1migrationsenqueuekeysresponse.md
-  - docs/models/operations/createpermissionrequestbody.md
-  - docs/models/operations/createpermissionresponsebody.md
-  - docs/models/operations/createpermissionresponse.md
-  - docs/models/operations/deletepermissionrequestbody.md
-  - docs/models/operations/deletepermissionresponsebody.md
-  - docs/models/operations/deletepermissionresponse.md
-  - docs/models/operations/getpermissionrequest.md
-  - docs/models/operations/getpermissionresponsebody.md
-  - docs/models/operations/getpermissionresponse.md
-  - docs/models/operations/listpermissionsresponsebody.md
-  - docs/models/operations/listpermissionsresponse.md
-  - docs/models/operations/createrolerequestbody.md
-  - docs/models/operations/createroleresponsebody.md
-  - docs/models/operations/createroleresponse.md
-  - docs/models/operations/deleterolerequestbody.md
-  - docs/models/operations/deleteroleresponsebody.md
-  - docs/models/operations/deleteroleresponse.md
-  - docs/models/operations/getrolerequest.md
-  - docs/models/operations/getroleresponsebody.md
-  - docs/models/operations/getroleresponse.md
-  - docs/models/operations/listrolesresponsebody.md
-  - docs/models/operations/listrolesresponse.md
-  - docs/models/operations/ratelimits.md
-  - docs/models/operations/createidentityrequestbody.md
-  - docs/models/operations/createidentityresponsebody.md
-  - docs/models/operations/createidentityresponse.md
-  - docs/models/operations/getidentityrequest.md
-  - docs/models/operations/getidentityratelimits.md
-  - docs/models/operations/getidentityresponsebody.md
-  - docs/models/operations/getidentityresponse.md
-  - docs/models/operations/listidentitiesrequest.md
-  - docs/models/operations/listidentitiesratelimits.md
-  - docs/models/operations/identities.md
-  - docs/models/operations/listidentitiesresponsebody.md
-  - docs/models/operations/listidentitiesresponse.md
-  - docs/models/operations/updateidentityratelimits.md
-  - docs/models/operations/updateidentityrequestbody.md
-  - docs/models/operations/updateidentityidentitiesratelimits.md
-  - docs/models/operations/updateidentityresponsebody.md
-  - docs/models/operations/updateidentityresponse.md
-  - docs/models/operations/deleteidentityrequestbody.md
-  - docs/models/operations/deleteidentityresponsebody.md
-  - docs/models/operations/deleteidentityresponse.md
-  - docs/models/components/httpmetadata.md
-  - docs/models/components/interval.md
-  - docs/models/components/refill.md
-  - docs/models/components/type.md
-  - docs/models/components/ratelimit.md
-  - docs/models/components/identity.md
-  - docs/models/components/key.md
-  - docs/models/components/v1keysverifykeyresponseratelimit.md
-  - docs/models/components/code.md
-  - docs/models/components/v1keysverifykeyresponseidentity.md
-  - docs/models/components/v1keysverifykeyresponse.md
-  - docs/models/components/authorization.md
-  - docs/models/components/v1keysverifykeyrequestratelimit.md
-  - docs/models/components/ratelimits.md
-  - docs/models/components/v1keysverifykeyrequest.md
-  - docs/models/components/or.md
-  - docs/models/components/and.md
-  - docs/models/components/permissionquery.md
-  - docs/models/components/security.md
-  - docs/models/sdkerrors/code.md
-  - docs/models/sdkerrors/error.md
-  - docs/models/sdkerrors/errbadrequest.md
-  - docs/models/sdkerrors/errunauthorizedcode.md
-  - docs/models/sdkerrors/errunauthorizederror.md
-  - docs/models/sdkerrors/errunauthorized.md
-  - docs/models/sdkerrors/errforbiddencode.md
-  - docs/models/sdkerrors/errforbiddenerror.md
-  - docs/models/sdkerrors/errforbidden.md
-  - docs/models/sdkerrors/errnotfoundcode.md
-  - docs/models/sdkerrors/errnotfounderror.md
-  - docs/models/sdkerrors/errnotfound.md
-  - docs/models/sdkerrors/errconflictcode.md
-  - docs/models/sdkerrors/errconflicterror.md
-  - docs/models/sdkerrors/errconflict.md
-  - docs/models/sdkerrors/errtoomanyrequestscode.md
-  - docs/models/sdkerrors/errtoomanyrequestserror.md
-  - docs/models/sdkerrors/errtoomanyrequests.md
-  - docs/models/sdkerrors/errinternalservererrorcode.md
-  - docs/models/sdkerrors/errinternalservererrorerror.md
-  - docs/models/sdkerrors/errinternalservererror.md
-  - docs/models/sdkerrors/errdeleteprotectedcode.md
-  - docs/models/sdkerrors/errdeleteprotectederror.md
-  - docs/models/sdkerrors/errdeleteprotected.md
-  - docs/sdks/unkey/README.md
-  - docs/models/operations/option.md
-  - docs/sdks/liveness/README.md
-  - docs/sdks/keys/README.md
-  - docs/sdks/apis/README.md
-  - docs/sdks/ratelimits/README.md
-  - docs/sdks/migrations/README.md
-  - docs/sdks/permissions/README.md
-  - docs/sdks/identities/README.md
-  - USAGE.md
+  - keys.go
+  - liveness.go
+  - migrations.go
   - models/operations/options.go
-  - .gitattributes
-  - internal/hooks/hooks.go
-  - CONTRIBUTING.md
+  - models/sdkerrors/sdkerror.go
+  - permissions.go
+  - ratelimits.go
+  - retry/config.go
+  - types/bigint.go
+  - types/date.go
+  - types/datetime.go
+  - types/decimal.go
+  - types/pointers.go
+  - unkey.go
+examples:
+  v1.liveness:
+    speakeasy-default-v1-liveness:
+      responses:
+        "200":
+          application/json: {"status": "<value>", "services": {"metrics": "AxiomMetrics", "logger": "AxiomLogger or ConsoleLogger", "ratelimit": "<value>", "usagelimit": "<value>", "analytics": "<value>"}}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getKey:
+    speakeasy-default-get-key:
+      parameters:
+        query:
+          keyId: "key_1234"
+      responses:
+        "200":
+          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteKey:
+    speakeasy-default-delete-key:
+      requestBody:
+        application/json: {"keyId": "key_1234"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  createKey:
+    speakeasy-default-create-key:
+      requestBody:
+        application/json: {"apiId": "api_123", "name": "my key", "externalId": "team_123", "meta": {"billingTier": "PRO", "trialEnds": "2023-06-16T17:16:37.161Z"}, "roles": ["admin", "finance"], "permissions": ["domains.create_record", "say_hello"], "expires": 1623869797161, "remaining": 1000, "refill": {"interval": "daily", "amount": 100}, "ratelimit": {"type": "fast", "limit": 10, "duration": 60000}, "enabled": false}
+      responses:
+        "200":
+          application/json: {"keyId": "key_123", "key": "prefix_xxxxxxxxx"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  verifyKey:
+    speakeasy-default-verify-key:
+      requestBody:
+        application/json: {"apiId": "api_1234", "key": "sk_1234", "ratelimits": [{"name": "tokens", "limit": 500, "duration": 3600000}, {"name": "tokens", "limit": 20000, "duration": 86400000}]}
+      responses:
+        "200":
+          application/json: {"keyId": "key_1234", "valid": true, "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 123, "ratelimit": {"limit": 10, "remaining": 9, "reset": 3600000}, "remaining": 1000, "code": "DISABLED", "permissions": ["dns.record.update", "dns.record.delete"], "environment": "test"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  updateKey:
+    speakeasy-default-update-key:
+      requestBody:
+        application/json: {"keyId": "key_123", "name": "Customer X", "externalId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 0, "ratelimit": {"type": "fast", "limit": 10, "refillRate": 1, "refillInterval": 60}, "remaining": 1000, "refill": {"interval": "daily", "amount": 100}, "enabled": true, "roles": [{"id": "perm_123"}, {"name": "dns.record.create"}, {"name": "dns.record.delete", "create": true}], "permissions": [{"id": "perm_123"}, {"name": "dns.record.create"}, {"name": "dns.record.delete", "create": true}]}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  updateRemaining:
+    speakeasy-default-update-remaining:
+      requestBody:
+        application/json: {"keyId": "key_123", "op": "set", "value": 1}
+      responses:
+        "200":
+          application/json: {"remaining": 100}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getVerifications:
+    speakeasy-default-get-verifications:
+      parameters:
+        query:
+          keyId: "key_1234"
+          ownerId: "chronark"
+          start: 1620000000000
+          end: 1620000000000
+          granularity: "day"
+      responses:
+        "200":
+          application/json: {"verifications": [{"time": 1620000000000, "success": 100, "rateLimited": 10, "usageExceeded": 0}]}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  addPermissions:
+    speakeasy-default-add-permissions:
+      requestBody:
+        application/json: {"keyId": "<value>"}
+      responses:
+        "200":
+          application/json: [{"id": "perm_123", "name": "dns.record.create"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  removePermissions:
+    speakeasy-default-remove-permissions:
+      requestBody:
+        application/json: {"keyId": "<value>", "permissions": [{"id": "perm_123"}, {"name": "dns.record.create"}]}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  setPermissions:
+    speakeasy-default-set-permissions:
+      requestBody:
+        application/json: {"keyId": "<value>", "permissions": [{"id": "perm_123"}, {"name": "dns.record.create"}, {"name": "dns.record.delete", "create": true}]}
+      responses:
+        "200":
+          application/json: [{"id": "perm_123", "name": "dns.record.create"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  addRoles:
+    speakeasy-default-add-roles:
+      requestBody:
+        application/json: {"keyId": "<value>", "roles": [{"id": "role_123"}, {"name": "dns.record.create"}, {"name": "dns.record.delete", "create": true}]}
+      responses:
+        "200":
+          application/json: [{"id": "role_123", "name": "dns.record.create"}, {"id": "role_123", "name": "dns.record.create"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  removeRoles:
+    speakeasy-default-remove-roles:
+      requestBody:
+        application/json: {"keyId": "<value>", "roles": [{"id": "role_123"}, {"name": "dns.record.create"}]}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  setRoles:
+    speakeasy-default-set-roles:
+      requestBody:
+        application/json: {"keyId": "<value>", "roles": [{"id": "role_123"}, {"name": "dns.record.create"}, {"name": "dns.record.delete", "create": true}]}
+      responses:
+        "200":
+          application/json: [{"id": "role_123", "name": "dns.record.create"}, {"id": "role_123", "name": "dns.record.create"}, {"id": "role_123", "name": "dns.record.create"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getApi:
+    speakeasy-default-get-api:
+      parameters:
+        query:
+          apiId: "api_1234"
+      responses:
+        "200":
+          application/json: {"id": "key_1234", "workspaceId": "ws_1234", "name": "Unkey - Production"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  createApi:
+    speakeasy-default-create-api:
+      requestBody:
+        application/json: {"name": "my-api"}
+      responses:
+        "200":
+          application/json: {"apiId": "api_134"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  listKeys:
+    speakeasy-default-list-keys:
+      parameters:
+        query:
+          apiId: "api_1234"
+          limit: 100
+      responses:
+        "200":
+          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteApi:
+    speakeasy-default-delete-api:
+      requestBody:
+        application/json: {"apiId": "api_1234"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "DELETE_PROTECTED", "docs": "https://unkey.dev/docs/api-reference/errors/code/DELETE_PROTECTED", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteKeys:
+    speakeasy-default-delete-keys:
+      requestBody:
+        application/json: {"apiId": "api_1234"}
+      responses:
+        "200":
+          application/json: {"deletedKeys": 282252}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  limit:
+    speakeasy-default-limit:
+      requestBody:
+        application/json: {"namespace": "email.outbound", "identifier": "user_123", "limit": 10, "duration": 60000, "cost": 2, "resources": [{"type": "organization", "id": "org_123", "name": "unkey"}]}
+      responses:
+        "200":
+          application/json: {"success": true, "limit": 10, "remaining": 9, "reset": 1709804263654}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  v1.migrations.createKeys:
+    speakeasy-default-v1-migrations-create-keys:
+      requestBody:
+        application/json: []
+      responses:
+        "200":
+          application/json: {"keyIds": ["key_123", "key_456"]}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  v1.migrations.enqueueKeys:
+    speakeasy-default-v1-migrations-enqueue-keys:
+      requestBody:
+        application/json: {"migrationId": "<value>", "apiId": "<value>", "keys": [{"name": "my key", "start": "unkey_32kq", "ownerId": "team_123", "meta": {"billingTier": "PRO", "trialEnds": "2023-06-16T17:16:37.161Z"}, "roles": ["admin", "finance"], "permissions": ["domains.create_record", "say_hello"], "expires": 1623869797161, "remaining": 1000, "refill": {"interval": "daily", "amount": 100}, "ratelimit": {"type": "fast", "limit": 10, "duration": 60000}, "enabled": false}]}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  createPermission:
+    speakeasy-default-create-permission:
+      requestBody:
+        application/json: {"name": "record.write", "description": "record.write can create new dns records for our domains."}
+      responses:
+        "200":
+          application/json: {"permissionId": "perm_123"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deletePermission:
+    speakeasy-default-delete-permission:
+      requestBody:
+        application/json: {"permissionId": "perm_123"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getPermission:
+    speakeasy-default-get-permission:
+      parameters:
+        query:
+          permissionId: "perm_123"
+      responses:
+        "200":
+          application/json: {"id": "perm_123", "name": "domain.record.manager", "description": "Can manage dns records"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  listPermissions:
+    speakeasy-default-list-permissions:
+      responses:
+        "200":
+          application/json: [{"id": "perm_123", "name": "domain.record.manager", "description": "Can manage dns records"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  createRole:
+    speakeasy-default-create-role:
+      requestBody:
+        application/json: {"name": "dns.records.manager", "description": "dns.records.manager can read and write dns records for our domains."}
+      responses:
+        "200":
+          application/json: {"roleId": "role_123"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteRole:
+    speakeasy-default-delete-role:
+      requestBody:
+        application/json: {"roleId": "role_123"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getRole:
+    speakeasy-default-get-role:
+      parameters:
+        query:
+          roleId: "role_123"
+      responses:
+        "200":
+          application/json: {"id": "role_1234", "name": "domain.record.manager", "description": "Can manage dns records"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  listRoles:
+    speakeasy-default-list-roles:
+      responses:
+        "200":
+          application/json: [{"id": "role_1234", "name": "domain.record.manager", "description": "Can manage dns records"}, {"id": "role_1234", "name": "domain.record.manager", "description": "Can manage dns records"}]
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  createIdentity:
+    speakeasy-default-create-identity:
+      requestBody:
+        application/json: {"externalId": "user_123", "ratelimits": [{"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}]}
+      responses:
+        "200":
+          application/json: {"identityId": "id_123"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getIdentity:
+    speakeasy-default-get-identity:
+      parameters:
+        query:
+          identityId: "id_1234"
+          externalId: "id_1234"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "externalId": "<value>", "meta": {"key": "<value>", "key1": "<value>"}, "ratelimits": [{"name": "tokens", "limit": 10, "duration": 1000}]}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  listIdentities:
+    speakeasy-default-list-identities:
+      parameters:
+        query:
+          limit: 100
+      responses:
+        "200":
+          application/json: {"identities": [{"id": "<id>", "externalId": "<value>", "ratelimits": [{"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}]}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 777201}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  updateIdentity:
+    speakeasy-default-update-identity:
+      requestBody:
+        application/json: {"identityId": "id_1234", "externalId": "user_1234", "ratelimits": [{"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}]}
+      responses:
+        "200":
+          application/json: {"id": "id_1234", "externalId": "user_1234", "meta": {"stripeSubscriptionId": "sub_1234"}, "ratelimits": [{"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}, {"name": "tokens", "limit": 10, "duration": 1000}]}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteIdentity:
+    speakeasy-default-delete-identity:
+      requestBody:
+        application/json: {"identityId": "id_1234"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}

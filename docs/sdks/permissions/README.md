@@ -1,6 +1,8 @@
 # Permissions
 (*Permissions*)
 
+## Overview
+
 ### Available Operations
 
 * [CreatePermission](#createpermission)
@@ -21,8 +23,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -30,12 +32,12 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.CreatePermissionRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Permissions.CreatePermission(ctx, operations.CreatePermissionRequestBody{
         Name: "record.write",
         Description: unkeygo.String("record.write can create new dns records for our domains."),
-    }
-    ctx := context.Background()
-    res, err := s.Permissions.CreatePermission(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -45,8 +47,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
@@ -55,10 +55,12 @@ func main() {
 | `request`                                                                                        | [operations.CreatePermissionRequestBody](../../models/operations/createpermissionrequestbody.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.CreatePermissionResponse](../../models/operations/createpermissionresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -69,6 +71,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## DeletePermission
 
@@ -79,8 +82,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -88,11 +91,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.DeletePermissionRequestBody{
-        PermissionID: "perm_123",
-    }
+
     ctx := context.Background()
-    res, err := s.Permissions.DeletePermission(ctx, request)
+    res, err := s.Permissions.DeletePermission(ctx, operations.DeletePermissionRequestBody{
+        PermissionID: "perm_123",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -102,8 +105,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
@@ -112,10 +113,12 @@ func main() {
 | `request`                                                                                        | [operations.DeletePermissionRequestBody](../../models/operations/deletepermissionrequestbody.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.DeletePermissionResponse](../../models/operations/deletepermissionresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -126,6 +129,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## GetPermission
 
@@ -136,8 +140,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -145,11 +149,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.GetPermissionRequest{
-        PermissionID: "perm_123",
-    }
+
     ctx := context.Background()
-    res, err := s.Permissions.GetPermission(ctx, request)
+    res, err := s.Permissions.GetPermission(ctx, operations.GetPermissionRequest{
+        PermissionID: "perm_123",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -159,8 +163,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -169,10 +171,12 @@ func main() {
 | `request`                                                                          | [operations.GetPermissionRequest](../../models/operations/getpermissionrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetPermissionResponse](../../models/operations/getpermissionresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -183,6 +187,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## ListPermissions
 
@@ -213,8 +218,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -222,10 +225,12 @@ func main() {
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
-
 ### Response
 
 **[*operations.ListPermissionsResponse](../../models/operations/listpermissionsresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -236,6 +241,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## CreateRole
 
@@ -246,8 +252,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -255,12 +261,12 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.CreateRoleRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Permissions.CreateRole(ctx, operations.CreateRoleRequestBody{
         Name: "dns.records.manager",
         Description: unkeygo.String("dns.records.manager can read and write dns records for our domains."),
-    }
-    ctx := context.Background()
-    res, err := s.Permissions.CreateRole(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -270,8 +276,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -280,10 +284,12 @@ func main() {
 | `request`                                                                            | [operations.CreateRoleRequestBody](../../models/operations/createrolerequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.CreateRoleResponse](../../models/operations/createroleresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -294,6 +300,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## DeleteRole
 
@@ -304,8 +311,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -313,11 +320,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.DeleteRoleRequestBody{
-        RoleID: "role_123",
-    }
+
     ctx := context.Background()
-    res, err := s.Permissions.DeleteRole(ctx, request)
+    res, err := s.Permissions.DeleteRole(ctx, operations.DeleteRoleRequestBody{
+        RoleID: "role_123",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -327,8 +334,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -337,10 +342,12 @@ func main() {
 | `request`                                                                            | [operations.DeleteRoleRequestBody](../../models/operations/deleterolerequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.DeleteRoleResponse](../../models/operations/deleteroleresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -351,6 +358,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## GetRole
 
@@ -361,8 +369,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -370,11 +378,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.GetRoleRequest{
-        RoleID: "role_123",
-    }
+
     ctx := context.Background()
-    res, err := s.Permissions.GetRole(ctx, request)
+    res, err := s.Permissions.GetRole(ctx, operations.GetRoleRequest{
+        RoleID: "role_123",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -384,8 +392,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
@@ -394,10 +400,12 @@ func main() {
 | `request`                                                              | [operations.GetRoleRequest](../../models/operations/getrolerequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 | `opts`                                                                 | [][operations.Option](../../models/operations/option.md)               | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
-
 ### Response
 
 **[*operations.GetRoleResponse](../../models/operations/getroleresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -408,6 +416,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## ListRoles
 
@@ -438,8 +447,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -447,10 +454,12 @@ func main() {
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
-
 ### Response
 
 **[*operations.ListRolesResponse](../../models/operations/listrolesresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

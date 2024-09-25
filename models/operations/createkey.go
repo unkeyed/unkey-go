@@ -58,7 +58,7 @@ func (o *Refill) GetAmount() int64 {
 	return o.Amount
 }
 
-// Type - Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+// Type - Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
@@ -93,7 +93,7 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 type Ratelimit struct {
 	// Async will return a response immediately, lowering latency at the cost of accuracy. Will be required soon.
 	Async *bool `default:"true" json:"async"`
-	// Deprecated, used `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
+	// Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *Type `default:"fast" json:"type"`

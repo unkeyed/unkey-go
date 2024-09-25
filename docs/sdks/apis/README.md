@@ -1,6 +1,8 @@
 # Apis
 (*Apis*)
 
+## Overview
+
 ### Available Operations
 
 * [GetAPI](#getapi)
@@ -18,8 +20,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -27,11 +29,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.GetAPIRequest{
-        APIID: "api_1234",
-    }
+
     ctx := context.Background()
-    res, err := s.Apis.GetAPI(ctx, request)
+    res, err := s.Apis.GetAPI(ctx, operations.GetAPIRequest{
+        APIID: "api_1234",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -41,8 +43,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
@@ -51,10 +51,12 @@ func main() {
 | `request`                                                            | [operations.GetAPIRequest](../../models/operations/getapirequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
 | `opts`                                                               | [][operations.Option](../../models/operations/option.md)             | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
-
 ### Response
 
 **[*operations.GetAPIResponse](../../models/operations/getapiresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -65,6 +67,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## CreateAPI
 
@@ -75,8 +78,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -84,11 +87,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.CreateAPIRequestBody{
-        Name: "my-api",
-    }
+
     ctx := context.Background()
-    res, err := s.Apis.CreateAPI(ctx, request)
+    res, err := s.Apis.CreateAPI(ctx, operations.CreateAPIRequestBody{
+        Name: "my-api",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -98,8 +101,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -108,10 +109,12 @@ func main() {
 | `request`                                                                          | [operations.CreateAPIRequestBody](../../models/operations/createapirequestbody.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.CreateAPIResponse](../../models/operations/createapiresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -122,6 +125,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## ListKeys
 
@@ -132,8 +136,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -141,12 +145,12 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.ListKeysRequest{
+
+    ctx := context.Background()
+    res, err := s.Apis.ListKeys(ctx, operations.ListKeysRequest{
         APIID: "api_1234",
         Limit: unkeygo.Int64(100),
-    }
-    ctx := context.Background()
-    res, err := s.Apis.ListKeys(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -156,8 +160,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -166,10 +168,12 @@ func main() {
 | `request`                                                                | [operations.ListKeysRequest](../../models/operations/listkeysrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `opts`                                                                   | [][operations.Option](../../models/operations/option.md)                 | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
-
 ### Response
 
 **[*operations.ListKeysResponse](../../models/operations/listkeysresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -181,6 +185,7 @@ func main() {
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
+
 ## DeleteAPI
 
 ### Example Usage
@@ -190,8 +195,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -199,11 +204,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.DeleteAPIRequestBody{
-        APIID: "api_1234",
-    }
+
     ctx := context.Background()
-    res, err := s.Apis.DeleteAPI(ctx, request)
+    res, err := s.Apis.DeleteAPI(ctx, operations.DeleteAPIRequestBody{
+        APIID: "api_1234",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -213,8 +218,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -223,10 +226,12 @@ func main() {
 | `request`                                                                          | [operations.DeleteAPIRequestBody](../../models/operations/deleteapirequestbody.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.DeleteAPIResponse](../../models/operations/deleteapiresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -238,6 +243,7 @@ func main() {
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
+
 ## DeleteKeys
 
 ### Example Usage
@@ -247,8 +253,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -256,11 +262,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.DeleteKeysRequestBody{
-        APIID: "api_1234",
-    }
+
     ctx := context.Background()
-    res, err := s.Apis.DeleteKeys(ctx, request)
+    res, err := s.Apis.DeleteKeys(ctx, operations.DeleteKeysRequestBody{
+        APIID: "api_1234",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -270,8 +276,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -280,10 +284,12 @@ func main() {
 | `request`                                                                            | [operations.DeleteKeysRequestBody](../../models/operations/deletekeysrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.DeleteKeysResponse](../../models/operations/deletekeysresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

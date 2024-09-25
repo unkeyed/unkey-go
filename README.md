@@ -7,9 +7,31 @@
 </div>
 
 
+<!-- Start Summary [summary] -->
+## Summary
+
+
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Pagination](#pagination)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/unkeyed/unkey-go
 ```
@@ -50,9 +72,24 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [Liveness](docs/sdks/liveness/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [V1Liveness](docs/sdks/liveness/README.md#v1liveness)
+### [Apis](docs/sdks/apis/README.md)
+
+* [GetAPI](docs/sdks/apis/README.md#getapi)
+* [CreateAPI](docs/sdks/apis/README.md#createapi)
+* [ListKeys](docs/sdks/apis/README.md#listkeys)
+* [DeleteAPI](docs/sdks/apis/README.md#deleteapi)
+* [DeleteKeys](docs/sdks/apis/README.md#deletekeys)
+
+### [Identities](docs/sdks/identities/README.md)
+
+* [CreateIdentity](docs/sdks/identities/README.md#createidentity)
+* [GetIdentity](docs/sdks/identities/README.md#getidentity)
+* [ListIdentities](docs/sdks/identities/README.md#listidentities)
+* [UpdateIdentity](docs/sdks/identities/README.md#updateidentity)
+* [DeleteIdentity](docs/sdks/identities/README.md#deleteidentity)
 
 ### [Keys](docs/sdks/keys/README.md)
 
@@ -70,17 +107,9 @@ func main() {
 * [RemoveRoles](docs/sdks/keys/README.md#removeroles)
 * [SetRoles](docs/sdks/keys/README.md#setroles)
 
-### [Apis](docs/sdks/apis/README.md)
+### [Liveness](docs/sdks/liveness/README.md)
 
-* [GetAPI](docs/sdks/apis/README.md#getapi)
-* [CreateAPI](docs/sdks/apis/README.md#createapi)
-* [ListKeys](docs/sdks/apis/README.md#listkeys)
-* [DeleteAPI](docs/sdks/apis/README.md#deleteapi)
-* [DeleteKeys](docs/sdks/apis/README.md#deletekeys)
-
-### [Ratelimits](docs/sdks/ratelimits/README.md)
-
-* [Limit](docs/sdks/ratelimits/README.md#limit)
+* [V1Liveness](docs/sdks/liveness/README.md#v1liveness)
 
 ### [Migrations](docs/sdks/migrations/README.md)
 
@@ -98,13 +127,12 @@ func main() {
 * [GetRole](docs/sdks/permissions/README.md#getrole)
 * [ListRoles](docs/sdks/permissions/README.md#listroles)
 
-### [Identities](docs/sdks/identities/README.md)
+### [Ratelimits](docs/sdks/ratelimits/README.md)
 
-* [CreateIdentity](docs/sdks/identities/README.md#createidentity)
-* [GetIdentity](docs/sdks/identities/README.md#getidentity)
-* [ListIdentities](docs/sdks/identities/README.md#listidentities)
-* [UpdateIdentity](docs/sdks/identities/README.md#updateidentity)
-* [DeleteIdentity](docs/sdks/identities/README.md#deleteidentity)
+* [Limit](docs/sdks/ratelimits/README.md#limit)
+
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -450,11 +478,11 @@ func main() {
 	s := unkeygo.New(
 		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
 	)
-	request := operations.ListIdentitiesRequest{
-		Limit: unkeygo.Int64(100),
-	}
+
 	ctx := context.Background()
-	res, err := s.Identities.ListIdentities(ctx, request)
+	res, err := s.Identities.ListIdentities(ctx, operations.ListIdentitiesRequest{
+		Limit: unkeygo.Int64(100),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

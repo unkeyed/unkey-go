@@ -239,8 +239,15 @@ type UpdateKeyRequestBody struct {
 	KeyID string `json:"keyId"`
 	// The name of the key
 	Name *string `json:"name,omitempty"`
-	// The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this field back to you, so you know who is accessing your API.
+	// Deprecated, use `externalId`
+	//                     The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this field back to you, so you know who is accessing your API.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	OwnerID *string `json:"ownerId,omitempty"`
+	// The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this back to you, so you know who is accessing your API.
+	//                   Under the hood this upserts and connects an `ìdentity` for you.
+	//                   To disconnect the key from an identity, set `externalId: null`.
+	ExternalID *string `json:"externalId,omitempty"`
 	// Any additional metadata you want to store with the key
 	Meta map[string]any `json:"meta,omitempty"`
 	// The unix timestamp in milliseconds when the key will expire. If this field is null or undefined, the key is not expiring.
@@ -280,6 +287,13 @@ func (o *UpdateKeyRequestBody) GetOwnerID() *string {
 		return nil
 	}
 	return o.OwnerID
+}
+
+func (o *UpdateKeyRequestBody) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
 }
 
 func (o *UpdateKeyRequestBody) GetMeta() map[string]any {

@@ -1,6 +1,8 @@
 # Migrations
 (*Migrations*)
 
+## Overview
+
 ### Available Operations
 
 * [V1MigrationsCreateKeys](#v1migrationscreatekeys)
@@ -15,8 +17,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -24,7 +26,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := []operations.RequestBody{
+
+    ctx := context.Background()
+    res, err := s.Migrations.V1MigrationsCreateKeys(ctx, []operations.RequestBody{
         operations.RequestBody{
             APIID: "api_123",
             Name: unkeygo.String("my key"),
@@ -56,9 +60,7 @@ func main() {
             },
             Enabled: unkeygo.Bool(false),
         },
-    }
-    ctx := context.Background()
-    res, err := s.Migrations.V1MigrationsCreateKeys(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -68,8 +70,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -78,10 +78,12 @@ func main() {
 | `request`                                                | [[]operations.RequestBody](../../.md)                    | :heavy_check_mark:                                       | The request object to use for the request.               |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
-
 ### Response
 
 **[*operations.V1MigrationsCreateKeysResponse](../../models/operations/v1migrationscreatekeysresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -93,6 +95,7 @@ func main() {
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
+
 ## V1MigrationsEnqueueKeys
 
 ### Example Usage
@@ -102,8 +105,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -111,7 +114,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.V1MigrationsEnqueueKeysRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Migrations.V1MigrationsEnqueueKeys(ctx, operations.V1MigrationsEnqueueKeysRequestBody{
         MigrationID: "<value>",
         APIID: "<value>",
         Keys: []operations.Keys{
@@ -145,9 +150,7 @@ func main() {
                 Enabled: unkeygo.Bool(false),
             },
         },
-    }
-    ctx := context.Background()
-    res, err := s.Migrations.V1MigrationsEnqueueKeys(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -157,8 +160,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
@@ -167,10 +168,12 @@ func main() {
 | `request`                                                                                                      | [operations.V1MigrationsEnqueueKeysRequestBody](../../models/operations/v1migrationsenqueuekeysrequestbody.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.V1MigrationsEnqueueKeysResponse](../../models/operations/v1migrationsenqueuekeysresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

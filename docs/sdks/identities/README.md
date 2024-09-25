@@ -1,6 +1,8 @@
 # Identities
 (*Identities*)
 
+## Overview
+
 ### Available Operations
 
 * [CreateIdentity](#createidentity)
@@ -18,8 +20,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -27,7 +29,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.CreateIdentityRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Identities.CreateIdentity(ctx, operations.CreateIdentityRequestBody{
         ExternalID: "user_123",
         Ratelimits: []operations.Ratelimits{
             operations.Ratelimits{
@@ -35,10 +39,13 @@ func main() {
                 Limit: 10,
                 Duration: 1000,
             },
+            operations.Ratelimits{
+                Name: "tokens",
+                Limit: 10,
+                Duration: 1000,
+            },
         },
-    }
-    ctx := context.Background()
-    res, err := s.Identities.CreateIdentity(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -48,8 +55,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -58,10 +63,12 @@ func main() {
 | `request`                                                                                    | [operations.CreateIdentityRequestBody](../../models/operations/createidentityrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.CreateIdentityResponse](../../models/operations/createidentityresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -72,6 +79,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## GetIdentity
 
@@ -82,8 +90,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -91,12 +99,12 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.GetIdentityRequest{
+
+    ctx := context.Background()
+    res, err := s.Identities.GetIdentity(ctx, operations.GetIdentityRequest{
         IdentityID: unkeygo.String("id_1234"),
         ExternalID: unkeygo.String("id_1234"),
-    }
-    ctx := context.Background()
-    res, err := s.Identities.GetIdentity(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -106,8 +114,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -116,10 +122,12 @@ func main() {
 | `request`                                                                      | [operations.GetIdentityRequest](../../models/operations/getidentityrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.GetIdentityResponse](../../models/operations/getidentityresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -131,6 +139,7 @@ func main() {
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
+
 ## ListIdentities
 
 ### Example Usage
@@ -140,8 +149,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -149,11 +158,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.ListIdentitiesRequest{
-        Limit: unkeygo.Int64(100),
-    }
+
     ctx := context.Background()
-    res, err := s.Identities.ListIdentities(ctx, request)
+    res, err := s.Identities.ListIdentities(ctx, operations.ListIdentitiesRequest{
+        Limit: unkeygo.Int64(100),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -176,8 +185,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -186,10 +193,12 @@ func main() {
 | `request`                                                                            | [operations.ListIdentitiesRequest](../../models/operations/listidentitiesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.ListIdentitiesResponse](../../models/operations/listidentitiesresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -200,6 +209,7 @@ func main() {
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+
 
 ## UpdateIdentity
 
@@ -210,8 +220,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -219,7 +229,9 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.UpdateIdentityRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Identities.UpdateIdentity(ctx, operations.UpdateIdentityRequestBody{
         IdentityID: unkeygo.String("id_1234"),
         ExternalID: unkeygo.String("user_1234"),
         Ratelimits: []operations.UpdateIdentityRatelimits{
@@ -228,10 +240,18 @@ func main() {
                 Limit: 10,
                 Duration: 1000,
             },
+            operations.UpdateIdentityRatelimits{
+                Name: "tokens",
+                Limit: 10,
+                Duration: 1000,
+            },
+            operations.UpdateIdentityRatelimits{
+                Name: "tokens",
+                Limit: 10,
+                Duration: 1000,
+            },
         },
-    }
-    ctx := context.Background()
-    res, err := s.Identities.UpdateIdentity(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -241,8 +261,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -251,10 +269,12 @@ func main() {
 | `request`                                                                                    | [operations.UpdateIdentityRequestBody](../../models/operations/updateidentityrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.UpdateIdentityResponse](../../models/operations/updateidentityresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
@@ -266,6 +286,7 @@ func main() {
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
 
+
 ## DeleteIdentity
 
 ### Example Usage
@@ -275,8 +296,8 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"github.com/unkeyed/unkey-go/models/operations"
 	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
 	"log"
 )
 
@@ -284,11 +305,11 @@ func main() {
     s := unkeygo.New(
         unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
     )
-    request := operations.DeleteIdentityRequestBody{
-        IdentityID: "id_1234",
-    }
+
     ctx := context.Background()
-    res, err := s.Identities.DeleteIdentity(ctx, request)
+    res, err := s.Identities.DeleteIdentity(ctx, operations.DeleteIdentityRequestBody{
+        IdentityID: "id_1234",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -298,8 +319,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
@@ -308,10 +327,12 @@ func main() {
 | `request`                                                                                    | [operations.DeleteIdentityRequestBody](../../models/operations/deleteidentityrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.DeleteIdentityResponse](../../models/operations/deleteidentityresponse.md), error**
+
+### Errors
+
 | Error Object                     | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |

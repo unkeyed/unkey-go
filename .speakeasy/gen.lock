@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: fedf8d1926c823e4a6b4787e9788634a
+  docChecksum: 2afd603c5d59a68f009afa8eac8a81de
   docVersion: 1.0.0
-  speakeasyVersion: 1.402.12
-  generationVersion: 2.422.15
-  releaseVersion: 0.9.1
-  configChecksum: d3a75ceda7f8ec35a8fa0d16f319ba62
+  speakeasyVersion: 1.409.0
+  generationVersion: 2.429.0
+  releaseVersion: 0.9.2
+  configChecksum: 4580e5f96222f4716762a54643b72cee
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.9
+    core: 3.5.12
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.1
@@ -362,6 +362,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   createKey:
     speakeasy-default-create-key:
       requestBody:
@@ -423,6 +424,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   updateRemaining:
     speakeasy-default-update-remaining:
       requestBody:
@@ -510,6 +512,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   setPermissions:
     speakeasy-default-set-permissions:
       requestBody:
@@ -571,6 +574,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   setRoles:
     speakeasy-default-set-roles:
       requestBody:
@@ -677,6 +681,7 @@ examples:
           application/json: {"error": {"code": "DELETE_PROTECTED", "docs": "https://unkey.dev/docs/api-reference/errors/code/DELETE_PROTECTED", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   deleteKeys:
     speakeasy-default-delete-keys:
       requestBody:
@@ -759,6 +764,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "202": {}
   createPermission:
     speakeasy-default-create-permission:
       requestBody:
@@ -799,6 +805,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   getPermission:
     speakeasy-default-get-permission:
       parameters:
@@ -880,6 +887,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   getRole:
     speakeasy-default-get-role:
       parameters:
@@ -1027,3 +1035,4 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}

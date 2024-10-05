@@ -70,7 +70,6 @@ func (o *ErrForbiddenError) GetRequestID() string {
 	return o.RequestID
 }
 
-// ErrForbidden - The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.
 type ErrForbidden struct {
 	Error_ ErrForbiddenError `json:"error"`
 }

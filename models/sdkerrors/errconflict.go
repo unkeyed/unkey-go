@@ -70,7 +70,6 @@ func (o *ErrConflictError) GetRequestID() string {
 	return o.RequestID
 }
 
-// ErrConflict - This response is sent when a request conflicts with the current state of the server.
 type ErrConflict struct {
 	Error_ ErrConflictError `json:"error"`
 }

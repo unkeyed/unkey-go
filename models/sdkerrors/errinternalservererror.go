@@ -70,7 +70,6 @@ func (o *ErrInternalServerErrorError) GetRequestID() string {
 	return o.RequestID
 }
 
-// ErrInternalServerError - The server has encountered a situation it does not know how to handle.
 type ErrInternalServerError struct {
 	Error_ ErrInternalServerErrorError `json:"error"`
 }

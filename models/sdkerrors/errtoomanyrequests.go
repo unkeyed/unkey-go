@@ -70,7 +70,6 @@ func (o *ErrTooManyRequestsError) GetRequestID() string {
 	return o.RequestID
 }
 
-// ErrTooManyRequests - The user has sent too many requests in a given amount of time ("rate limiting")
 type ErrTooManyRequests struct {
 	Error_ ErrTooManyRequestsError `json:"error"`
 }

@@ -138,9 +138,13 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                     | Status Code                      | Content Type                     |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `V1Liveness` function may return the following errors:
+
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -149,7 +153,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ### Example
 

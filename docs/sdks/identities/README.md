@@ -69,7 +69,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -78,8 +78,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## GetIdentity
 
@@ -128,7 +127,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -137,8 +136,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## ListIdentities
 
@@ -199,7 +197,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -208,8 +206,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## UpdateIdentity
 
@@ -275,7 +272,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -284,8 +281,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## DeleteIdentity
 
@@ -333,7 +329,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -342,4 +338,4 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |

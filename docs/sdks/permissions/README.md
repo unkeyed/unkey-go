@@ -61,7 +61,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -70,8 +70,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## DeletePermission
 
@@ -119,7 +118,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -128,8 +127,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## GetPermission
 
@@ -177,7 +175,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -186,8 +184,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## ListPermissions
 
@@ -231,7 +228,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -240,8 +237,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## CreateRole
 
@@ -290,7 +286,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -299,8 +295,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## DeleteRole
 
@@ -348,7 +343,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -357,8 +352,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## GetRole
 
@@ -406,7 +400,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -415,8 +409,7 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
-
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
 
 ## ListRoles
 
@@ -460,7 +453,7 @@ func main() {
 
 ### Errors
 
-| Error Object                     | Status Code                      | Content Type                     |
+| Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | sdkerrors.ErrBadRequest          | 400                              | application/json                 |
 | sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
@@ -469,4 +462,4 @@ func main() {
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4xx-5xx                          | */*                              |
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |

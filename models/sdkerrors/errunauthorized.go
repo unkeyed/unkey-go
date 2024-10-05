@@ -70,7 +70,6 @@ func (o *ErrUnauthorizedError) GetRequestID() string {
 	return o.RequestID
 }
 
-// ErrUnauthorized - Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response.
 type ErrUnauthorized struct {
 	Error_ ErrUnauthorizedError `json:"error"`
 }

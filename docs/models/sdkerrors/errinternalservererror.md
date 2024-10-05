@@ -1,7 +1,5 @@
 # ErrInternalServerError
 
-The server has encountered a situation it does not know how to handle.
-
 
 ## Fields
 

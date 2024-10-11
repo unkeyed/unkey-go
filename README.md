@@ -94,6 +94,7 @@ func main() {
 ### [Keys](docs/sdks/keys/README.md)
 
 * [GetKey](docs/sdks/keys/README.md#getkey)
+* [Whoami](docs/sdks/keys/README.md#whoami)
 * [DeleteKey](docs/sdks/keys/README.md#deletekey)
 * [CreateKey](docs/sdks/keys/README.md#createkey)
 * [VerifyKey](docs/sdks/keys/README.md#verifykey)

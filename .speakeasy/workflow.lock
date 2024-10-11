@@ -1,9 +1,9 @@
-speakeasyVersion: 1.409.0
+speakeasyVersion: 1.417.0
 sources:
     openapi.json:
         sourceNamespace: openapi-json
-        sourceRevisionDigest: sha256:0b2e1ce59eb60e4260983917c67406fc5a69875fbe743588942477844d4330de
-        sourceBlobDigest: sha256:8ebc69fa6f886740d1f10b8df8a57e7c3680a4878fdedb26ad0b83a495d6bdef
+        sourceRevisionDigest: sha256:1320ea16df363df8b16b2695c58c19ed12ad1e623948a905420d15603cfdd3ac
+        sourceBlobDigest: sha256:1b508a5b7bba1fa0fd5f0117d774cd2a8ee598b7439e8e4ae1bd42fbceef1ec1
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     go:
         source: openapi.json
         sourceNamespace: openapi-json
-        sourceRevisionDigest: sha256:0b2e1ce59eb60e4260983917c67406fc5a69875fbe743588942477844d4330de
-        sourceBlobDigest: sha256:8ebc69fa6f886740d1f10b8df8a57e7c3680a4878fdedb26ad0b83a495d6bdef
+        sourceRevisionDigest: sha256:1320ea16df363df8b16b2695c58c19ed12ad1e623948a905420d15603cfdd3ac
+        sourceBlobDigest: sha256:1b508a5b7bba1fa0fd5f0117d774cd2a8ee598b7439e8e4ae1bd42fbceef1ec1
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

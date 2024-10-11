@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 2afd603c5d59a68f009afa8eac8a81de
+  docChecksum: 201100a27c99d39c54519cba61e1d787
   docVersion: 1.0.0
-  speakeasyVersion: 1.409.0
-  generationVersion: 2.429.0
-  releaseVersion: 0.9.2
-  configChecksum: 4580e5f96222f4716762a54643b72cee
+  speakeasyVersion: 1.417.0
+  generationVersion: 2.438.2
+  releaseVersion: 0.9.3
+  configChecksum: 2a2ffaaead538dd665c9a703866c62a5
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.12
+    core: 3.5.13
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.1
@@ -72,6 +72,7 @@ generatedFiles:
   - /models/operations/v1migrationscreatekeys.go
   - /models/operations/v1migrationsenqueuekeys.go
   - /models/operations/verifykey.go
+  - /models/operations/whoami.go
   - /models/sdkerrors/errbadrequest.go
   - /models/sdkerrors/errconflict.go
   - /models/sdkerrors/errdeleteprotected.go
@@ -163,6 +164,7 @@ generatedFiles:
   - docs/models/operations/granularity.md
   - docs/models/operations/hash.md
   - docs/models/operations/identities.md
+  - docs/models/operations/identity.md
   - docs/models/operations/interval.md
   - docs/models/operations/keys.md
   - docs/models/operations/limitrequestbody.md
@@ -242,6 +244,9 @@ generatedFiles:
   - docs/models/operations/variant.md
   - docs/models/operations/verifications.md
   - docs/models/operations/verifykeyresponse.md
+  - docs/models/operations/whoamirequestbody.md
+  - docs/models/operations/whoamiresponse.md
+  - docs/models/operations/whoamiresponsebody.md
   - docs/models/sdkerrors/code.md
   - docs/models/sdkerrors/errbadrequest.md
   - docs/models/sdkerrors/errconflict.md
@@ -1036,3 +1041,24 @@ examples:
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
         "200": {}
+  whoami:
+    speakeasy-default-whoami:
+      requestBody:
+        application/json: {"key": "sk_123"}
+      responses:
+        "200":
+          application/json: {"id": "key_123", "name": "API Key 1", "remaining": 1000, "identity": {"id": "id_123", "externalId": "ext123"}, "meta": {"role": "admin", "plan": "premium"}, "createdAt": 1620000000000, "enabled": true, "environment": "production"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}

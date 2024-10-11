@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [GetKey](#getkey)
+* [Whoami](#whoami)
 * [DeleteKey](#deletekey)
 * [CreateKey](#createkey)
 * [VerifyKey](#verifykey)
@@ -62,6 +63,63 @@ func main() {
 ### Response
 
 **[*operations.GetKeyResponse](../../models/operations/getkeyresponse.md), error**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
+| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
+| sdkerrors.ErrForbidden           | 403                              | application/json                 |
+| sdkerrors.ErrNotFound            | 404                              | application/json                 |
+| sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
+| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
+| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
+
+## Whoami
+
+### Example Usage
+
+```go
+package main
+
+import(
+	unkeygo "github.com/unkeyed/unkey-go"
+	"context"
+	"github.com/unkeyed/unkey-go/models/operations"
+	"log"
+)
+
+func main() {
+    s := unkeygo.New(
+        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Keys.Whoami(ctx, operations.WhoamiRequestBody{
+        Key: "sk_123",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.WhoamiRequestBody](../../models/operations/whoamirequestbody.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
+
+### Response
+
+**[*operations.WhoamiResponse](../../models/operations/whoamiresponse.md), error**
 
 ### Errors
 

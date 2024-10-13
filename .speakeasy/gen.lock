@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 201100a27c99d39c54519cba61e1d787
+  docChecksum: 59dd02148a920cd69cef637da74fab37
   docVersion: 1.0.0
-  speakeasyVersion: 1.417.0
-  generationVersion: 2.438.2
-  releaseVersion: 0.9.3
-  configChecksum: 2a2ffaaead538dd665c9a703866c62a5
+  speakeasyVersion: 1.418.1
+  generationVersion: 2.438.3
+  releaseVersion: 0.9.4
+  configChecksum: 117778630705356958a9f1d4317948b4
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:

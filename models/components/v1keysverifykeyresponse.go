@@ -49,6 +49,8 @@ func (o *V1KeysVerifyKeyResponseRatelimit) GetReset() int64 {
 // - DISABLED: the key is disabled
 // - INSUFFICIENT_PERMISSIONS: you do not have the required permissions to perform this action
 // - EXPIRED: The key was only valid for a certain time and has expired.
+//
+// These are validation codes, the HTTP status will be 200.
 type Code string
 
 const (
@@ -153,6 +155,8 @@ type V1KeysVerifyKeyResponse struct {
 	// - DISABLED: the key is disabled
 	// - INSUFFICIENT_PERMISSIONS: you do not have the required permissions to perform this action
 	// - EXPIRED: The key was only valid for a certain time and has expired.
+	//
+	// These are validation codes, the HTTP status will be 200.
 	//
 	Code Code `json:"code"`
 	// Sets the key to be enabled or disabled. Disabled keys will not verify.

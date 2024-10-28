@@ -41,7 +41,7 @@ jobs:
 
           ESCAPED_TITLE=$(echo "${{ github.event.pull_request.title }}" | jq -Rr @json)
 
-          CONTENT="${STATUS_EMOJI} [${{github.event.pull_request.head.repo.full_name}}]\nPull request ${ACTION} by ${{ github.event.pull_request.user.login }}:\n[#${{ github.event.pull_request.number }} ${ESCAPED_TITLE}](${{ github.event.pull_request.html_url }})"
+          CONTENT="${STATUS_EMOJI} [${{github.event.pull_request.head.repo.full_name}}] Pull request ${ACTION} by ${{ github.event.pull_request.user.login }}: [#${{ github.event.pull_request.number }} ${ESCAPED_TITLE}](${{ github.event.pull_request.html_url }})"
 
           echo "content=${CONTENT}" >> $GITHUB_OUTPUT
       - name: Create Campsite message

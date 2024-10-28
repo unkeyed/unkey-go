@@ -2,7 +2,7 @@ name: Campsite PR Alerts
 
 on:
   pull_request:
-    types: [opened, closed, merged, ready_for_review, reopened]
+    types: [opened, closed, merged, ready_for_review, reopened, review_requested, auto_merge_enabled]
 
 jobs:
   post_to_campsite:

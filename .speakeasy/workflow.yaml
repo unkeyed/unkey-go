@@ -10,3 +10,7 @@ targets:
     go:
         target: go
         source: openapi.json
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/unkey/unkey/openapi-json-code-samples
+            blocking: false

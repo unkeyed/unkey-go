@@ -153,6 +153,8 @@ type UpdateKeyRefill struct {
 	Interval UpdateKeyInterval `json:"interval"`
 	// The amount of verifications to refill for each occurrence is determined individually for each key.
 	Amount int64 `json:"amount"`
+	// The day verifications will refill each month, when interval is set to 'monthly'
+	RefillDay *float64 `json:"refillDay,omitempty"`
 }
 
 func (o *UpdateKeyRefill) GetInterval() UpdateKeyInterval {
@@ -167,6 +169,13 @@ func (o *UpdateKeyRefill) GetAmount() int64 {
 		return 0
 	}
 	return o.Amount
+}
+
+func (o *UpdateKeyRefill) GetRefillDay() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RefillDay
 }
 
 type Roles struct {

@@ -42,6 +42,9 @@ type Refill struct {
 	Interval Interval `json:"interval"`
 	// The number of verifications to refill for each occurrence is determined individually for each key.
 	Amount int64 `json:"amount"`
+	// The day of the month, when we will refill the remaining verifications. To refill on the 15th of each month, set 'refillDay': 15.
+	//                     If the day does not exist, for example you specified the 30th and it's february, we will refill them on the last day of the month instead.
+	RefillDay *float64 `json:"refillDay,omitempty"`
 }
 
 func (o *Refill) GetInterval() Interval {
@@ -56,6 +59,13 @@ func (o *Refill) GetAmount() int64 {
 		return 0
 	}
 	return o.Amount
+}
+
+func (o *Refill) GetRefillDay() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RefillDay
 }
 
 // Type - Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.

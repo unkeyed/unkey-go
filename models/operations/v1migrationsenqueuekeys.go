@@ -88,6 +88,8 @@ type V1MigrationsEnqueueKeysRefill struct {
 	Interval V1MigrationsEnqueueKeysInterval `json:"interval"`
 	// The number of verifications to refill for each occurrence is determined individually for each key.
 	Amount int64 `json:"amount"`
+	// The day verifications will refill each month, when interval is set to 'monthly'
+	RefillDay *float64 `json:"refillDay,omitempty"`
 }
 
 func (o *V1MigrationsEnqueueKeysRefill) GetInterval() V1MigrationsEnqueueKeysInterval {
@@ -102,6 +104,13 @@ func (o *V1MigrationsEnqueueKeysRefill) GetAmount() int64 {
 		return 0
 	}
 	return o.Amount
+}
+
+func (o *V1MigrationsEnqueueKeysRefill) GetRefillDay() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RefillDay
 }
 
 // V1MigrationsEnqueueKeysType - Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.

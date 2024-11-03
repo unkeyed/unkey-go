@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: f56588fc2d036bcae3411872cb7a4f6b
+  docChecksum: 957bade817085c900e9e156fe28f22de
   docVersion: 1.0.0
-  speakeasyVersion: 1.422.1
-  generationVersion: 2.438.15
-  releaseVersion: 0.9.5
-  configChecksum: 2ed914345363c8de34fb47a258642372
+  speakeasyVersion: 1.424.0
+  generationVersion: 2.445.1
+  releaseVersion: 0.10.0
+  configChecksum: f05f5642b3717c2fef64128e2da1d736
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.13
+    core: 3.5.14
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.1
@@ -28,6 +28,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
+    tests: 0.6.0
     unions: 2.85.9
 generatedFiles:
   - .gitattributes
@@ -333,7 +334,7 @@ examples:
           keyId: "key_1234"
       responses:
         "200":
-          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
+          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -371,7 +372,7 @@ examples:
   createKey:
     speakeasy-default-create-key:
       requestBody:
-        application/json: {"apiId": "api_123", "name": "my key", "externalId": "team_123", "meta": {"billingTier": "PRO", "trialEnds": "2023-06-16T17:16:37.161Z"}, "roles": ["admin", "finance"], "permissions": ["domains.create_record", "say_hello"], "expires": 1623869797161, "remaining": 1000, "refill": {"interval": "daily", "amount": 100}, "ratelimit": {"type": "fast", "limit": 10, "duration": 60000}, "enabled": false}
+        application/json: {"apiId": "api_123", "name": "my key", "externalId": "team_123", "meta": {"billingTier": "PRO", "trialEnds": "2023-06-16T17:16:37.161Z"}, "roles": ["admin", "finance"], "permissions": ["domains.create_record", "say_hello"], "expires": 1623869797161, "remaining": 1000, "refill": {"interval": "monthly", "amount": 100, "refillDay": 15}, "ratelimit": {"type": "fast", "limit": 10, "duration": 60000}, "enabled": false}
       responses:
         "200":
           application/json: {"keyId": "key_123", "key": "prefix_xxxxxxxxx"}
@@ -652,7 +653,7 @@ examples:
           limit: 100
       responses:
         "200":
-          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
+          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":

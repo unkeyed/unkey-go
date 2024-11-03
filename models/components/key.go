@@ -5,9 +5,10 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/unkeyed/unkey-go/internal/utils"
 )
 
-// Interval - Determines the rate at which verifications will be refilled.
+// Interval - Determines the rate at which verifications will be refilled. When 'daily' is set for 'interval' 'refillDay' will be set to null.
 type Interval string
 
 const (
@@ -36,12 +37,25 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 
 // Refill - Unkey allows you to refill remaining verifications on a key on a regular interval.
 type Refill struct {
-	// Determines the rate at which verifications will be refilled.
+	// Determines the rate at which verifications will be refilled. When 'daily' is set for 'interval' 'refillDay' will be set to null.
 	Interval Interval `json:"interval"`
 	// Resets `remaining` to this value every interval.
 	Amount int64 `json:"amount"`
+	// The day verifications will refill each month, when interval is set to 'monthly'. Value is not zero-indexed making 1 the first day of the month. If left blank it will default to the first day of the month. When 'daily' is set for 'interval' 'refillDay' will be set to null.
+	RefillDay *float64 `default:"1" json:"refillDay"`
 	// The unix timestamp in miliseconds when the key was last refilled.
 	LastRefillAt *int64 `json:"lastRefillAt,omitempty"`
+}
+
+func (r Refill) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Refill) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Refill) GetInterval() Interval {
@@ -56,6 +70,13 @@ func (o *Refill) GetAmount() int64 {
 		return 0
 	}
 	return o.Amount
+}
+
+func (o *Refill) GetRefillDay() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.RefillDay
 }
 
 func (o *Refill) GetLastRefillAt() *int64 {

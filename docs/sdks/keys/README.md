@@ -230,8 +230,9 @@ func main() {
         Expires: unkeygo.Int64(1623869797161),
         Remaining: unkeygo.Int64(1000),
         Refill: &operations.Refill{
-            Interval: operations.IntervalDaily,
+            Interval: operations.IntervalMonthly,
             Amount: 100,
+            RefillDay: unkeygo.Float64(15),
         },
         Ratelimit: &operations.Ratelimit{
             Type: operations.TypeFast.ToPointer(),

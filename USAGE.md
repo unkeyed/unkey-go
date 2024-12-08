@@ -10,7 +10,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()

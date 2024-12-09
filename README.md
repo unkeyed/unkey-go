@@ -15,16 +15,20 @@
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Retries](#retries)
+  * [Pagination](#pagination)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Pagination](#pagination)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -52,7 +56,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -127,9 +131,16 @@ func main() {
 * [GetRole](docs/sdks/permissions/README.md#getrole)
 * [ListRoles](docs/sdks/permissions/README.md#listroles)
 
+### [Ratelimit](docs/sdks/ratelimit/README.md)
+
+* [RatelimitSetOverride](docs/sdks/ratelimit/README.md#ratelimitsetoverride)
+* [ListOverrides](docs/sdks/ratelimit/README.md#listoverrides)
+* [GetOverride](docs/sdks/ratelimit/README.md#getoverride)
+
 ### [Ratelimits](docs/sdks/ratelimits/README.md)
 
 * [Limit](docs/sdks/ratelimits/README.md#limit)
+* [DeleteOverride](docs/sdks/ratelimits/README.md#deleteoverride)
 
 
 </details>
@@ -144,16 +155,16 @@ By Default, an API error will return `sdkerrors.SDKError`. When custom error res
 
 For example, the `V1Liveness` function may return the following errors:
 
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| sdkerrors.ErrBadRequest          | 400                              | application/json                 |
-| sdkerrors.ErrUnauthorized        | 401                              | application/json                 |
-| sdkerrors.ErrForbidden           | 403                              | application/json                 |
-| sdkerrors.ErrNotFound            | 404                              | application/json                 |
-| sdkerrors.ErrConflict            | 409                              | application/json                 |
-| sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
-| sdkerrors.ErrInternalServerError | 500                              | application/json                 |
-| sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
+| Error Type                       | Status Code | Content Type     |
+| -------------------------------- | ----------- | ---------------- |
+| sdkerrors.ErrBadRequest          | 400         | application/json |
+| sdkerrors.ErrUnauthorized        | 401         | application/json |
+| sdkerrors.ErrForbidden           | 403         | application/json |
+| sdkerrors.ErrNotFound            | 404         | application/json |
+| sdkerrors.ErrConflict            | 409         | application/json |
+| sdkerrors.ErrTooManyRequests     | 429         | application/json |
+| sdkerrors.ErrInternalServerError | 500         | application/json |
+| sdkerrors.SDKError               | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -170,7 +181,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -233,47 +244,9 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.unkey.dev` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	unkeygo "github.com/unkeyed/unkey-go"
-	"log"
-)
-
-func main() {
-	s := unkeygo.New(
-		unkeygo.WithServerIndex(0),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Liveness.V1Liveness(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Object != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
@@ -286,7 +259,7 @@ import (
 func main() {
 	s := unkeygo.New(
 		unkeygo.WithServerURL("https://api.unkey.dev"),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -338,9 +311,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `BearerAuth` | http         | HTTP Bearer  |
+| Name         | Type | Scheme      |
+| ------------ | ---- | ----------- |
+| `BearerAuth` | http | HTTP Bearer |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -354,7 +327,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -389,7 +362,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -438,7 +411,7 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -474,7 +447,7 @@ import (
 
 func main() {
 	s := unkeygo.New(
-		unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
 	ctx := context.Background()
@@ -498,7 +471,6 @@ func main() {
 				break
 			}
 		}
-
 	}
 }
 

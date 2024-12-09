@@ -1,0 +1,9 @@
+# DeleteOverrideResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                      | [components.HTTPMetadata](../../models/components/httpmetadata.md)                              | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `Object`                                                                                        | [*operations.DeleteOverrideResponseBody](../../models/operations/deleteoverrideresponsebody.md) | :heavy_minus_sign:                                                                              | Successfully deleted a ratelimit override                                                       |

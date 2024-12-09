@@ -20,14 +20,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()
@@ -89,14 +89,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()
@@ -147,14 +147,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()
@@ -165,20 +165,19 @@ func main() {
         log.Fatal(err)
     }
     if res.Object != nil {
-                for {
+        for {
             // handle items
-        
+
             res, err = res.Next()
-        
+
             if err != nil {
                 // handle error
             }
-        
+
             if res == nil {
                 break
             }
         }
-        
     }
 }
 ```
@@ -217,14 +216,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()
@@ -292,14 +291,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()

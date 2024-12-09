@@ -1,22 +1,23 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 957bade817085c900e9e156fe28f22de
+  docChecksum: aed0c1332c44cace441ba6222252499a
   docVersion: 1.0.0
-  speakeasyVersion: 1.424.0
-  generationVersion: 2.445.1
-  releaseVersion: 0.10.0
-  configChecksum: f05f5642b3717c2fef64128e2da1d736
+  speakeasyVersion: 1.453.4
+  generationVersion: 2.474.6
+  releaseVersion: 0.11.0
+  configChecksum: a062b6a46d3010813d5b8551dd3182c1
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.14
+    core: 3.5.17
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.3.1
+    envVarSecurityUsage: 0.3.2
+    examples: 2.81.3
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -26,10 +27,9 @@ features:
     nullables: 0.1.0
     pagination: 2.82.1
     responseFormat: 0.1.2
-    retries: 2.83.0
+    retries: 2.83.1
     sdkHooks: 0.1.0
-    tests: 0.6.0
-    unions: 2.85.9
+    unions: 2.85.10
 generatedFiles:
   - .gitattributes
   - /models/components/httpmetadata.go
@@ -49,19 +49,23 @@ generatedFiles:
   - /models/operations/deleteidentity.go
   - /models/operations/deletekey.go
   - /models/operations/deletekeys.go
+  - /models/operations/deleteoverride.go
   - /models/operations/deletepermission.go
   - /models/operations/deleterole.go
   - /models/operations/getapi.go
   - /models/operations/getidentity.go
   - /models/operations/getkey.go
+  - /models/operations/getoverride.go
   - /models/operations/getpermission.go
   - /models/operations/getrole.go
   - /models/operations/getverifications.go
   - /models/operations/limit.go
   - /models/operations/listidentities.go
   - /models/operations/listkeys.go
+  - /models/operations/listoverrides.go
   - /models/operations/listpermissions.go
   - /models/operations/listroles.go
+  - /models/operations/ratelimitsetoverride.go
   - /models/operations/removepermissions.go
   - /models/operations/removeroles.go
   - /models/operations/setpermissions.go
@@ -138,6 +142,9 @@ generatedFiles:
   - docs/models/operations/deletekeysrequestbody.md
   - docs/models/operations/deletekeysresponse.md
   - docs/models/operations/deletekeysresponsebody.md
+  - docs/models/operations/deleteoverriderequestbody.md
+  - docs/models/operations/deleteoverrideresponse.md
+  - docs/models/operations/deleteoverrideresponsebody.md
   - docs/models/operations/deletepermissionrequestbody.md
   - docs/models/operations/deletepermissionresponse.md
   - docs/models/operations/deletepermissionresponsebody.md
@@ -153,6 +160,9 @@ generatedFiles:
   - docs/models/operations/getidentityresponsebody.md
   - docs/models/operations/getkeyrequest.md
   - docs/models/operations/getkeyresponse.md
+  - docs/models/operations/getoverriderequest.md
+  - docs/models/operations/getoverrideresponse.md
+  - docs/models/operations/getoverrideresponsebody.md
   - docs/models/operations/getpermissionrequest.md
   - docs/models/operations/getpermissionresponse.md
   - docs/models/operations/getpermissionresponsebody.md
@@ -178,15 +188,22 @@ generatedFiles:
   - docs/models/operations/listkeysrequest.md
   - docs/models/operations/listkeysresponse.md
   - docs/models/operations/listkeysresponsebody.md
+  - docs/models/operations/listoverridesrequest.md
+  - docs/models/operations/listoverridesresponse.md
+  - docs/models/operations/listoverridesresponsebody.md
   - docs/models/operations/listpermissionsresponse.md
   - docs/models/operations/listpermissionsresponsebody.md
   - docs/models/operations/listrolesresponse.md
   - docs/models/operations/listrolesresponsebody.md
   - docs/models/operations/op.md
   - docs/models/operations/option.md
+  - docs/models/operations/overrides.md
   - docs/models/operations/permissions.md
   - docs/models/operations/ratelimit.md
   - docs/models/operations/ratelimits.md
+  - docs/models/operations/ratelimitsetoverriderequestbody.md
+  - docs/models/operations/ratelimitsetoverrideresponse.md
+  - docs/models/operations/ratelimitsetoverrideresponsebody.md
   - docs/models/operations/refill.md
   - docs/models/operations/removepermissionspermissions.md
   - docs/models/operations/removepermissionsrequestbody.md
@@ -278,12 +295,14 @@ generatedFiles:
   - docs/sdks/liveness/README.md
   - docs/sdks/migrations/README.md
   - docs/sdks/permissions/README.md
+  - docs/sdks/ratelimit/README.md
   - docs/sdks/ratelimits/README.md
   - docs/sdks/unkey/README.md
   - go.mod
   - identities.go
   - internal/hooks/hooks.go
   - internal/utils/contenttype.go
+  - internal/utils/env.go
   - internal/utils/form.go
   - internal/utils/headers.go
   - internal/utils/json.go
@@ -299,6 +318,7 @@ generatedFiles:
   - models/operations/options.go
   - models/sdkerrors/sdkerror.go
   - permissions.go
+  - ratelimit.go
   - ratelimits.go
   - retry/config.go
   - types/bigint.go
@@ -312,7 +332,7 @@ examples:
     speakeasy-default-v1-liveness:
       responses:
         "200":
-          application/json: {"status": "<value>", "services": {"metrics": "AxiomMetrics", "logger": "AxiomLogger or ConsoleLogger", "ratelimit": "<value>", "usagelimit": "<value>", "analytics": "<value>"}}
+          application/json: {"status": "<value>", "services": {"metrics": "AxiomMetrics", "logger": "AxiomLogger or ConsoleLogger", "ratelimit": "<value>", "usagelimit": "<value>"}}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -1063,3 +1083,92 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  deleteOverride:
+    speakeasy-default-delete-override:
+      requestBody:
+        application/json: {"namespaceId": "rlns_1234", "namespaceName": "email.outbound", "identifier": "user_123"}
+      responses:
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  ratelimit.setOverride:
+    speakeasy-default-ratelimit-set-override:
+      requestBody:
+        application/json: {"namespaceId": "rlns_1234", "namespaceName": "email.outbound", "identifier": "user_123", "limit": 10, "duration": 60000}
+      responses:
+        "200":
+          application/json: {"overrideId": "over_123"}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  listOverrides:
+    speakeasy-default-list-overrides:
+      parameters:
+        query:
+          namespaceId: "rlns_1234"
+          namespaceName: "email.outbound"
+          limit: 100
+      responses:
+        "200":
+          application/json: {"overrides": [{"id": "<id>", "identifier": "<value>", "limit": 579960, "duration": 62070}, {"id": "<id>", "identifier": "<value>", "limit": 157093, "duration": 220141}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 414453}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+  getOverride:
+    speakeasy-default-get-override:
+      parameters:
+        query:
+          namespaceId: "rlns_1234"
+          namespaceName: "email.outbound"
+          identifier: "user_123"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "identifier": "<value>", "limit": 223250, "duration": 911447}
+        "400":
+          application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
+        "401":
+          application/json: {"error": {"code": "UNAUTHORIZED", "docs": "https://unkey.dev/docs/api-reference/errors/code/UNAUTHORIZED", "message": "<value>", "requestId": "req_1234"}}
+        "403":
+          application/json: {"error": {"code": "FORBIDDEN", "docs": "https://unkey.dev/docs/api-reference/errors/code/FORBIDDEN", "message": "<value>", "requestId": "req_1234"}}
+        "404":
+          application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
+        "409":
+          application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "429":
+          application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
+        "500":
+          application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+generatedTests: {}

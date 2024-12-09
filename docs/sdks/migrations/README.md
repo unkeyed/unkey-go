@@ -17,14 +17,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()
@@ -104,14 +104,14 @@ package main
 
 import(
 	unkeygo "github.com/unkeyed/unkey-go"
-	"context"
 	"github.com/unkeyed/unkey-go/models/operations"
+	"context"
 	"log"
 )
 
 func main() {
     s := unkeygo.New(
-        unkeygo.WithSecurity("<YOUR_BEARER_TOKEN_HERE>"),
+        unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     ctx := context.Background()

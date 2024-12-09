@@ -73,6 +73,7 @@ type Unkey struct {
 	Keys        *Keys
 	Apis        *Apis
 	Ratelimits  *Ratelimits
+	Ratelimit   *Ratelimit
 	Migrations  *Migrations
 	Permissions *Permissions
 	Identities  *Identities
@@ -154,9 +155,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.10.0",
-			GenVersion:        "2.445.1",
-			UserAgent:         "speakeasy-sdk/go 0.10.0 2.445.1 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.11.0",
+			GenVersion:        "2.474.6",
+			UserAgent:         "speakeasy-sdk/go 0.11.0 2.474.6 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -183,6 +184,8 @@ func New(opts ...SDKOption) *Unkey {
 	sdk.Apis = newApis(sdk.sdkConfiguration)
 
 	sdk.Ratelimits = newRatelimits(sdk.sdkConfiguration)
+
+	sdk.Ratelimit = newRatelimit(sdk.sdkConfiguration)
 
 	sdk.Migrations = newMigrations(sdk.sdkConfiguration)
 

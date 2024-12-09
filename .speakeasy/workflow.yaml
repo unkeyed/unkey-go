@@ -12,5 +12,5 @@ targets:
         source: openapi.json
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/unkey/unkey/openapi-json-code-samples
+                location: registry.speakeasyapi.dev/unkey/unkey/openapi-json-go-code-samples
             blocking: false

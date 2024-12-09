@@ -15,8 +15,6 @@ type Services struct {
 	Ratelimit string `json:"ratelimit"`
 	// The name of the connected usagelimit service
 	Usagelimit string `json:"usagelimit"`
-	// The name of the connected analytics service
-	Analytics string `json:"analytics"`
 }
 
 func (o *Services) GetMetrics() string {
@@ -45,13 +43,6 @@ func (o *Services) GetUsagelimit() string {
 		return ""
 	}
 	return o.Usagelimit
-}
-
-func (o *Services) GetAnalytics() string {
-	if o == nil {
-		return ""
-	}
-	return o.Analytics
 }
 
 // V1LivenessResponseBody - The configured services and their status

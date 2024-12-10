@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: aed0c1332c44cace441ba6222252499a
+  docChecksum: d09e924270fa11fbbe171a5d12d57133
   docVersion: 1.0.0
-  speakeasyVersion: 1.453.4
-  generationVersion: 2.474.6
-  releaseVersion: 0.11.0
-  configChecksum: a062b6a46d3010813d5b8551dd3182c1
+  speakeasyVersion: 1.453.8
+  generationVersion: 2.474.15
+  releaseVersion: 0.11.1
+  configChecksum: efc343b7f7e936e8046fe9a0eee9e99b
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.17
+    core: 3.5.18
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.2
@@ -1102,6 +1102,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "200": {}
   ratelimit.setOverride:
     speakeasy-default-ratelimit-set-override:
       requestBody:

@@ -22,18 +22,19 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.CreatePermission(ctx, operations.CreatePermissionRequestBody{
         Name: "record.write",
         Description: unkeygo.String("record.write can create new dns records for our domains."),
@@ -80,18 +81,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.DeletePermission(ctx, operations.DeletePermissionRequestBody{
         PermissionID: "perm_123",
     })
@@ -137,18 +139,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.GetPermission(ctx, operations.GetPermissionRequest{
         PermissionID: "perm_123",
     })
@@ -194,17 +197,18 @@ func main() {
 package main
 
 import(
-	unkeygo "github.com/unkeyed/unkey-go"
 	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.ListPermissions(ctx)
     if err != nil {
         log.Fatal(err)
@@ -247,18 +251,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.CreateRole(ctx, operations.CreateRoleRequestBody{
         Name: "dns.records.manager",
         Description: unkeygo.String("dns.records.manager can read and write dns records for our domains."),
@@ -305,18 +310,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.DeleteRole(ctx, operations.DeleteRoleRequestBody{
         RoleID: "role_123",
     })
@@ -362,18 +368,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.GetRole(ctx, operations.GetRoleRequest{
         RoleID: "role_123",
     })
@@ -419,17 +426,18 @@ func main() {
 package main
 
 import(
-	unkeygo "github.com/unkeyed/unkey-go"
 	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Permissions.ListRoles(ctx)
     if err != nil {
         log.Fatal(err)

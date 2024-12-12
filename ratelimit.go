@@ -26,10 +26,10 @@ func newRatelimit(sdkConfig sdkConfiguration) *Ratelimit {
 	}
 }
 
-func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations.RatelimitSetOverrideRequestBody, opts ...operations.Option) (*operations.RatelimitSetOverrideResponse, error) {
+func (s *Ratelimit) SetOverride(ctx context.Context, request operations.SetOverrideRequestBody, opts ...operations.Option) (*operations.SetOverrideResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "ratelimit.setOverride",
+		OperationID:    "setOverride",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -175,7 +175,7 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 		}
 	}
 
-	res := &operations.RatelimitSetOverrideResponse{
+	res := &operations.SetOverrideResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -191,7 +191,7 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 				return nil, err
 			}
 
-			var out operations.RatelimitSetOverrideResponseBody
+			var out operations.SetOverrideResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

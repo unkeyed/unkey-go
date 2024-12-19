@@ -101,6 +101,13 @@ type V1KeysVerifyKeyRequest struct {
 	APIID *string `json:"apiId,omitempty"`
 	// The key to verify
 	Key string `json:"key"`
+	// Tags do not influence the outcome of a verification.
+	//                 They can be added to filter or aggregate historical verification data for your analytics needs.
+	//                 To unkey, a tag is simply a string, we don't enforce any schema but leave that up to you.
+	//                 The only exception is that each tag must be between 1 and 128 characters long.
+	//                 A typical setup would be to add key-value pairs of resources or locations, that you need later when querying.
+	//
+	Tags []string `json:"tags,omitempty"`
 	// Perform RBAC checks
 	Authorization *Authorization `json:"authorization,omitempty"`
 	// Use 'ratelimits' with `[{ name: "default", cost: 2}]`
@@ -124,6 +131,13 @@ func (o *V1KeysVerifyKeyRequest) GetKey() string {
 		return ""
 	}
 	return o.Key
+}
+
+func (o *V1KeysVerifyKeyRequest) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
 }
 
 func (o *V1KeysVerifyKeyRequest) GetAuthorization() *Authorization {

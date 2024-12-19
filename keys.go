@@ -46,7 +46,12 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest, opt
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.getKey")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -76,6 +81,10 @@ func (s *Keys) GetKey(ctx context.Context, request operations.GetKeyRequest, opt
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -389,7 +398,12 @@ func (s *Keys) Whoami(ctx context.Context, request operations.WhoamiRequestBody,
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.whoami")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -421,6 +435,10 @@ func (s *Keys) Whoami(ctx context.Context, request operations.WhoamiRequestBody,
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -734,7 +752,12 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.deleteKey")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -766,6 +789,10 @@ func (s *Keys) DeleteKey(ctx context.Context, request operations.DeleteKeyReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1079,7 +1106,12 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.createKey")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1111,6 +1143,10 @@ func (s *Keys) CreateKey(ctx context.Context, request operations.CreateKeyReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1424,7 +1460,12 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.verifyKey")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1456,6 +1497,10 @@ func (s *Keys) VerifyKey(ctx context.Context, request components.V1KeysVerifyKey
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1769,7 +1814,12 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.updateKey")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1801,6 +1851,10 @@ func (s *Keys) UpdateKey(ctx context.Context, request operations.UpdateKeyReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2114,7 +2168,12 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.updateRemaining")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -2146,6 +2205,10 @@ func (s *Keys) UpdateRemaining(ctx context.Context, request operations.UpdateRem
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2459,7 +2522,12 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.getVerifications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -2489,6 +2557,10 @@ func (s *Keys) GetVerifications(ctx context.Context, request operations.GetVerif
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -2802,7 +2874,12 @@ func (s *Keys) AddPermissions(ctx context.Context, request operations.AddPermiss
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.addPermissions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -2834,6 +2911,10 @@ func (s *Keys) AddPermissions(ctx context.Context, request operations.AddPermiss
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -3147,7 +3228,12 @@ func (s *Keys) RemovePermissions(ctx context.Context, request operations.RemoveP
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.removePermissions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -3179,6 +3265,10 @@ func (s *Keys) RemovePermissions(ctx context.Context, request operations.RemoveP
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -3492,7 +3582,12 @@ func (s *Keys) SetPermissions(ctx context.Context, request operations.SetPermiss
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.setPermissions")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -3524,6 +3619,10 @@ func (s *Keys) SetPermissions(ctx context.Context, request operations.SetPermiss
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -3837,7 +3936,12 @@ func (s *Keys) AddRoles(ctx context.Context, request operations.AddRolesRequestB
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.addRoles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -3869,6 +3973,10 @@ func (s *Keys) AddRoles(ctx context.Context, request operations.AddRolesRequestB
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -4182,7 +4290,12 @@ func (s *Keys) RemoveRoles(ctx context.Context, request operations.RemoveRolesRe
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.removeRoles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -4214,6 +4327,10 @@ func (s *Keys) RemoveRoles(ctx context.Context, request operations.RemoveRolesRe
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -4527,7 +4644,12 @@ func (s *Keys) SetRoles(ctx context.Context, request operations.SetRolesRequestB
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/keys.setRoles")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -4559,6 +4681,10 @@ func (s *Keys) SetRoles(ctx context.Context, request operations.SetRolesRequestB
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

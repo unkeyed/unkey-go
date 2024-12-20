@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [RatelimitSetOverride](#ratelimitsetoverride)
+* [SetOverride](#setoverride)
 * [ListOverrides](#listoverrides)
 * [GetOverride](#getoverride)
 
-## RatelimitSetOverride
+## SetOverride
 
 ### Example Usage
 
@@ -17,19 +17,20 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
-    res, err := s.Ratelimit.RatelimitSetOverride(ctx, operations.RatelimitSetOverrideRequestBody{
+    res, err := s.Ratelimit.SetOverride(ctx, operations.SetOverrideRequestBody{
         NamespaceID: unkeygo.String("rlns_1234"),
         NamespaceName: unkeygo.String("email.outbound"),
         Identifier: "user_123",
@@ -47,15 +48,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.RatelimitSetOverrideRequestBody](../../models/operations/ratelimitsetoverriderequestbody.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.SetOverrideRequestBody](../../models/operations/setoverriderequestbody.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*operations.RatelimitSetOverrideResponse](../../models/operations/ratelimitsetoverrideresponse.md), error**
+**[*operations.SetOverrideResponse](../../models/operations/setoverrideresponse.md), error**
 
 ### Errors
 
@@ -78,18 +79,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Ratelimit.ListOverrides(ctx, operations.ListOverridesRequest{
         NamespaceID: unkeygo.String("rlns_1234"),
         NamespaceName: unkeygo.String("email.outbound"),
@@ -137,18 +139,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Ratelimit.GetOverride(ctx, operations.GetOverrideRequest{
         NamespaceID: unkeygo.String("rlns_1234"),
         NamespaceName: unkeygo.String("email.outbound"),

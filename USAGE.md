@@ -9,11 +9,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)

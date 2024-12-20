@@ -40,9 +40,9 @@ const (
 
 // PermissionQuery - A query for which permissions you require
 type PermissionQuery struct {
-	Str *string
-	And *And
-	Or  *Or
+	Str *string `queryParam:"inline"`
+	And *And    `queryParam:"inline"`
+	Or  *Or     `queryParam:"inline"`
 
 	Type PermissionQueryType
 }

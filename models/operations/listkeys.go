@@ -82,7 +82,7 @@ type ListKeysResponseBody struct {
 	Keys []components.Key `json:"keys"`
 	// The cursor to use for the next page of results, if no cursor is returned, there are no more results
 	Cursor *string `json:"cursor,omitempty"`
-	// The total number of keys for this api
+	// The total number of keys for this api. This is an approximation and may lag behind up to 5 minutes.
 	Total int64 `json:"total"`
 }
 

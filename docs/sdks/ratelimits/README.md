@@ -16,18 +16,19 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Ratelimits.Limit(ctx, operations.LimitRequestBody{
         Namespace: unkeygo.String("email.outbound"),
         Identifier: "user_123",
@@ -84,18 +85,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Ratelimits.DeleteOverride(ctx, operations.DeleteOverrideRequestBody{
         NamespaceID: unkeygo.String("rlns_1234"),
         NamespaceName: unkeygo.String("email.outbound"),

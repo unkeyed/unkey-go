@@ -46,7 +46,12 @@ func (s *Apis) GetAPI(ctx context.Context, request operations.GetAPIRequest, opt
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.getApi")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -76,6 +81,10 @@ func (s *Apis) GetAPI(ctx context.Context, request operations.GetAPIRequest, opt
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -389,7 +398,12 @@ func (s *Apis) CreateAPI(ctx context.Context, request operations.CreateAPIReques
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.createApi")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -421,6 +435,10 @@ func (s *Apis) CreateAPI(ctx context.Context, request operations.CreateAPIReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -734,7 +752,12 @@ func (s *Apis) ListKeys(ctx context.Context, request operations.ListKeysRequest,
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.listKeys")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -764,6 +787,10 @@ func (s *Apis) ListKeys(ctx context.Context, request operations.ListKeysRequest,
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1077,7 +1104,12 @@ func (s *Apis) DeleteAPI(ctx context.Context, request operations.DeleteAPIReques
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.deleteApi")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1109,6 +1141,10 @@ func (s *Apis) DeleteAPI(ctx context.Context, request operations.DeleteAPIReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1422,7 +1458,12 @@ func (s *Apis) DeleteKeys(ctx context.Context, request operations.DeleteKeysRequ
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/apis.deleteKeys")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -1454,6 +1495,10 @@ func (s *Apis) DeleteKeys(ctx context.Context, request operations.DeleteKeysRequ
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

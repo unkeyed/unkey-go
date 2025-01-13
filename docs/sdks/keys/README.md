@@ -28,18 +28,19 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.GetKey(ctx, operations.GetKeyRequest{
         KeyID: "key_1234",
     })
@@ -85,18 +86,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.Whoami(ctx, operations.WhoamiRequestBody{
         Key: "sk_123",
     })
@@ -142,18 +144,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.DeleteKey(ctx, operations.DeleteKeyRequestBody{
         KeyID: "key_1234",
     })
@@ -199,18 +202,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.CreateKey(ctx, operations.CreateKeyRequestBody{
         APIID: "api_123",
         Name: unkeygo.String("my key"),
@@ -283,18 +287,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/components"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.VerifyKey(ctx, components.V1KeysVerifyKeyRequest{
         APIID: unkeygo.String("api_1234"),
         Key: "sk_1234",
@@ -353,18 +358,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.UpdateKey(ctx, operations.UpdateKeyRequestBody{
         KeyID: "key_123",
         Name: unkeygo.String("Customer X"),
@@ -456,18 +462,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.UpdateRemaining(ctx, operations.UpdateRemainingRequestBody{
         KeyID: "key_123",
         Op: operations.OpSet,
@@ -515,18 +522,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.GetVerifications(ctx, operations.GetVerificationsRequest{
         KeyID: unkeygo.String("key_1234"),
         OwnerID: unkeygo.String("chronark"),
@@ -576,18 +584,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.AddPermissions(ctx, operations.AddPermissionsRequestBody{
         KeyID: "<value>",
         Permissions: []operations.AddPermissionsPermissions{
@@ -636,18 +645,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.RemovePermissions(ctx, operations.RemovePermissionsRequestBody{
         KeyID: "<value>",
         Permissions: []operations.RemovePermissionsPermissions{
@@ -701,18 +711,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.SetPermissions(ctx, operations.SetPermissionsRequestBody{
         KeyID: "<value>",
         Permissions: []operations.SetPermissionsPermissions{
@@ -770,18 +781,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.AddRoles(ctx, operations.AddRolesRequestBody{
         KeyID: "<value>",
         Roles: []operations.AddRolesRoles{
@@ -839,18 +851,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.RemoveRoles(ctx, operations.RemoveRolesRequestBody{
         KeyID: "<value>",
         Roles: []operations.RemoveRolesRoles{
@@ -904,18 +917,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Keys.SetRoles(ctx, operations.SetRolesRequestBody{
         KeyID: "<value>",
         Roles: []operations.SetRolesRoles{

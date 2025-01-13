@@ -46,7 +46,12 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/migrations.createKeys")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -78,6 +83,10 @@ func (s *Migrations) V1MigrationsCreateKeys(ctx context.Context, request []opera
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -391,7 +400,12 @@ func (s *Migrations) V1MigrationsEnqueueKeys(ctx context.Context, request operat
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/migrations.enqueueKeys")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -423,6 +437,10 @@ func (s *Migrations) V1MigrationsEnqueueKeys(ctx context.Context, request operat
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

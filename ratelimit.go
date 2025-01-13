@@ -26,10 +26,10 @@ func newRatelimit(sdkConfig sdkConfiguration) *Ratelimit {
 	}
 }
 
-func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations.RatelimitSetOverrideRequestBody, opts ...operations.Option) (*operations.RatelimitSetOverrideResponse, error) {
+func (s *Ratelimit) SetOverride(ctx context.Context, request operations.SetOverrideRequestBody, opts ...operations.Option) (*operations.SetOverrideResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "ratelimit.setOverride",
+		OperationID:    "setOverride",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -46,7 +46,12 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/ratelimits.setOverride")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -78,6 +83,10 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -175,7 +184,7 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 		}
 	}
 
-	res := &operations.RatelimitSetOverrideResponse{
+	res := &operations.SetOverrideResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -191,7 +200,7 @@ func (s *Ratelimit) RatelimitSetOverride(ctx context.Context, request operations
 				return nil, err
 			}
 
-			var out operations.RatelimitSetOverrideResponseBody
+			var out operations.SetOverrideResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -391,7 +400,12 @@ func (s *Ratelimit) ListOverrides(ctx context.Context, request operations.ListOv
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/ratelimits.listOverrides")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -421,6 +435,10 @@ func (s *Ratelimit) ListOverrides(ctx context.Context, request operations.ListOv
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -734,7 +752,12 @@ func (s *Ratelimit) GetOverride(ctx context.Context, request operations.GetOverr
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/v1/ratelimits.getOverride")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -764,6 +787,10 @@ func (s *Ratelimit) GetOverride(ctx context.Context, request operations.GetOverr
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

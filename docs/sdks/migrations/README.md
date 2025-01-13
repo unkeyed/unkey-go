@@ -16,18 +16,19 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Migrations.V1MigrationsCreateKeys(ctx, []operations.RequestBody{
         operations.RequestBody{
             APIID: "api_123",
@@ -103,18 +104,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Migrations.V1MigrationsEnqueueKeys(ctx, operations.V1MigrationsEnqueueKeysRequestBody{
         MigrationID: "<value>",
         APIID: "<value>",

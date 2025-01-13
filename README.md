@@ -55,11 +55,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -133,7 +134,7 @@ func main() {
 
 ### [Ratelimit](docs/sdks/ratelimit/README.md)
 
-* [RatelimitSetOverride](docs/sdks/ratelimit/README.md#ratelimitsetoverride)
+* [SetOverride](docs/sdks/ratelimit/README.md#setoverride)
 * [ListOverrides](docs/sdks/ratelimit/README.md#listoverrides)
 * [GetOverride](docs/sdks/ratelimit/README.md#getoverride)
 
@@ -180,11 +181,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 
@@ -257,12 +259,13 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithServerURL("https://api.unkey.dev"),
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -326,11 +329,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -361,11 +365,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -399,6 +404,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithRetryConfig(
 			retry.Config{
@@ -414,7 +421,6 @@ func main() {
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Liveness.V1Liveness(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -446,11 +452,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := unkeygo.New(
 		unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Identities.ListIdentities(ctx, operations.ListIdentitiesRequest{
 		Limit: unkeygo.Int64(100),
 	})

@@ -72,7 +72,7 @@ func (o *Refill) GetRefillDay() *float64 {
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type Type string
 
 const (
@@ -105,7 +105,7 @@ type Ratelimit struct {
 	Async *bool `default:"true" json:"async"`
 	// Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *Type `default:"fast" json:"type"`
 	// The total amount of requests in a given interval.
 	Limit int64 `json:"limit"`
@@ -113,11 +113,11 @@ type Ratelimit struct {
 	Duration *int64 `json:"duration,omitempty"`
 	// How many tokens to refill during each refillInterval.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate *int64 `json:"refillRate,omitempty"`
 	// The refill timeframe, in milliseconds.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillInterval *int64 `json:"refillInterval,omitempty"`
 }
 
@@ -190,7 +190,7 @@ type CreateKeyRequestBody struct {
 	ByteLength *int64 `default:"16" json:"byteLength"`
 	// Deprecated, use `externalId`
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	OwnerID *string `json:"ownerId,omitempty"`
 	// Your user's Id. This will provide a link between Unkey and your customer record.
 	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.

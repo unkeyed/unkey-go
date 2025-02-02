@@ -16,50 +16,21 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Migrations.V1MigrationsCreateKeys(ctx, []operations.RequestBody{
-        operations.RequestBody{
-            APIID: "api_123",
-            Name: unkeygo.String("my key"),
-            Start: unkeygo.String("unkey_32kq"),
-            OwnerID: unkeygo.String("team_123"),
-            Meta: map[string]any{
-                "billingTier": "PRO",
-                "trialEnds": "2023-06-16T17:16:37.161Z",
-            },
-            Roles: []string{
-                "admin",
-                "finance",
-            },
-            Permissions: []string{
-                "domains.create_record",
-                "say_hello",
-            },
-            Expires: unkeygo.Int64(1623869797161),
-            Remaining: unkeygo.Int64(1000),
-            Refill: &operations.V1MigrationsCreateKeysRefill{
-                Interval: operations.V1MigrationsCreateKeysIntervalDaily,
-                Amount: 100,
-            },
-            Ratelimit: &operations.V1MigrationsCreateKeysRatelimit{
-                Type: operations.V1MigrationsCreateKeysTypeFast.ToPointer(),
-                Limit: 10,
-                RefillRate: 1,
-                RefillInterval: 60,
-            },
-            Enabled: unkeygo.Bool(false),
-        },
+
     })
     if err != nil {
         log.Fatal(err)
@@ -103,21 +74,22 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Migrations.V1MigrationsEnqueueKeys(ctx, operations.V1MigrationsEnqueueKeysRequestBody{
-        MigrationID: "<value>",
-        APIID: "<value>",
+        MigrationID: "<id>",
+        APIID: "<id>",
         Keys: []operations.Keys{
             operations.Keys{
                 Name: unkeygo.String("my key"),
@@ -142,11 +114,9 @@ func main() {
                     Amount: 100,
                 },
                 Ratelimit: &operations.V1MigrationsEnqueueKeysRatelimit{
-                    Type: operations.V1MigrationsEnqueueKeysTypeFast.ToPointer(),
                     Limit: 10,
                     Duration: 60000,
                 },
-                Enabled: unkeygo.Bool(false),
             },
         },
     })

@@ -16,20 +16,20 @@ import (
 	"net/url"
 )
 
-type Liveness struct {
+type Analytics struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newLiveness(sdkConfig sdkConfiguration) *Liveness {
-	return &Liveness{
+func newAnalytics(sdkConfig sdkConfiguration) *Analytics {
+	return &Analytics{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-func (s *Liveness) V1Liveness(ctx context.Context, opts ...operations.Option) (*operations.V1LivenessResponse, error) {
+func (s *Analytics) GetVerifications(ctx context.Context, request operations.GetVerificationsRequest, opts ...operations.Option) (*operations.GetVerificationsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "v1.liveness",
+		OperationID:    "getVerifications",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -52,7 +52,7 @@ func (s *Liveness) V1Liveness(ctx context.Context, opts ...operations.Option) (*
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/v1/liveness")
+	opURL, err := url.JoinPath(baseURL, "/v1/analytics.getVerifications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -74,6 +74,10 @@ func (s *Liveness) V1Liveness(ctx context.Context, opts ...operations.Option) (*
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -178,7 +182,7 @@ func (s *Liveness) V1Liveness(ctx context.Context, opts ...operations.Option) (*
 		}
 	}
 
-	res := &operations.V1LivenessResponse{
+	res := &operations.GetVerificationsResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,
@@ -194,12 +198,12 @@ func (s *Liveness) V1Liveness(ctx context.Context, opts ...operations.Option) (*
 				return nil, err
 			}
 
-			var out operations.V1LivenessResponseBody
+			var out []operations.GetVerificationsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.ResponseBodies = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

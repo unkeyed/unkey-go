@@ -19,21 +19,27 @@
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Identities.CreateIdentity(ctx, operations.CreateIdentityRequestBody{
         ExternalID: "user_123",
         Ratelimits: []operations.Ratelimits{
+            operations.Ratelimits{
+                Name: "tokens",
+                Limit: 10,
+                Duration: 1000,
+            },
             operations.Ratelimits{
                 Name: "tokens",
                 Limit: 10,
@@ -88,18 +94,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Identities.GetIdentity(ctx, operations.GetIdentityRequest{
         IdentityID: unkeygo.String("id_1234"),
         ExternalID: unkeygo.String("id_1234"),
@@ -146,21 +153,20 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
-    res, err := s.Identities.ListIdentities(ctx, operations.ListIdentitiesRequest{
-        Limit: unkeygo.Int64(100),
-    })
+    res, err := s.Identities.ListIdentities(ctx, operations.ListIdentitiesRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -215,18 +221,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Identities.UpdateIdentity(ctx, operations.UpdateIdentityRequestBody{
         IdentityID: unkeygo.String("id_1234"),
         ExternalID: unkeygo.String("user_1234"),
@@ -290,18 +297,19 @@ func main() {
 package main
 
 import(
+	"context"
 	unkeygo "github.com/unkeyed/unkey-go"
 	"github.com/unkeyed/unkey-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Identities.DeleteIdentity(ctx, operations.DeleteIdentityRequestBody{
         IdentityID: "id_1234",
     })

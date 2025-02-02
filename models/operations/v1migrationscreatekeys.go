@@ -117,7 +117,7 @@ func (o *V1MigrationsCreateKeysRefill) GetRefillDay() *float64 {
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type V1MigrationsCreateKeysType string
 
 const (
@@ -150,17 +150,17 @@ type V1MigrationsCreateKeysRatelimit struct {
 	Async *bool `default:"false" json:"async"`
 	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *V1MigrationsCreateKeysType `default:"fast" json:"type"`
 	// The total amount of burstable requests.
 	Limit int64 `json:"limit"`
 	// How many tokens to refill during each refillInterval.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate int64 `json:"refillRate"`
 	// Determines the speed at which tokens are refilled, in milliseconds.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillInterval int64 `json:"refillInterval"`
 }
 
@@ -228,9 +228,13 @@ type RequestBody struct {
 	Hash *Hash `json:"hash,omitempty"`
 	// The first 4 characters of the key. If a prefix is used, it should be the prefix plus 4 characters.
 	Start *string `json:"start,omitempty"`
+	// Deprecated, use `externalId`
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	OwnerID *string `json:"ownerId,omitempty"`
 	// Your user’s Id. This will provide a link between Unkey and your customer record.
 	// When validating a key, we will return this back to you, so you can clearly identify your user from their api key.
-	OwnerID *string `json:"ownerId,omitempty"`
+	ExternalID *string `json:"externalId,omitempty"`
 	// This is a place for dynamic meta data, anything that feels useful for you should go here
 	Meta map[string]any `json:"meta,omitempty"`
 	// A list of roles that this key should have. If the role does not exist, an error is thrown
@@ -317,6 +321,13 @@ func (o *RequestBody) GetOwnerID() *string {
 		return nil
 	}
 	return o.OwnerID
+}
+
+func (o *RequestBody) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
 }
 
 func (o *RequestBody) GetMeta() map[string]any {

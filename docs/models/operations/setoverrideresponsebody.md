@@ -1,4 +1,4 @@
-# RatelimitSetOverrideResponseBody
+# SetOverrideResponseBody
 
 Sucessfully created a ratelimit override
 

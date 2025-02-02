@@ -15,17 +15,18 @@
 package main
 
 import(
-	unkeygo "github.com/unkeyed/unkey-go"
 	"context"
+	unkeygo "github.com/unkeyed/unkey-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Liveness.V1Liveness(ctx)
     if err != nil {
         log.Fatal(err)

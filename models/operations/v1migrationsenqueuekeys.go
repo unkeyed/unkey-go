@@ -117,7 +117,7 @@ func (o *V1MigrationsEnqueueKeysRefill) GetRefillDay() *float64 {
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type V1MigrationsEnqueueKeysType string
 
 const (
@@ -150,7 +150,7 @@ type V1MigrationsEnqueueKeysRatelimit struct {
 	Async *bool `default:"true" json:"async"`
 	// Deprecated, use `async`. Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *V1MigrationsEnqueueKeysType `default:"fast" json:"type"`
 	// The total amount of requests in a given interval.
 	Limit int64 `json:"limit"`
@@ -158,11 +158,11 @@ type V1MigrationsEnqueueKeysRatelimit struct {
 	Duration int64 `json:"duration"`
 	// How many tokens to refill during each refillInterval.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate *int64 `json:"refillRate,omitempty"`
 	// The refill timeframe, in milliseconds.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillInterval *int64 `json:"refillInterval,omitempty"`
 }
 

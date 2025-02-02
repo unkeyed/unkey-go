@@ -4,42 +4,397 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
 )
 
-// Granularity - The granularity of the usage data to fetch, currently only `day` is supported
-type Granularity string
+type KeyIDType string
 
 const (
-	GranularityDay Granularity = "day"
+	KeyIDTypeStr        KeyIDType = "str"
+	KeyIDTypeArrayOfStr KeyIDType = "arrayOfStr"
 )
 
-func (e Granularity) ToPointer() *Granularity {
+// KeyID - Only include data for a specific key or keys.
+//
+// When you are providing zero or more than one key ids, all usage counts are aggregated and summed up. Send multiple requests with one keyId each if you need counts per key.
+type KeyID struct {
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
+
+	Type KeyIDType
+}
+
+func CreateKeyIDStr(str string) KeyID {
+	typ := KeyIDTypeStr
+
+	return KeyID{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateKeyIDArrayOfStr(arrayOfStr []string) KeyID {
+	typ := KeyIDTypeArrayOfStr
+
+	return KeyID{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *KeyID) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = KeyIDTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = KeyIDTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for KeyID", string(data))
+}
+
+func (u KeyID) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type KeyID: all fields are null")
+}
+
+type TagType string
+
+const (
+	TagTypeStr        TagType = "str"
+	TagTypeArrayOfStr TagType = "arrayOfStr"
+)
+
+// Tag - Only include data for a specific tag or tags.
+//
+// When you are providing zero or more than one tag, all usage counts are aggregated and summed up. Send multiple requests with one tag each if you need counts per tag.
+type Tag struct {
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
+
+	Type TagType
+}
+
+func CreateTagStr(str string) Tag {
+	typ := TagTypeStr
+
+	return Tag{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateTagArrayOfStr(arrayOfStr []string) Tag {
+	typ := TagTypeArrayOfStr
+
+	return Tag{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *Tag) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = TagTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = TagTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Tag", string(data))
+}
+
+func (u Tag) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Tag: all fields are null")
+}
+
+type Two string
+
+const (
+	TwoKey      Two = "key"
+	TwoIdentity Two = "identity"
+	TwoTags     Two = "tags"
+	TwoTag      Two = "tag"
+	TwoMonth    Two = "month"
+	TwoDay      Two = "day"
+	TwoHour     Two = "hour"
+)
+
+func (e Two) ToPointer() *Two {
 	return &e
 }
-func (e *Granularity) UnmarshalJSON(data []byte) error {
+func (e *Two) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
+	case "key":
+		fallthrough
+	case "identity":
+		fallthrough
+	case "tags":
+		fallthrough
+	case "tag":
+		fallthrough
+	case "month":
+		fallthrough
 	case "day":
-		*e = Granularity(v)
+		fallthrough
+	case "hour":
+		*e = Two(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Granularity: %v", v)
+		return fmt.Errorf("invalid value for Two: %v", v)
+	}
+}
+
+type One string
+
+const (
+	OneKey      One = "key"
+	OneIdentity One = "identity"
+	OneTags     One = "tags"
+	OneTag      One = "tag"
+	OneMonth    One = "month"
+	OneDay      One = "day"
+	OneHour     One = "hour"
+)
+
+func (e One) ToPointer() *One {
+	return &e
+}
+func (e *One) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "key":
+		fallthrough
+	case "identity":
+		fallthrough
+	case "tags":
+		fallthrough
+	case "tag":
+		fallthrough
+	case "month":
+		fallthrough
+	case "day":
+		fallthrough
+	case "hour":
+		*e = One(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for One: %v", v)
+	}
+}
+
+type GroupByType string
+
+const (
+	GroupByTypeOne      GroupByType = "1"
+	GroupByTypeArrayOf2 GroupByType = "arrayOf2"
+)
+
+// GroupBy - By default, datapoints are not aggregated, however you probably want to get a breakdown per time, key or identity.
+//
+// Grouping by tags and by tag is mutually exclusive.
+type GroupBy struct {
+	One      *One  `queryParam:"inline"`
+	ArrayOf2 []Two `queryParam:"inline"`
+
+	Type GroupByType
+}
+
+func CreateGroupByOne(one One) GroupBy {
+	typ := GroupByTypeOne
+
+	return GroupBy{
+		One:  &one,
+		Type: typ,
+	}
+}
+
+func CreateGroupByArrayOf2(arrayOf2 []Two) GroupBy {
+	typ := GroupByTypeArrayOf2
+
+	return GroupBy{
+		ArrayOf2: arrayOf2,
+		Type:     typ,
+	}
+}
+
+func (u *GroupBy) UnmarshalJSON(data []byte) error {
+
+	var one One = One("")
+	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
+		u.One = &one
+		u.Type = GroupByTypeOne
+		return nil
+	}
+
+	var arrayOf2 []Two = []Two{}
+	if err := utils.UnmarshalJSON(data, &arrayOf2, "", true, true); err == nil {
+		u.ArrayOf2 = arrayOf2
+		u.Type = GroupByTypeArrayOf2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupBy", string(data))
+}
+
+func (u GroupBy) MarshalJSON() ([]byte, error) {
+	if u.One != nil {
+		return utils.MarshalJSON(u.One, "", true)
+	}
+
+	if u.ArrayOf2 != nil {
+		return utils.MarshalJSON(u.ArrayOf2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type GroupBy: all fields are null")
+}
+
+// OrderBy - Sort the output by a specific value. You can use this in combination with the `order` param.
+type OrderBy string
+
+const (
+	OrderByTime                    OrderBy = "time"
+	OrderByValid                   OrderBy = "valid"
+	OrderByNotFound                OrderBy = "notFound"
+	OrderByForbidden               OrderBy = "forbidden"
+	OrderByUsageExceeded           OrderBy = "usageExceeded"
+	OrderByRateLimited             OrderBy = "rateLimited"
+	OrderByUnauthorized            OrderBy = "unauthorized"
+	OrderByDisabled                OrderBy = "disabled"
+	OrderByInsufficientPermissions OrderBy = "insufficientPermissions"
+	OrderByExpired                 OrderBy = "expired"
+	OrderByTotal                   OrderBy = "total"
+)
+
+func (e OrderBy) ToPointer() *OrderBy {
+	return &e
+}
+func (e *OrderBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "time":
+		fallthrough
+	case "valid":
+		fallthrough
+	case "notFound":
+		fallthrough
+	case "forbidden":
+		fallthrough
+	case "usageExceeded":
+		fallthrough
+	case "rateLimited":
+		fallthrough
+	case "unauthorized":
+		fallthrough
+	case "disabled":
+		fallthrough
+	case "insufficientPermissions":
+		fallthrough
+	case "expired":
+		fallthrough
+	case "total":
+		*e = OrderBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OrderBy: %v", v)
+	}
+}
+
+// Order - Define the order of sorting. Use this in combination with `orderBy`
+type Order string
+
+const (
+	OrderAsc  Order = "asc"
+	OrderDesc Order = "desc"
+)
+
+func (e Order) ToPointer() *Order {
+	return &e
+}
+func (e *Order) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asc":
+		fallthrough
+	case "desc":
+		*e = Order(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Order: %v", v)
 	}
 }
 
 type GetVerificationsRequest struct {
-	KeyID   *string `queryParam:"style=form,explode=true,name=keyId"`
-	OwnerID *string `queryParam:"style=form,explode=true,name=ownerId"`
-	Start   *int64  `queryParam:"style=form,explode=true,name=start"`
-	End     *int64  `queryParam:"style=form,explode=true,name=end"`
-	// The granularity of the usage data to fetch, currently only `day` is supported
-	Granularity *Granularity `default:"day" queryParam:"style=form,explode=true,name=granularity"`
+	APIID      string  `queryParam:"style=form,explode=true,name=apiId"`
+	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
+	// Only include data for a specific key or keys.
+	//
+	// When you are providing zero or more than one key ids, all usage counts are aggregated and summed up. Send multiple requests with one keyId each if you need counts per key.
+	//
+	//
+	KeyID *KeyID `queryParam:"style=form,explode=true,name=keyId"`
+	// Only include data for a specific tag or tags.
+	//
+	// When you are providing zero or more than one tag, all usage counts are aggregated and summed up. Send multiple requests with one tag each if you need counts per tag.
+	Tag   *Tag   `queryParam:"style=form,explode=true,name=tag"`
+	Start *int64 `queryParam:"style=form,explode=true,name=start"`
+	End   *int64 `default:"1738456331924" queryParam:"style=form,explode=true,name=end"`
+	// By default, datapoints are not aggregated, however you probably want to get a breakdown per time, key or identity.
+	//
+	// Grouping by tags and by tag is mutually exclusive.
+	GroupBy *GroupBy `queryParam:"style=form,explode=true,name=groupBy"`
+	Limit   *int64   `queryParam:"style=form,explode=true,name=limit"`
+	// Sort the output by a specific value. You can use this in combination with the `order` param.
+	OrderBy *OrderBy `queryParam:"style=form,explode=true,name=orderBy"`
+	// Define the order of sorting. Use this in combination with `orderBy`
+	Order *Order `default:"asc" queryParam:"style=form,explode=true,name=order"`
 }
 
 func (g GetVerificationsRequest) MarshalJSON() ([]byte, error) {
@@ -53,18 +408,32 @@ func (g *GetVerificationsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetVerificationsRequest) GetKeyID() *string {
+func (o *GetVerificationsRequest) GetAPIID() string {
+	if o == nil {
+		return ""
+	}
+	return o.APIID
+}
+
+func (o *GetVerificationsRequest) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *GetVerificationsRequest) GetKeyID() *KeyID {
 	if o == nil {
 		return nil
 	}
 	return o.KeyID
 }
 
-func (o *GetVerificationsRequest) GetOwnerID() *string {
+func (o *GetVerificationsRequest) GetTag() *Tag {
 	if o == nil {
 		return nil
 	}
-	return o.OwnerID
+	return o.Tag
 }
 
 func (o *GetVerificationsRequest) GetStart() *int64 {
@@ -81,68 +450,190 @@ func (o *GetVerificationsRequest) GetEnd() *int64 {
 	return o.End
 }
 
-func (o *GetVerificationsRequest) GetGranularity() *Granularity {
+func (o *GetVerificationsRequest) GetGroupBy() *GroupBy {
 	if o == nil {
 		return nil
 	}
-	return o.Granularity
+	return o.GroupBy
 }
 
-type Verifications struct {
-	// The timestamp of the usage data
-	Time int64 `json:"time"`
-	// The number of successful requests
-	Success int64 `json:"success"`
-	// The number of requests that were rate limited
-	RateLimited int64 `json:"rateLimited"`
-	// The number of requests that exceeded the usage limit
-	UsageExceeded int64 `json:"usageExceeded"`
-}
-
-func (o *Verifications) GetTime() int64 {
+func (o *GetVerificationsRequest) GetLimit() *int64 {
 	if o == nil {
-		return 0
+		return nil
+	}
+	return o.Limit
+}
+
+func (o *GetVerificationsRequest) GetOrderBy() *OrderBy {
+	if o == nil {
+		return nil
+	}
+	return o.OrderBy
+}
+
+func (o *GetVerificationsRequest) GetOrder() *Order {
+	if o == nil {
+		return nil
+	}
+	return o.Order
+}
+
+// GetVerificationsIdentity - Only available when specifying groupBy=identity in the query.
+// In this case there would be one datapoint per time and groupBy target.
+type GetVerificationsIdentity struct {
+	ID         string `json:"id"`
+	ExternalID string `json:"externalId"`
+}
+
+func (o *GetVerificationsIdentity) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *GetVerificationsIdentity) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
+type GetVerificationsResponseBody struct {
+	// Unix timestamp in milliseconds of the start of the current time slice.
+	Time                    *int64 `json:"time,omitempty"`
+	Valid                   *int64 `json:"valid,omitempty"`
+	NotFound                *int64 `json:"notFound,omitempty"`
+	Forbidden               *int64 `json:"forbidden,omitempty"`
+	UsageExceeded           *int64 `json:"usageExceeded,omitempty"`
+	RateLimited             *int64 `json:"rateLimited,omitempty"`
+	Unauthorized            *int64 `json:"unauthorized,omitempty"`
+	Disabled                *int64 `json:"disabled,omitempty"`
+	InsufficientPermissions *int64 `json:"insufficientPermissions,omitempty"`
+	Expired                 *int64 `json:"expired,omitempty"`
+	// Total number of verifications in the current time slice, regardless of outcome.
+	Total int64 `json:"total"`
+	// Only available when grouping by tag.
+	Tag *string `json:"tag,omitempty"`
+	// Filter by one or multiple tags. If multiple tags are provided
+	Tags []string `json:"tags,omitempty"`
+	// Only available when specifying groupBy=key in the query.
+	// In this case there would be one datapoint per time and groupBy target.
+	KeyID *string `json:"keyId,omitempty"`
+	// Only available when specifying groupBy=identity in the query.
+	// In this case there would be one datapoint per time and groupBy target.
+	Identity *GetVerificationsIdentity `json:"identity,omitempty"`
+}
+
+func (o *GetVerificationsResponseBody) GetTime() *int64 {
+	if o == nil {
+		return nil
 	}
 	return o.Time
 }
 
-func (o *Verifications) GetSuccess() int64 {
+func (o *GetVerificationsResponseBody) GetValid() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
-	return o.Success
+	return o.Valid
 }
 
-func (o *Verifications) GetRateLimited() int64 {
+func (o *GetVerificationsResponseBody) GetNotFound() *int64 {
 	if o == nil {
-		return 0
+		return nil
 	}
-	return o.RateLimited
+	return o.NotFound
 }
 
-func (o *Verifications) GetUsageExceeded() int64 {
+func (o *GetVerificationsResponseBody) GetForbidden() *int64 {
 	if o == nil {
-		return 0
+		return nil
+	}
+	return o.Forbidden
+}
+
+func (o *GetVerificationsResponseBody) GetUsageExceeded() *int64 {
+	if o == nil {
+		return nil
 	}
 	return o.UsageExceeded
 }
 
-// GetVerificationsResponseBody - Usage numbers over time
-type GetVerificationsResponseBody struct {
-	Verifications []Verifications `json:"verifications"`
+func (o *GetVerificationsResponseBody) GetRateLimited() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.RateLimited
 }
 
-func (o *GetVerificationsResponseBody) GetVerifications() []Verifications {
+func (o *GetVerificationsResponseBody) GetUnauthorized() *int64 {
 	if o == nil {
-		return []Verifications{}
+		return nil
 	}
-	return o.Verifications
+	return o.Unauthorized
+}
+
+func (o *GetVerificationsResponseBody) GetDisabled() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Disabled
+}
+
+func (o *GetVerificationsResponseBody) GetInsufficientPermissions() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.InsufficientPermissions
+}
+
+func (o *GetVerificationsResponseBody) GetExpired() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Expired
+}
+
+func (o *GetVerificationsResponseBody) GetTotal() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Total
+}
+
+func (o *GetVerificationsResponseBody) GetTag() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tag
+}
+
+func (o *GetVerificationsResponseBody) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
+func (o *GetVerificationsResponseBody) GetKeyID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.KeyID
+}
+
+func (o *GetVerificationsResponseBody) GetIdentity() *GetVerificationsIdentity {
+	if o == nil {
+		return nil
+	}
+	return o.Identity
 }
 
 type GetVerificationsResponse struct {
 	HTTPMeta components.HTTPMetadata `json:"-"`
-	// Usage numbers over time
-	Object *GetVerificationsResponseBody
+	// Retrieve all required data to build end-user facing dashboards and drive your usage-based billing.
+	ResponseBodies []GetVerificationsResponseBody
 }
 
 func (o *GetVerificationsResponse) GetHTTPMeta() components.HTTPMetadata {
@@ -152,9 +643,9 @@ func (o *GetVerificationsResponse) GetHTTPMeta() components.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *GetVerificationsResponse) GetObject() *GetVerificationsResponseBody {
+func (o *GetVerificationsResponse) GetResponseBodies() []GetVerificationsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.ResponseBodies
 }

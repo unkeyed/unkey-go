@@ -3,12 +3,26 @@
 package operations
 
 import (
+	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
 )
 
 type DeleteKeyRequestBody struct {
 	// The id of the key to revoke
 	KeyID string `json:"keyId"`
+	// By default Unkey soft deletes keys, so they may be recovered later. If you want to permanently delete it, set permanent=true. This might be necessary if you run into NOT_UNIQUE errors during key migration.
+	Permanent *bool `default:"false" json:"permanent"`
+}
+
+func (d DeleteKeyRequestBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteKeyRequestBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *DeleteKeyRequestBody) GetKeyID() string {
@@ -16,6 +30,13 @@ func (o *DeleteKeyRequestBody) GetKeyID() string {
 		return ""
 	}
 	return o.KeyID
+}
+
+func (o *DeleteKeyRequestBody) GetPermanent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Permanent
 }
 
 // DeleteKeyResponseBody - The key was successfully revoked, it may take up to 30s for this to take effect in all regions

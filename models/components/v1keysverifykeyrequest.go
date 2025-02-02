@@ -19,9 +19,33 @@ func (o *Authorization) GetPermissions() *PermissionQuery {
 	return o.Permissions
 }
 
+// Remaining - Customize the behaviour of deducting remaining uses. When some of your endpoints are more expensive than others, you can set a custom `cost` for each.
+type Remaining struct {
+	// How many tokens should be deducted from the current `remaining` value. Set it to 0, to make it free.
+	Cost *int64 `default:"1" json:"cost"`
+}
+
+func (r Remaining) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Remaining) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Remaining) GetCost() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.Cost
+}
+
 // V1KeysVerifyKeyRequestRatelimit - Use 'ratelimits' with `[{ name: "default", cost: 2}]`
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type V1KeysVerifyKeyRequestRatelimit struct {
 	// Override how many tokens are deducted during the ratelimit operation.
 	Cost *int64 `default:"1" json:"cost"`
@@ -101,11 +125,20 @@ type V1KeysVerifyKeyRequest struct {
 	APIID *string `json:"apiId,omitempty"`
 	// The key to verify
 	Key string `json:"key"`
+	// Tags do not influence the outcome of a verification.
+	//                 They can be added to filter or aggregate historical verification data for your analytics needs.
+	//                 To unkey, a tag is simply a string, we don't enforce any schema but leave that up to you.
+	//                 The only exception is that each tag must be between 1 and 128 characters long.
+	//                 A typical setup would be to add key-value pairs of resources or locations, that you need later when querying.
+	//
+	Tags []string `json:"tags,omitempty"`
 	// Perform RBAC checks
 	Authorization *Authorization `json:"authorization,omitempty"`
+	// Customize the behaviour of deducting remaining uses. When some of your endpoints are more expensive than others, you can set a custom `cost` for each.
+	Remaining *Remaining `json:"remaining,omitempty"`
 	// Use 'ratelimits' with `[{ name: "default", cost: 2}]`
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Ratelimit *V1KeysVerifyKeyRequestRatelimit `json:"ratelimit,omitempty"`
 	// You can check against multiple ratelimits when verifying a key. Let's say you are building an app that uses AI under the hood and you want to limit your customers to 500 requests per hour, but also ensure they use up less than 20k tokens per day.
 	//
@@ -126,11 +159,25 @@ func (o *V1KeysVerifyKeyRequest) GetKey() string {
 	return o.Key
 }
 
+func (o *V1KeysVerifyKeyRequest) GetTags() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
+}
+
 func (o *V1KeysVerifyKeyRequest) GetAuthorization() *Authorization {
 	if o == nil {
 		return nil
 	}
 	return o.Authorization
+}
+
+func (o *V1KeysVerifyKeyRequest) GetRemaining() *Remaining {
+	if o == nil {
+		return nil
+	}
+	return o.Remaining
 }
 
 func (o *V1KeysVerifyKeyRequest) GetRatelimit() *V1KeysVerifyKeyRequestRatelimit {

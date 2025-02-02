@@ -77,6 +77,7 @@ type Unkey struct {
 	Migrations  *Migrations
 	Permissions *Permissions
 	Identities  *Identities
+	Analytics   *Analytics
 
 	sdkConfiguration sdkConfiguration
 }
@@ -155,9 +156,9 @@ func New(opts ...SDKOption) *Unkey {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.11.0",
-			GenVersion:        "2.474.6",
-			UserAgent:         "speakeasy-sdk/go 0.11.0 2.474.6 1.0.0 github.com/unkeyed/unkey-go",
+			SDKVersion:        "0.12.0",
+			GenVersion:        "2.500.5",
+			UserAgent:         "speakeasy-sdk/go 0.12.0 2.500.5 1.0.0 github.com/unkeyed/unkey-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -192,6 +193,8 @@ func New(opts ...SDKOption) *Unkey {
 	sdk.Permissions = newPermissions(sdk.sdkConfiguration)
 
 	sdk.Identities = newIdentities(sdk.sdkConfiguration)
+
+	sdk.Analytics = newAnalytics(sdk.sdkConfiguration)
 
 	return sdk
 }

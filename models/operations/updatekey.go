@@ -14,7 +14,7 @@ import (
 //
 // https://unkey.dev/docs/features/ratelimiting - Learn more
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type UpdateKeyType string
 
 const (
@@ -46,7 +46,7 @@ type UpdateKeyRatelimit struct {
 	// Fast ratelimiting doesn't add latency, while consistent ratelimiting is more accurate.
 	// Deprecated, use 'async' instead
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Type *UpdateKeyType `json:"type,omitempty"`
 	// Asnyc ratelimiting doesn't add latency, while sync ratelimiting is slightly more accurate.
 	Async *bool `default:"false" json:"async"`
@@ -55,12 +55,12 @@ type UpdateKeyRatelimit struct {
 	// How many tokens to refill during each refillInterval.
 	// Deprecated, use 'limit' instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillRate *int64 `json:"refillRate,omitempty"`
 	// Determines the speed at which tokens are refilled, in milliseconds.
 	// Deprecated, use 'duration'
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	RefillInterval *int64 `json:"refillInterval,omitempty"`
 	// The duration of each ratelimit window, in milliseconds.
 	// This field will become required in a future version.
@@ -251,7 +251,7 @@ type UpdateKeyRequestBody struct {
 	// Deprecated, use `externalId`
 	//                     The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this field back to you, so you know who is accessing your API.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	OwnerID *string `json:"ownerId,omitempty"`
 	// The id of the tenant associated with this key. Use whatever reference you have in your system to identify the tenant. When verifying the key, we will send this back to you, so you know who is accessing your API.
 	//                   Under the hood this upserts and connects an `ìdentity` for you.

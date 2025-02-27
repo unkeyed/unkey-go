@@ -385,7 +385,7 @@ type GetVerificationsRequest struct {
 	// When you are providing zero or more than one tag, all usage counts are aggregated and summed up. Send multiple requests with one tag each if you need counts per tag.
 	Tag   *Tag   `queryParam:"style=form,explode=true,name=tag"`
 	Start *int64 `queryParam:"style=form,explode=true,name=start"`
-	End   *int64 `default:"1738456331924" queryParam:"style=form,explode=true,name=end"`
+	End   *int64 `default:"1740616271916" queryParam:"style=form,explode=true,name=end"`
 	// By default, datapoints are not aggregated, however you probably want to get a breakdown per time, key or identity.
 	//
 	// Grouping by tags and by tag is mutually exclusive.

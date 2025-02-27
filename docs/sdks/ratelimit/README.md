@@ -24,8 +24,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -67,6 +68,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -86,8 +88,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -126,6 +129,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -145,8 +149,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -186,6 +191,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |

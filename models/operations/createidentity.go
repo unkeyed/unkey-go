@@ -42,7 +42,7 @@ type CreateIdentityRequestBody struct {
 	// This usually comes from your authentication provider and could be a userId, organisationId or even an email.
 	// It does not matter what you use, as long as it uniquely identifies something in your application.
 	//
-	// `externalId`s are unique across your workspace and therefore a `PRECONDITION_FAILED` error is returned when you try to create duplicates.
+	// `externalId`s are unique across your workspace and therefore a `CONFLICT` error is returned when you try to create duplicates.
 	//
 	ExternalID string `json:"externalId"`
 	// Attach metadata to this identity that you need to have access to when verifying a key.

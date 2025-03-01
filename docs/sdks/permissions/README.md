@@ -30,14 +30,16 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     res, err := s.Permissions.CreatePermission(ctx, operations.CreatePermissionRequestBody{
         Name: "record.write",
-        Description: unkeygo.String("record.write can create new dns records for our domains."),
+        Description: unkeygo.Pointer(operations.CreateDescriptionStr(
+            "record.write can create new dns records for our domains.",
+        )),
     })
     if err != nil {
         log.Fatal(err)
@@ -69,6 +71,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -89,7 +92,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -127,6 +130,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -147,7 +151,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -185,6 +189,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -204,7 +209,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -239,6 +244,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -259,14 +265,16 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
 
     res, err := s.Permissions.CreateRole(ctx, operations.CreateRoleRequestBody{
         Name: "dns.records.manager",
-        Description: unkeygo.String("dns.records.manager can read and write dns records for our domains."),
+        Description: unkeygo.Pointer(operations.CreateCreateRoleDescriptionStr(
+            "dns.records.manager can read and write dns records for our domains.",
+        )),
     })
     if err != nil {
         log.Fatal(err)
@@ -298,6 +306,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -318,7 +327,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -356,6 +365,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -376,7 +386,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -414,6 +424,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |
@@ -433,7 +444,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := unkeygo.New(
         unkeygo.WithSecurity("UNKEY_ROOT_KEY"),
     )
@@ -468,6 +479,7 @@ func main() {
 | sdkerrors.ErrForbidden           | 403                              | application/json                 |
 | sdkerrors.ErrNotFound            | 404                              | application/json                 |
 | sdkerrors.ErrConflict            | 409                              | application/json                 |
+| sdkerrors.ErrPreconditionFailed  | 412                              | application/json                 |
 | sdkerrors.ErrTooManyRequests     | 429                              | application/json                 |
 | sdkerrors.ErrInternalServerError | 500                              | application/json                 |
 | sdkerrors.SDKError               | 4XX, 5XX                         | \*/\*                            |

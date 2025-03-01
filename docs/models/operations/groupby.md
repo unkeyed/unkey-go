@@ -16,6 +16,6 @@ groupBy := operations.CreateGroupByOne(operations.One{/* values here */})
 ### 
 
 ```go
-groupBy := operations.CreateGroupByArrayOf2([]operations.Two{/* values here */})
+groupBy := operations.CreateGroupByArrayOfQueryParam2([]operations.QueryParam2{/* values here */})
 ```
 

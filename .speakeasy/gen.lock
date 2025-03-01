@@ -1,32 +1,32 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 36d57d2ebcc889f6998d500ec8899dbb
+  docChecksum: 1dbcabb1115dc287f1267cf7f9505c41
   docVersion: 1.0.0
-  speakeasyVersion: 1.481.1
-  generationVersion: 2.500.5
-  releaseVersion: 0.12.0
-  configChecksum: 71353dbefee1832b29202864ab261760
+  speakeasyVersion: 1.508.0
+  generationVersion: 2.536.0
+  releaseVersion: 0.13.0
+  configChecksum: bea34be004eca4bcd89e2de8b645483b
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.6
-    core: 3.6.12
+    constsAndDefaults: 0.1.10
+    core: 3.7.2
     defaultEnabledRetries: 0.2.0
-    deprecations: 2.81.2
+    deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
     examples: 2.81.4
-    globalSecurity: 2.82.10
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.1.0
-    pagination: 2.82.2
+    nullables: 0.1.1
+    pagination: 2.82.3
     responseFormat: 0.1.2
     retries: 2.83.2
     sdkHooks: 0.1.0
@@ -86,6 +86,7 @@ generatedFiles:
   - /models/sdkerrors/errforbidden.go
   - /models/sdkerrors/errinternalservererror.go
   - /models/sdkerrors/errnotfound.go
+  - /models/sdkerrors/errpreconditionfailed.go
   - /models/sdkerrors/errtoomanyrequests.go
   - /models/sdkerrors/errunauthorized.go
   - USAGE.md
@@ -130,6 +131,7 @@ generatedFiles:
   - docs/models/operations/createpermissionrequestbody.md
   - docs/models/operations/createpermissionresponse.md
   - docs/models/operations/createpermissionresponsebody.md
+  - docs/models/operations/createroledescription.md
   - docs/models/operations/createrolerequestbody.md
   - docs/models/operations/createroleresponse.md
   - docs/models/operations/createroleresponsebody.md
@@ -154,6 +156,8 @@ generatedFiles:
   - docs/models/operations/deleterolerequestbody.md
   - docs/models/operations/deleteroleresponse.md
   - docs/models/operations/deleteroleresponsebody.md
+  - docs/models/operations/description.md
+  - docs/models/operations/description2.md
   - docs/models/operations/getapirequest.md
   - docs/models/operations/getapiresponse.md
   - docs/models/operations/getapiresponsebody.md
@@ -211,6 +215,7 @@ generatedFiles:
   - docs/models/operations/orderby.md
   - docs/models/operations/overrides.md
   - docs/models/operations/permissions.md
+  - docs/models/operations/queryparam2.md
   - docs/models/operations/ratelimit.md
   - docs/models/operations/ratelimits.md
   - docs/models/operations/refill.md
@@ -297,6 +302,9 @@ generatedFiles:
   - docs/models/sdkerrors/errnotfoundcode.md
   - docs/models/sdkerrors/errnotfounderror.md
   - docs/models/sdkerrors/error.md
+  - docs/models/sdkerrors/errpreconditionfailed.md
+  - docs/models/sdkerrors/errpreconditionfailedcode.md
+  - docs/models/sdkerrors/errpreconditionfailederror.md
   - docs/models/sdkerrors/errtoomanyrequests.md
   - docs/models/sdkerrors/errtoomanyrequestscode.md
   - docs/models/sdkerrors/errtoomanyrequestserror.md
@@ -362,6 +370,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getKey:
     speakeasy-default-get-key:
       parameters:
@@ -369,7 +379,7 @@ examples:
           keyId: "key_1234"
       responses:
         "200":
-          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
+          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -384,6 +394,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   whoami:
     speakeasy-default-whoami:
       requestBody:
@@ -405,6 +417,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteKey:
     speakeasy-default-delete-key:
       requestBody:
@@ -426,6 +440,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   createKey:
     speakeasy-default-create-key:
       requestBody:
@@ -447,13 +463,15 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   verifyKey:
     speakeasy-default-verify-key:
       requestBody:
         application/json: {"apiId": "api_1234", "key": "sk_1234", "tags": ["path=/v1/users/123", "region=us-east-1"], "ratelimits": [{"name": "tokens", "cost": 1, "limit": 500, "duration": 3600000}, {"name": "tokens", "cost": 1, "limit": 20000, "duration": 86400000}]}
       responses:
         "200":
-          application/json: {"keyId": "key_1234", "valid": true, "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 123, "ratelimit": {"limit": 10, "remaining": 9, "reset": 3600000}, "remaining": 1000, "code": "DISABLED", "permissions": ["dns.record.update", "dns.record.delete"], "environment": "test"}
+          application/json: {"keyId": "key_1234", "valid": true, "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 123, "ratelimit": {"limit": 10, "remaining": 9, "reset": 3600000}, "remaining": 1000, "code": "DISABLED", "permissions": ["dns.record.update", "dns.record.delete"], "environment": "test", "requestId": "<id>"}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -468,6 +486,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   updateKey:
     speakeasy-default-update-key:
       requestBody:
@@ -489,6 +509,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   updateRemaining:
     speakeasy-default-update-remaining:
       requestBody:
@@ -510,6 +532,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   keys.getVerifications:
     speakeasy-default-keys-get-verifications:
       parameters:
@@ -536,6 +560,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   addPermissions:
     speakeasy-default-add-permissions:
       requestBody:
@@ -557,6 +583,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   removePermissions:
     speakeasy-default-remove-permissions:
       requestBody:
@@ -578,6 +606,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   setPermissions:
     speakeasy-default-set-permissions:
       requestBody:
@@ -599,6 +629,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   addRoles:
     speakeasy-default-add-roles:
       requestBody:
@@ -620,6 +652,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   removeRoles:
     speakeasy-default-remove-roles:
       requestBody:
@@ -641,6 +675,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   setRoles:
     speakeasy-default-set-roles:
       requestBody:
@@ -662,6 +698,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getApi:
     speakeasy-default-get-api:
       parameters:
@@ -684,6 +722,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   createApi:
     speakeasy-default-create-api:
       requestBody:
@@ -705,6 +745,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   listKeys:
     speakeasy-default-list-keys:
       parameters:
@@ -714,7 +756,7 @@ examples:
           revalidateKeysCache: false
       responses:
         "200":
-          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
+          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -729,6 +771,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteApi:
     speakeasy-default-delete-api:
       requestBody:
@@ -750,6 +794,8 @@ examples:
           application/json: {"error": {"code": "DELETE_PROTECTED", "docs": "https://unkey.dev/docs/api-reference/errors/code/DELETE_PROTECTED", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteKeys:
     speakeasy-default-delete-keys:
       requestBody:
@@ -771,6 +817,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   limit:
     speakeasy-default-limit:
       requestBody:
@@ -792,6 +840,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteOverride:
     speakeasy-default-delete-override:
       requestBody:
@@ -813,6 +863,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   setOverride:
     speakeasy-default-set-override:
       requestBody:
@@ -834,6 +886,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   listOverrides:
     speakeasy-default-list-overrides:
       parameters:
@@ -858,6 +912,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getOverride:
     speakeasy-default-get-override:
       parameters:
@@ -882,6 +938,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   v1.migrations.createKeys:
     speakeasy-default-v1-migrations-create-keys:
       requestBody:
@@ -903,6 +961,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   v1.migrations.enqueueKeys:
     speakeasy-default-v1-migrations-enqueue-keys:
       requestBody:
@@ -924,6 +984,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   createPermission:
     speakeasy-default-create-permission:
       requestBody:
@@ -945,6 +1007,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deletePermission:
     speakeasy-default-delete-permission:
       requestBody:
@@ -966,6 +1030,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getPermission:
     speakeasy-default-get-permission:
       parameters:
@@ -988,6 +1054,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   listPermissions:
     speakeasy-default-list-permissions:
       responses:
@@ -1007,6 +1075,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   createRole:
     speakeasy-default-create-role:
       requestBody:
@@ -1028,6 +1098,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteRole:
     speakeasy-default-delete-role:
       requestBody:
@@ -1049,6 +1121,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getRole:
     speakeasy-default-get-role:
       parameters:
@@ -1071,6 +1145,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   listRoles:
     speakeasy-default-list-roles:
       responses:
@@ -1090,6 +1166,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   createIdentity:
     speakeasy-default-create-identity:
       requestBody:
@@ -1111,6 +1189,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getIdentity:
     speakeasy-default-get-identity:
       parameters:
@@ -1134,6 +1214,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   listIdentities:
     speakeasy-default-list-identities:
       parameters:
@@ -1157,6 +1239,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   updateIdentity:
     speakeasy-default-update-identity:
       requestBody:
@@ -1178,6 +1262,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   deleteIdentity:
     speakeasy-default-delete-identity:
       requestBody:
@@ -1199,6 +1285,8 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
   getVerifications:
     speakeasy-default-get-verifications:
       parameters:
@@ -1226,5 +1314,7 @@ examples:
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
 examplesVersion: 1.0.0
 generatedTests: {}

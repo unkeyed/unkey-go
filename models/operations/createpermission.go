@@ -3,14 +3,105 @@
 package operations
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
 )
+
+type Two string
+
+const (
+	TwoUnknown Two = ""
+)
+
+func (e Two) ToPointer() *Two {
+	return &e
+}
+func (e *Two) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "":
+		*e = Two(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Two: %v", v)
+	}
+}
+
+type DescriptionType string
+
+const (
+	DescriptionTypeStr DescriptionType = "str"
+	DescriptionTypeTwo DescriptionType = "2"
+)
+
+// Description - Explain what this permission does. This is just for your team, your users will not see this.
+type Description struct {
+	Str *string `queryParam:"inline"`
+	Two *Two    `queryParam:"inline"`
+
+	Type DescriptionType
+}
+
+func CreateDescriptionStr(str string) Description {
+	typ := DescriptionTypeStr
+
+	return Description{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateDescriptionTwo(two Two) Description {
+	typ := DescriptionTypeTwo
+
+	return Description{
+		Two:  &two,
+		Type: typ,
+	}
+}
+
+func (u *Description) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = DescriptionTypeStr
+		return nil
+	}
+
+	var two Two = Two("")
+	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
+		u.Two = &two
+		u.Type = DescriptionTypeTwo
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Description", string(data))
+}
+
+func (u Description) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Description: all fields are null")
+}
 
 type CreatePermissionRequestBody struct {
 	// The unique name of your permission.
 	Name string `json:"name"`
 	// Explain what this permission does. This is just for your team, your users will not see this.
-	Description *string `json:"description,omitempty"`
+	Description *Description `json:"description,omitempty"`
 }
 
 func (o *CreatePermissionRequestBody) GetName() string {
@@ -20,7 +111,7 @@ func (o *CreatePermissionRequestBody) GetName() string {
 	return o.Name
 }
 
-func (o *CreatePermissionRequestBody) GetDescription() *string {
+func (o *CreatePermissionRequestBody) GetDescription() *Description {
 	if o == nil {
 		return nil
 	}

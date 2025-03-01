@@ -167,6 +167,8 @@ type V1KeysVerifyKeyResponse struct {
 	Environment *string `json:"environment,omitempty"`
 	// The associated identity of this key.
 	Identity *V1KeysVerifyKeyResponseIdentity `json:"identity,omitempty"`
+	// A unique id for this request, please provide it to Unkey support to help us debug your issue.
+	RequestID string `json:"requestId"`
 }
 
 func (o *V1KeysVerifyKeyResponse) GetKeyID() *string {
@@ -258,4 +260,11 @@ func (o *V1KeysVerifyKeyResponse) GetIdentity() *V1KeysVerifyKeyResponseIdentity
 		return nil
 	}
 	return o.Identity
+}
+
+func (o *V1KeysVerifyKeyResponse) GetRequestID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestID
 }

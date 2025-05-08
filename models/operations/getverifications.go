@@ -142,22 +142,22 @@ func (u Tag) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type Tag: all fields are null")
 }
 
-type Two string
+type QueryParam2 string
 
 const (
-	TwoKey      Two = "key"
-	TwoIdentity Two = "identity"
-	TwoTags     Two = "tags"
-	TwoTag      Two = "tag"
-	TwoMonth    Two = "month"
-	TwoDay      Two = "day"
-	TwoHour     Two = "hour"
+	QueryParam2Key      QueryParam2 = "key"
+	QueryParam2Identity QueryParam2 = "identity"
+	QueryParam2Tags     QueryParam2 = "tags"
+	QueryParam2Tag      QueryParam2 = "tag"
+	QueryParam2Month    QueryParam2 = "month"
+	QueryParam2Day      QueryParam2 = "day"
+	QueryParam2Hour     QueryParam2 = "hour"
 )
 
-func (e Two) ToPointer() *Two {
+func (e QueryParam2) ToPointer() *QueryParam2 {
 	return &e
 }
-func (e *Two) UnmarshalJSON(data []byte) error {
+func (e *QueryParam2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -176,10 +176,10 @@ func (e *Two) UnmarshalJSON(data []byte) error {
 	case "day":
 		fallthrough
 	case "hour":
-		*e = Two(v)
+		*e = QueryParam2(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Two: %v", v)
+		return fmt.Errorf("invalid value for QueryParam2: %v", v)
 	}
 }
 
@@ -227,16 +227,16 @@ func (e *One) UnmarshalJSON(data []byte) error {
 type GroupByType string
 
 const (
-	GroupByTypeOne      GroupByType = "1"
-	GroupByTypeArrayOf2 GroupByType = "arrayOf2"
+	GroupByTypeOne                GroupByType = "1"
+	GroupByTypeArrayOfQueryParam2 GroupByType = "arrayOfQueryParam2"
 )
 
 // GroupBy - By default, datapoints are not aggregated, however you probably want to get a breakdown per time, key or identity.
 //
 // Grouping by tags and by tag is mutually exclusive.
 type GroupBy struct {
-	One      *One  `queryParam:"inline"`
-	ArrayOf2 []Two `queryParam:"inline"`
+	One                *One          `queryParam:"inline"`
+	ArrayOfQueryParam2 []QueryParam2 `queryParam:"inline"`
 
 	Type GroupByType
 }
@@ -250,12 +250,12 @@ func CreateGroupByOne(one One) GroupBy {
 	}
 }
 
-func CreateGroupByArrayOf2(arrayOf2 []Two) GroupBy {
-	typ := GroupByTypeArrayOf2
+func CreateGroupByArrayOfQueryParam2(arrayOfQueryParam2 []QueryParam2) GroupBy {
+	typ := GroupByTypeArrayOfQueryParam2
 
 	return GroupBy{
-		ArrayOf2: arrayOf2,
-		Type:     typ,
+		ArrayOfQueryParam2: arrayOfQueryParam2,
+		Type:               typ,
 	}
 }
 
@@ -268,10 +268,10 @@ func (u *GroupBy) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var arrayOf2 []Two = []Two{}
-	if err := utils.UnmarshalJSON(data, &arrayOf2, "", true, true); err == nil {
-		u.ArrayOf2 = arrayOf2
-		u.Type = GroupByTypeArrayOf2
+	var arrayOfQueryParam2 []QueryParam2 = []QueryParam2{}
+	if err := utils.UnmarshalJSON(data, &arrayOfQueryParam2, "", true, true); err == nil {
+		u.ArrayOfQueryParam2 = arrayOfQueryParam2
+		u.Type = GroupByTypeArrayOfQueryParam2
 		return nil
 	}
 
@@ -283,8 +283,8 @@ func (u GroupBy) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.One, "", true)
 	}
 
-	if u.ArrayOf2 != nil {
-		return utils.MarshalJSON(u.ArrayOf2, "", true)
+	if u.ArrayOfQueryParam2 != nil {
+		return utils.MarshalJSON(u.ArrayOfQueryParam2, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type GroupBy: all fields are null")
@@ -385,7 +385,7 @@ type GetVerificationsRequest struct {
 	// When you are providing zero or more than one tag, all usage counts are aggregated and summed up. Send multiple requests with one tag each if you need counts per tag.
 	Tag   *Tag   `queryParam:"style=form,explode=true,name=tag"`
 	Start *int64 `queryParam:"style=form,explode=true,name=start"`
-	End   *int64 `default:"1738456331924" queryParam:"style=form,explode=true,name=end"`
+	End   *int64 `default:"1746664478444" queryParam:"style=form,explode=true,name=end"`
 	// By default, datapoints are not aggregated, however you probably want to get a breakdown per time, key or identity.
 	//
 	// Grouping by tags and by tag is mutually exclusive.

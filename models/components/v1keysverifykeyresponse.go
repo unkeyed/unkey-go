@@ -163,10 +163,14 @@ type V1KeysVerifyKeyResponse struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// A list of all the permissions this key is connected to.
 	Permissions []string `json:"permissions,omitempty"`
+	// A list of all the roles this key is connected to.
+	Roles []string `json:"roles,omitempty"`
 	// The environment of the key, this is what what you set when you crated the key
 	Environment *string `json:"environment,omitempty"`
 	// The associated identity of this key.
 	Identity *V1KeysVerifyKeyResponseIdentity `json:"identity,omitempty"`
+	// A unique id for this request, please provide it to Unkey support to help us debug your issue.
+	RequestID string `json:"requestId"`
 }
 
 func (o *V1KeysVerifyKeyResponse) GetKeyID() *string {
@@ -246,6 +250,13 @@ func (o *V1KeysVerifyKeyResponse) GetPermissions() []string {
 	return o.Permissions
 }
 
+func (o *V1KeysVerifyKeyResponse) GetRoles() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Roles
+}
+
 func (o *V1KeysVerifyKeyResponse) GetEnvironment() *string {
 	if o == nil {
 		return nil
@@ -258,4 +269,11 @@ func (o *V1KeysVerifyKeyResponse) GetIdentity() *V1KeysVerifyKeyResponseIdentity
 		return nil
 	}
 	return o.Identity
+}
+
+func (o *V1KeysVerifyKeyResponse) GetRequestID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RequestID
 }

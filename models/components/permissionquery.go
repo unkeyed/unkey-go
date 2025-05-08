@@ -9,23 +9,23 @@ import (
 )
 
 type Or struct {
-	Or []PermissionQuery `json:"or"`
+	Or []*PermissionQuery `json:"or"`
 }
 
-func (o *Or) GetOr() []PermissionQuery {
+func (o *Or) GetOr() []*PermissionQuery {
 	if o == nil {
-		return []PermissionQuery{}
+		return []*PermissionQuery{}
 	}
 	return o.Or
 }
 
 type And struct {
-	And []PermissionQuery `json:"and"`
+	And []*PermissionQuery `json:"and"`
 }
 
-func (o *And) GetAnd() []PermissionQuery {
+func (o *And) GetAnd() []*PermissionQuery {
 	if o == nil {
-		return []PermissionQuery{}
+		return []*PermissionQuery{}
 	}
 	return o.And
 }

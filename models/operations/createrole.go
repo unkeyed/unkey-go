@@ -3,14 +3,105 @@
 package operations
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/unkeyed/unkey-go/internal/utils"
 	"github.com/unkeyed/unkey-go/models/components"
 )
+
+type Description2 string
+
+const (
+	Description2Unknown Description2 = ""
+)
+
+func (e Description2) ToPointer() *Description2 {
+	return &e
+}
+func (e *Description2) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "":
+		*e = Description2(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Description2: %v", v)
+	}
+}
+
+type CreateRoleDescriptionType string
+
+const (
+	CreateRoleDescriptionTypeStr          CreateRoleDescriptionType = "str"
+	CreateRoleDescriptionTypeDescription2 CreateRoleDescriptionType = "description_2"
+)
+
+// CreateRoleDescription - Explain what this role does. This is just for your team, your users will not see this.
+type CreateRoleDescription struct {
+	Str          *string       `queryParam:"inline"`
+	Description2 *Description2 `queryParam:"inline"`
+
+	Type CreateRoleDescriptionType
+}
+
+func CreateCreateRoleDescriptionStr(str string) CreateRoleDescription {
+	typ := CreateRoleDescriptionTypeStr
+
+	return CreateRoleDescription{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateCreateRoleDescriptionDescription2(description2 Description2) CreateRoleDescription {
+	typ := CreateRoleDescriptionTypeDescription2
+
+	return CreateRoleDescription{
+		Description2: &description2,
+		Type:         typ,
+	}
+}
+
+func (u *CreateRoleDescription) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = CreateRoleDescriptionTypeStr
+		return nil
+	}
+
+	var description2 Description2 = Description2("")
+	if err := utils.UnmarshalJSON(data, &description2, "", true, true); err == nil {
+		u.Description2 = &description2
+		u.Type = CreateRoleDescriptionTypeDescription2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreateRoleDescription", string(data))
+}
+
+func (u CreateRoleDescription) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Description2 != nil {
+		return utils.MarshalJSON(u.Description2, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type CreateRoleDescription: all fields are null")
+}
 
 type CreateRoleRequestBody struct {
 	// The unique name of your role.
 	Name string `json:"name"`
 	// Explain what this role does. This is just for your team, your users will not see this.
-	Description *string `json:"description,omitempty"`
+	Description *CreateRoleDescription `json:"description,omitempty"`
 }
 
 func (o *CreateRoleRequestBody) GetName() string {
@@ -20,7 +111,7 @@ func (o *CreateRoleRequestBody) GetName() string {
 	return o.Name
 }
 
-func (o *CreateRoleRequestBody) GetDescription() *string {
+func (o *CreateRoleRequestBody) GetDescription() *CreateRoleDescription {
 	if o == nil {
 		return nil
 	}

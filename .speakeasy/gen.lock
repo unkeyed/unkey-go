@@ -1,32 +1,32 @@
 lockVersion: 2.0.0
 id: 4fc4737a-135f-4840-8e6d-42a2b2a2884b
 management:
-  docChecksum: 36d57d2ebcc889f6998d500ec8899dbb
+  docChecksum: b4ac05b4a0cca7fbb5cf9ca1ddc3ade9
   docVersion: 1.0.0
-  speakeasyVersion: 1.481.1
-  generationVersion: 2.500.5
-  releaseVersion: 0.12.0
-  configChecksum: 71353dbefee1832b29202864ab261760
+  speakeasyVersion: 1.542.3
+  generationVersion: 2.597.9
+  releaseVersion: 0.13.0
+  configChecksum: 285fce97f154d54ad5754de54b55c5c8
   repoURL: https://github.com/unkeyed/unkey-go.git
   installationURL: https://github.com/unkeyed/unkey-go
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.6
-    core: 3.6.12
+    constsAndDefaults: 0.1.12
+    core: 3.7.4
     defaultEnabledRetries: 0.2.0
-    deprecations: 2.81.2
+    deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
     examples: 2.81.4
-    globalSecurity: 2.82.10
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     ignores: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.1.0
-    pagination: 2.82.2
+    nullables: 0.1.1
+    pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.83.2
     sdkHooks: 0.1.0
@@ -86,6 +86,7 @@ generatedFiles:
   - /models/sdkerrors/errforbidden.go
   - /models/sdkerrors/errinternalservererror.go
   - /models/sdkerrors/errnotfound.go
+  - /models/sdkerrors/errpreconditionfailed.go
   - /models/sdkerrors/errtoomanyrequests.go
   - /models/sdkerrors/errunauthorized.go
   - USAGE.md
@@ -130,6 +131,7 @@ generatedFiles:
   - docs/models/operations/createpermissionrequestbody.md
   - docs/models/operations/createpermissionresponse.md
   - docs/models/operations/createpermissionresponsebody.md
+  - docs/models/operations/createroledescription.md
   - docs/models/operations/createrolerequestbody.md
   - docs/models/operations/createroleresponse.md
   - docs/models/operations/createroleresponsebody.md
@@ -154,6 +156,8 @@ generatedFiles:
   - docs/models/operations/deleterolerequestbody.md
   - docs/models/operations/deleteroleresponse.md
   - docs/models/operations/deleteroleresponsebody.md
+  - docs/models/operations/description.md
+  - docs/models/operations/description2.md
   - docs/models/operations/getapirequest.md
   - docs/models/operations/getapiresponse.md
   - docs/models/operations/getapiresponsebody.md
@@ -211,6 +215,7 @@ generatedFiles:
   - docs/models/operations/orderby.md
   - docs/models/operations/overrides.md
   - docs/models/operations/permissions.md
+  - docs/models/operations/queryparam2.md
   - docs/models/operations/ratelimit.md
   - docs/models/operations/ratelimits.md
   - docs/models/operations/refill.md
@@ -297,6 +302,9 @@ generatedFiles:
   - docs/models/sdkerrors/errnotfoundcode.md
   - docs/models/sdkerrors/errnotfounderror.md
   - docs/models/sdkerrors/error.md
+  - docs/models/sdkerrors/errpreconditionfailed.md
+  - docs/models/sdkerrors/errpreconditionfailedcode.md
+  - docs/models/sdkerrors/errpreconditionfailederror.md
   - docs/models/sdkerrors/errtoomanyrequests.md
   - docs/models/sdkerrors/errtoomanyrequestscode.md
   - docs/models/sdkerrors/errtoomanyrequestserror.md
@@ -358,6 +366,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -369,7 +379,7 @@ examples:
           keyId: "key_1234"
       responses:
         "200":
-          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
+          application/json: {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -380,6 +390,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -401,6 +413,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -422,6 +436,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -443,6 +459,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -453,7 +471,7 @@ examples:
         application/json: {"apiId": "api_1234", "key": "sk_1234", "tags": ["path=/v1/users/123", "region=us-east-1"], "ratelimits": [{"name": "tokens", "cost": 1, "limit": 500, "duration": 3600000}, {"name": "tokens", "cost": 1, "limit": 20000, "duration": 86400000}]}
       responses:
         "200":
-          application/json: {"keyId": "key_1234", "valid": true, "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 123, "ratelimit": {"limit": 10, "remaining": 9, "reset": 3600000}, "remaining": 1000, "code": "DISABLED", "permissions": ["dns.record.update", "dns.record.delete"], "environment": "test"}
+          application/json: {"keyId": "key_1234", "valid": true, "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "expires": 123, "ratelimit": {"limit": 10, "remaining": 9, "reset": 3600000}, "remaining": 1000, "code": "DISABLED", "permissions": ["dns.record.update", "dns.record.delete"], "roles": ["admin"], "environment": "test", "requestId": "<id>"}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -464,6 +482,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -485,6 +505,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -506,6 +528,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -532,6 +556,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -553,6 +579,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -574,6 +602,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -595,6 +625,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -616,6 +648,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -637,6 +671,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -658,6 +694,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -680,6 +718,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -701,6 +741,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -714,7 +756,7 @@ examples:
           revalidateKeysCache: false
       responses:
         "200":
-          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
+          application/json: {"keys": [{"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}, {"id": "key_1234", "start": "sk_5j1", "workspaceId": "ws_1234", "apiId": "api_1234", "name": "Customer X", "ownerId": "user_123", "meta": {"roles": ["admin", "user"], "stripeCustomerId": "cus_1234"}, "createdAt": 0, "updatedAt": 0, "expires": 0, "remaining": 1000, "refill": {"interval": "daily", "amount": 100, "refillDay": 15, "lastRefillAt": 100}, "ratelimit": {"async": true, "limit": 10, "duration": 60}, "roles": ["admin", "finance"], "permissions": ["domain.dns.create_record", "finance.read_receipt"], "enabled": true}], "cursor": "eyJrZXkiOiJrZXlfMTIzNCJ9", "total": 688970}
         "400":
           application/json: {"error": {"code": "BAD_REQUEST", "docs": "https://unkey.dev/docs/api-reference/errors/code/BAD_REQUEST", "message": "<value>", "requestId": "req_1234"}}
         "401":
@@ -725,6 +767,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -746,6 +790,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "DELETE_PROTECTED", "docs": "https://unkey.dev/docs/api-reference/errors/code/DELETE_PROTECTED", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -767,6 +813,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -788,6 +836,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -809,6 +859,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -830,6 +882,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -854,6 +908,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -878,6 +934,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -899,6 +957,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -920,6 +980,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -941,6 +1003,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -962,6 +1026,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -984,6 +1050,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1003,6 +1071,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1024,6 +1094,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1045,6 +1117,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1067,6 +1141,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1086,6 +1162,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1107,6 +1185,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1130,6 +1210,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1153,6 +1235,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1174,6 +1258,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1195,6 +1281,8 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
@@ -1222,9 +1310,11 @@ examples:
           application/json: {"error": {"code": "NOT_FOUND", "docs": "https://unkey.dev/docs/api-reference/errors/code/NOT_FOUND", "message": "<value>", "requestId": "req_1234"}}
         "409":
           application/json: {"error": {"code": "CONFLICT", "docs": "https://unkey.dev/docs/api-reference/errors/code/CONFLICT", "message": "<value>", "requestId": "req_1234"}}
+        "412":
+          application/json: {"error": {"code": "PRECONDITION_FAILED", "docs": "https://unkey.dev/docs/api-reference/errors/code/PRECONDITION_FAILED", "message": "<value>", "requestId": "req_1234"}}
         "429":
           application/json: {"error": {"code": "TOO_MANY_REQUESTS", "docs": "https://unkey.dev/docs/api-reference/errors/code/TOO_MANY_REQUESTS", "message": "<value>", "requestId": "req_1234"}}
         "500":
           application/json: {"error": {"code": "INTERNAL_SERVER_ERROR", "docs": "https://unkey.dev/docs/api-reference/errors/code/INTERNAL_SERVER_ERROR", "message": "<value>", "requestId": "req_1234"}}
-examplesVersion: 1.0.0
+examplesVersion: 1.0.1
 generatedTests: {}

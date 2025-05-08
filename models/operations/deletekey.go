@@ -10,7 +10,7 @@ import (
 type DeleteKeyRequestBody struct {
 	// The id of the key to revoke
 	KeyID string `json:"keyId"`
-	// By default Unkey soft deletes keys, so they may be recovered later. If you want to permanently delete it, set permanent=true. This might be necessary if you run into NOT_UNIQUE errors during key migration.
+	// By default Unkey soft deletes keys, so they may be recovered later. If you want to permanently delete it, set permanent=true. This might be necessary if you run into CONFLICT errors during key migration.
 	Permanent *bool `default:"false" json:"permanent"`
 }
 
